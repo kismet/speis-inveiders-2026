@@ -1,0 +1,3 @@
+[submodule "libs/edl"]
+	path = libs/edl
+	url = https://github.com/kismet/easy-sdl.git
