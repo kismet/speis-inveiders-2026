@@ -12,31 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+//TODO Completa questo codice per visualizzare "Menu"
+
 #include <easy_sdl.h>
-#include "types.h"
 #include "gameplay.h"
+#include "types.h"
 
-GameContext_t game;
+extern GameContext_t game;
 
-//TODO Modifica il codice per invocare nei punti opportuni per cambiare lo stato
-//TODO Prova ad aggiungere altri stati e a far terminare il programma con ESC se siamo nel Main Menu
-int main(int argc, char* argv[]) {
-    game.state = 0;
-    EDL_Init();
-
-    bool running = true;
-    SDL_Event event;
-    while (running) {
+void main_menu() {
+    //TODO Implementami!
+    //TODO Copiami e adattami per gli altri stati
+    SDL_Event event;;
+    while (game.state == GAME_STATUS_MENU) {
+        EDL_FrameClear();
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_EVENT_QUIT ||
                 (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_ESCAPE)) {
-                running = false;
                 }
         }
-
-
     }
-
-    EDL_Destroy();
-    return 0;
 }
