@@ -11,7 +11,7 @@ include_directories(libs/edl/include)
 include_directories(libs/edl/libs/SDL3-3.4.0)
 
 # Link statico per runtime GCC
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static-libgcc -static-libstdc++ -static")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wwrite-strings -static-libgcc -static-libstdc++ -static")
 
 find_package(SDL3 REQUIRED)
 find_package(SDL3_ttf REQUIRED)
