@@ -35,9 +35,9 @@
 //#include <SDL3/SDL.h>
 #include <string>
 
-typedef struct gameContext {
+typedef struct GameContext {
     uint8_t stato;
-} gameContext_t;
+} GameContext_t;
 
 const int RIGHE=27;
 const int COLONNE=23;
@@ -51,18 +51,18 @@ void stampaInt(int valore, char* buffer, size_t dim) {
 }
 
 
-void print(char t[][23]) {
-    for (int r = 0; r < 27; r++) {
-        for (int c = 0; c < 23; c++) {
+void print(char t[][COLONNE]) {
+    for (int r = 0; r < RIGHE; r++) {
+        for (int c = 0; c < COLONNE; c++) {
             std::cout << t[r][c];
         }
         std::cout << std::endl;
     }
 }
 
-void passoSinistro(char t[27][23]) {
+void passoSinistro(char t[RIGHE][COLONNE]) {
     int indiceNave;
-    for (int c = 0; c < 23; c++) {
+    for (int c = 0; c < RIGHE; c++) {
         if (t[26][c] == '^') {
             indiceNave = c;
         }
@@ -74,7 +74,7 @@ void passoSinistro(char t[27][23]) {
 
 }
 
-void passoDestro(char t[27][23]) {
+void passoDestro(char t[RIGHE][COLONNE]) {
     int indiceNave;
     for (int c = 0; c < 23; c++) {
         if (t[26][c] == '^') {
