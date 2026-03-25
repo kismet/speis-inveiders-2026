@@ -1,0 +1,106 @@
+//
+// Created by Admin on 25/03/2026.
+//
+#include "easy_sdl.h"
+
+void main_menu()
+{
+    Easy_Asset_t * regular = EDL_LoadAsset("assets/fonts/UbuntuMono-BoldItalic.ttf");
+    if(regular == NULL ) {
+        regular = EDL_LoadAsset("../assets/fonts/UbuntuMono-BoldItalic.ttf");
+    }
+
+    Easy_Asset_t * space = EDL_LoadAsset("assets/libs/assets/fonts/SpaceNova-6Rpd1.otf");
+    if(space == NULL ) {
+        space = EDL_LoadAsset("../assets/libs/assets/fonts/SpaceNova-6Rpd1.otf");
+    }
+
+    SDL_Color red = { 255, 0, 0 };
+    SDL_Color yellow = { 255, 255, 0 };
+    SDL_Color purple = { 255, 0, 255 };
+
+    //Definisco un primo stile title per il nome del gioco
+    TextStyle_t titleStyle;
+    titleStyle.font = regular;
+    titleStyle.size = 150;
+    titleStyle.foreground = purple;
+
+    //Definisco uno stile space cambiando font, colore e dimensione
+    TextStyle_t menuStyle = titleStyle;
+    menuStyle.font = space;
+    menuStyle.size = 80;
+    menuStyle.foreground = yellow;
+
+    TextStyle_t selectedStyle = menuStyle;
+    selectedStyle.foreground = red;
+    int menuIndex = 0;
+    bool running = true;
+
+    SDL_Event event;
+    while (running) {
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_EVENT_QUIT ||
+                (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_ESCAPE)) {
+                running = false;
+                }
+            if(event.type == SDL_EVENT_KEY_DOWN && (event.key.scancode == SDL_SCANCODE_S || event.key.scancode == SDL_SCANCODE_DOWN))
+            {
+                if (menuIndex+1 <= 3)
+                {
+                    menuIndex++;
+                }
+            }
+            if(event.type == SDL_EVENT_KEY_DOWN && (event.key.scancode == SDL_SCANCODE_W || event.key.scancode == SDL_SCANCODE_UP))
+            {
+                if (menuIndex-1 >= 0)
+                {
+                    menuIndex--;
+                }
+            }
+        }
+
+        EDL_FrameClear();
+        EDL_SetTextStyle(&titleStyle);
+        EDL_DrawText(120,70,"SPEIS INVEIDERS");
+
+        EDL_SetTextStyle(&menuStyle);
+        if (menuIndex == 0)
+        {
+            EDL_SetTextStyle(&selectedStyle);
+            EDL_DrawText(555,285,"Play");
+            EDL_SetTextStyle(&menuStyle);
+            EDL_DrawText(465,385,"Settings");
+            EDL_DrawText(475,485,"Credits");
+            EDL_DrawText(575,585,"Quit");
+        }
+        else if (menuIndex == 1)
+        {
+            EDL_DrawText(555,285,"Play");
+            EDL_SetTextStyle(&selectedStyle);
+            EDL_DrawText(465,385,"Settings");
+            EDL_SetTextStyle(&menuStyle);
+            EDL_DrawText(475,485,"Credits");
+            EDL_DrawText(575,585,"Quit");
+        }
+        else if (menuIndex == 2)
+        {
+            EDL_DrawText(555,285,"Play");
+            EDL_DrawText(465,385,"Settings");
+            EDL_SetTextStyle(&selectedStyle);
+            EDL_DrawText(475,485,"Credits");
+            EDL_SetTextStyle(&menuStyle);
+            EDL_DrawText(575,585,"Quit");
+        }
+        else if (menuIndex == 3)
+        {
+            EDL_DrawText(555,285,"Play");
+            EDL_DrawText(465,385,"Settings");
+            EDL_DrawText(475,485,"Credits");
+            EDL_SetTextStyle(&selectedStyle);
+            EDL_DrawText(575,585,"Quit");
+        }
+
+        EDL_FramePresent();
+    }
+    EDL_Destroy();
+}
