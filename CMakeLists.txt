@@ -17,7 +17,9 @@ find_package(SDL3 REQUIRED)
 find_package(SDL3_ttf REQUIRED)
 find_package(SDL3_image REQUIRED)
 
-add_executable(speis-inveiders src/main.cpp libs/edl/src/easy_sdl.cpp)
+add_executable(speis-inveiders src/main.cpp libs/edl/src/easy_sdl.cpp
+        src/main_menu.cpp
+)
 
 target_link_libraries(speis-inveiders
         SDL3::SDL3-shared
