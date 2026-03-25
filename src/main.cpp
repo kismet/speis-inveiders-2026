@@ -379,15 +379,18 @@ int main(int argc, char* argv[]) {
             EDL_FramePresent();
         }
         else if (gioco.stato == 0) {
+            Easy_Asset_t *pathMenu = EDL_LoadAsset("../assets/sprites/mainMenu.png");
 
             EDL_FrameClear();
-
+            style.size = 100;
             EDL_SetTextStyle(&style);
-            EDL_DrawText(540,250,"speis inveiders");
+            EDL_DrawAsset(0, 0, pathMenu, 0, 12);
+            EDL_DrawText(1080/1.8,50, "SPEIS INVEIDERS");
             if (highliner == 0) {
                 EDL_SetTextStyle(&stileGiallo);
             }
-            EDL_DrawText(640,350,"play");
+            style.size = 50;
+            EDL_DrawText(1080/1.2,325,"play");
             EDL_SetTextStyle(&style);
             if (highliner == 1) {
                 EDL_SetTextStyle(&stileGiallo);
@@ -400,7 +403,6 @@ int main(int argc, char* argv[]) {
             EDL_DrawText(640,510,"quit");
             EDL_SetTextStyle(&style);
 
-
             // calcola la differenza di almeno 1 sec per resettare e valorizzare fps
             Uint64 diffTempo = (SDL_GetTicks()-tempoPassato);
 
@@ -410,7 +412,6 @@ int main(int argc, char* argv[]) {
                 tempoPassato=SDL_GetTicks();
 
             }
-
             EDL_DrawText(1,1,"FPS: ");
             EDL_DrawText(100,1,valore_FPS);
             EDL_DrawAsset(xnave, ynave, navicella, rotation,10);
@@ -421,7 +422,8 @@ int main(int argc, char* argv[]) {
         }
         else if (gioco.stato == 2) {
             EDL_FrameClear();
-
+            Easy_Asset_t *pathPause = EDL_LoadAsset("../assets/sprites/pauseMenu.png");
+            EDL_DrawAsset(1920/2, 1080/2, pathPause, 0, 7);
             EDL_DrawText(540,250,"PAUSA");
             if (highliner == 0) {
                 EDL_SetTextStyle(&stileGiallo);
@@ -469,3 +471,4 @@ int main(int argc, char* argv[]) {
     EDL_Destroy();
     return 0;
 }
+
