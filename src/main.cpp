@@ -39,6 +39,7 @@
 const char MISSILE_SYMBOL = '|';
 const char NAVICELLA_SYMBOL = '^';
 const char VUOTO_SYMBOL = '-';
+const char NEMICO_SYMBOL = 'X';
 
 
 typedef struct gameContext {
@@ -119,8 +120,13 @@ void avanzaSparo(char t [27][23]) {
     for (int r = 0; r < 27; r++) {
         for (int c = 0; c < 23; c++) {
             if (t[r][c] == MISSILE_SYMBOL) {
-                t[r-1][c] = MISSILE_SYMBOL;
-                t[r][c] = VUOTO_SYMBOL;
+                if (t[r-1][c] == NEMICO_SYMBOL or t[r-1][c] == 'Y' or t[r-1][c] == 'Z') {
+                    t[r-1][c] = VUOTO_SYMBOL;
+                    t[r][c] = VUOTO_SYMBOL;
+                }else {
+                    t[r-1][c] = MISSILE_SYMBOL;
+                    t[r][c] = VUOTO_SYMBOL;
+                }
             }
         }
     }
