@@ -86,6 +86,12 @@ void passoDestro(char t[27][23]) {
         t[26][indiceNave + 1] = '^';
     }
 
+void passoDestroNemici(char t[RIGHE][COLONNE]) {
+    if (versoDestra) {
+        for (int i=0; i<RIGHE; i++) {
+            if (t[i][COLONNE] == 'X') {}
+        }
+    }
 }
 
 int main(int argc, char* argv[]) {
@@ -294,7 +300,7 @@ int main(int argc, char* argv[]) {
 
                     CTabellone[0] = tabellone[r][c];
                     CTabellone[1] = '\0';
-                    if (CTabellone[0] == 'X' or CTabellone[0] == 'Y' or CTabellone[0] == 'Z') {
+                    if (CTabellone[0] == 'X') {
                         EDL_DrawAsset(xscritta,yscritta,nemico, 180, 1);
                     }
                     else if (CTabellone[0] == '^') {
