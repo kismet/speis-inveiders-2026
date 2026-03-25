@@ -48,9 +48,6 @@ typedef struct gameContext {
     uint8_t stato;
 } GameContext_t;
 
-const int RIGHE=27;
-const int COLONNE=23;
-
 bool versoDestra = true;
 
     //creazione della matrice
