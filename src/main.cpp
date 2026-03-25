@@ -41,6 +41,8 @@ const char NAVICELLA_SYMBOL = '^';
 const char VUOTO_SYMBOL = '-';
 const char NEMICO_SYMBOL = 'X';
 
+const unsigned int RIGHE = 27;
+const unsigned int COLONNE = 23;
 
 typedef struct gameContext {
     uint8_t stato;
@@ -194,8 +196,8 @@ int main(int argc, char* argv[]) {
 
     //font e immagine nave
     Easy_Asset_t * font = EDL_LoadAsset("../assets/fonts/UbuntuMono-Regular.ttf");
-    Easy_Asset_t *navicella = EDL_LoadAsset("../assets/sprites/friendlyShip.PNG");
-    Easy_Asset_t *nemico = EDL_LoadAsset("../assets/sprites/alien1.PNG");
+    Easy_Asset_t *navicella = EDL_LoadAsset("../assets/sprites/navicella.PNG");
+    Easy_Asset_t *nemico = EDL_LoadAsset("../assets/sprites/alieno.PNG");
 
     uint64_t tempoAvanzoSparo;
 
@@ -246,6 +248,12 @@ int main(int argc, char* argv[]) {
 
 
     tempoAvanzoSparo = SDL_GetTicks();
+
+    for (int i = 0; i < RIGHE / 2; i = i + 5) {
+        for (int j = 0; j < COLONNE; j = j + 5) {
+            tabellone[i][j] = 'X';
+        }
+    }
 
     while (running) {
         // conteggia gli fps
@@ -400,7 +408,7 @@ int main(int argc, char* argv[]) {
             if (highliner == 2) {
                 EDL_SetTextStyle(&stileGiallo);
             }
-            EDL_DrawText(640,510,"quit");
+            EDL_DrawText(640,510,"esci");
             EDL_SetTextStyle(&style);
 
             // calcola la differenza di almeno 1 sec per resettare e valorizzare fps
@@ -428,17 +436,17 @@ int main(int argc, char* argv[]) {
             if (highliner == 0) {
                 EDL_SetTextStyle(&stileGiallo);
             }
-            EDL_DrawText(540,350,"resume");
+            EDL_DrawText(540,350,"continua");
             EDL_SetTextStyle(&style);
             if (highliner == 1) {
                 EDL_SetTextStyle(&stileGiallo);
             }
-            EDL_DrawText(540,430,"options");
+            EDL_DrawText(540,430,"impostazioni");
             EDL_SetTextStyle(&style);
             if (highliner == 2) {
                 EDL_SetTextStyle(&stileGiallo);
             }
-            EDL_DrawText(540,510,"quit");
+            EDL_DrawText(540,510,"esci");
             EDL_SetTextStyle(&style);
 
             EDL_FramePresent();
@@ -451,17 +459,17 @@ int main(int argc, char* argv[]) {
             if (highliner == 0) {
                 EDL_SetTextStyle(&stileGiallo);
             }
-            EDL_DrawText(540,350,"idk");
+            EDL_DrawText(540,350,"idk"); // da decidere
             EDL_SetTextStyle(&style);
             if (highliner == 1) {
                 EDL_SetTextStyle(&stileGiallo);
             }
-            EDL_DrawText(540,430,"bho");
+            EDL_DrawText(540,430,"bho"); // da decidere
             EDL_SetTextStyle(&style);
             if (highliner == 2) {
                 EDL_SetTextStyle(&stileGiallo);
             }
-            EDL_DrawText(540,510,"huh");
+            EDL_DrawText(540,510,"esci");
             EDL_SetTextStyle(&style);
 
             EDL_FramePresent();
@@ -471,4 +479,5 @@ int main(int argc, char* argv[]) {
     EDL_Destroy();
     return 0;
 }
+
 
