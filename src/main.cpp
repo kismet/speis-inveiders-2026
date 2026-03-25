@@ -35,6 +35,9 @@
 //#include <SDL3/SDL.h>
 #include <string>
 
+const unsigned int RIGHE = 27;
+const unsigned int COLONNE = 23;
+
 typedef struct gameContext {
     uint8_t stato;
 } gameContext_t;
@@ -103,8 +106,8 @@ int main(int argc, char* argv[]) {
 
     //font e immagine nave
     Easy_Asset_t * font = EDL_LoadAsset("../assets/fonts/UbuntuMono-Regular.ttf");
-    Easy_Asset_t *navicella = EDL_LoadAsset("../assets/sprites/friendlyShip.PNG");
-    Easy_Asset_t *nemico = EDL_LoadAsset("../assets/sprites/alien1.PNG");
+    Easy_Asset_t *navicella = EDL_LoadAsset("../assets/sprites/navicella.PNG");
+    Easy_Asset_t *nemico = EDL_LoadAsset("../assets/sprites/alieno.PNG");
 
     //variabili per i while e la selezione
     int highliner = 0;
@@ -153,15 +156,7 @@ int main(int argc, char* argv[]) {
 
     //creazione della matrice
 
-    char tabellone[27][23] = {
-        {'-', '-', '-', '-', '-', '-', '-', 'X', 'Y', 'Z', 'Y', 'X', 'Z', 'X', 'Z', 'Y', '-', '-', '-', '-', '-', '-', '-'},
-        {'-', '-', '-', '-', '-', '-', '-', 'Y', 'Y', 'Z', 'Y', 'X', 'Z', 'X', 'Z', 'Y', '-', '-', '-', '-', '-', '-', '-'},
-        {'-', '-', '-', '-', '-', '-', '-', 'X', 'Z', 'Z', 'Y', 'X', 'Y', 'Z', 'X', 'Y', '-', '-', '-', '-', '-', '-', '-'},
-        {'-', '-', '-', '-', '-', '-', '-', 'Z', 'Y', 'X', 'Y', 'X', 'Z', 'X', 'Z', 'X', '-', '-', '-', '-', '-', '-', '-'},
-        {'-', '-', '-', '-', '-', '-', '-', 'X', 'X', 'Z', 'Z', 'X', 'Y', 'X', 'Z', 'Y', '-', '-', '-', '-', '-', '-', '-'},
-        {'-', '-', '-', '-', '-', '-', '-', 'X', 'Y', 'Z', 'Y', 'X', 'Z', 'X', 'Y', 'Z', '-', '-', '-', '-', '-', '-', '-'},
-        {'-', '-', '-', '-', '-', '-', '-', 'Z', 'Z', 'Y', 'Z', 'X', 'Y', 'X', 'Z', 'Y', '-', '-', '-', '-', '-', '-', '-'},
-        {'-', '-', '-', '-', '-', '-', '-', 'X', 'Y', 'Z', 'Y', 'X', 'Z', 'X', 'Z', 'Y', '-', '-', '-', '-', '-', '-', '-'},
+    char tabellone[RIGHE][COLONNE] = {
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
@@ -179,8 +174,16 @@ int main(int argc, char* argv[]) {
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
-        {'-', 'O', '-', 'O', '-', 'O', '-', 'O', '-', 'O', '-', 'O', '-', 'O', '-', 'O', '-', 'O', '-', 'O', '-', 'O', '-'},
-        {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '^', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
+        {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
+        {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
+        {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
+        {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
+        {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
+        {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
+        {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
+        {'-', '-', 'O', '-', '-', 'O', '-', '-', 'O', '-', '-', 'O', '-', '-', 'O', '-', '-', 'O', '-', '-', 'O', '-', '-'},
+        {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
+        {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '^', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'}
 
         // X - Alieno tipo 1
         // Y - Alieno tipo 2
@@ -188,6 +191,12 @@ int main(int argc, char* argv[]) {
         // ^ - navicella player
         // O - Ripari
     };
+
+    for (int i = 0; i < RIGHE / 2; i = i + 5) {
+        for (int j = 0; j < COLONNE; j = j + 5) {
+            tabellone[i][j] = 'X';
+        }
+    }
 
     while (running) {
         // conteggia gli fps
@@ -292,11 +301,11 @@ int main(int argc, char* argv[]) {
 
                     CTabellone[0] = tabellone[r][c];
                     CTabellone[1] = '\0';
-                    if (CTabellone[0] == 'X' or CTabellone[0] == 'Y' or CTabellone[0] == 'Z') {
-                        EDL_DrawAsset(xscritta,yscritta,nemico, 180, 1);
+                    if (CTabellone[0] == 'X') {
+                        EDL_DrawAsset(xscritta,yscritta,nemico, 0, 5);
                     }
                     else if (CTabellone[0] == '^') {
-                        EDL_DrawAsset(xscritta,yscritta,navicella, 0, 1);
+                        EDL_DrawAsset(xscritta,yscritta,navicella, 0, 5);
                     }
 
                     xscritta = xscritta + 20;
@@ -315,11 +324,11 @@ int main(int argc, char* argv[]) {
             EDL_FrameClear();
 
             EDL_SetTextStyle(&style);
-            EDL_DrawText(540,250,"spezie invase");
+            EDL_DrawText(540,250,"speis inveiders");
             if (highliner == 0) {
                 EDL_SetTextStyle(&stileGiallo);
             }
-            EDL_DrawText(640,350,"play");
+            EDL_DrawText(640,350,"gioca");
             EDL_SetTextStyle(&style);
             if (highliner == 1) {
                 EDL_SetTextStyle(&stileGiallo);
@@ -329,7 +338,7 @@ int main(int argc, char* argv[]) {
             if (highliner == 2) {
                 EDL_SetTextStyle(&stileGiallo);
             }
-            EDL_DrawText(640,510,"quit");
+            EDL_DrawText(640,510,"esci");
             EDL_SetTextStyle(&style);
 
 
@@ -358,17 +367,17 @@ int main(int argc, char* argv[]) {
             if (highliner == 0) {
                 EDL_SetTextStyle(&stileGiallo);
             }
-            EDL_DrawText(540,350,"resume");
+            EDL_DrawText(540,350,"continua");
             EDL_SetTextStyle(&style);
             if (highliner == 1) {
                 EDL_SetTextStyle(&stileGiallo);
             }
-            EDL_DrawText(540,430,"options");
+            EDL_DrawText(540,430,"impostazioni");
             EDL_SetTextStyle(&style);
             if (highliner == 2) {
                 EDL_SetTextStyle(&stileGiallo);
             }
-            EDL_DrawText(540,510,"quit");
+            EDL_DrawText(540,510,"esci");
             EDL_SetTextStyle(&style);
 
             EDL_FramePresent();
@@ -381,17 +390,17 @@ int main(int argc, char* argv[]) {
             if (highliner == 0) {
                 EDL_SetTextStyle(&stileGiallo);
             }
-            EDL_DrawText(540,350,"idk");
+            EDL_DrawText(540,350,"idk"); // da decidere
             EDL_SetTextStyle(&style);
             if (highliner == 1) {
                 EDL_SetTextStyle(&stileGiallo);
             }
-            EDL_DrawText(540,430,"bho");
+            EDL_DrawText(540,430,"bho"); // da decidere
             EDL_SetTextStyle(&style);
             if (highliner == 2) {
                 EDL_SetTextStyle(&stileGiallo);
             }
-            EDL_DrawText(540,510,"huh");
+            EDL_DrawText(540,510,"esci");
             EDL_SetTextStyle(&style);
 
             EDL_FramePresent();
