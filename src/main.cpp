@@ -35,6 +35,12 @@
 //#include <SDL3/SDL.h>
 #include <string>
 
+//variabili di supporto per identificazione
+const char MISSILE_SYMBOL = '|';
+const char NAVICELLA_SYMBOL = '^';
+const char VUOTO_SYMBOL = '-';
+
+
 typedef struct gameContext {
     uint8_t stato;
 } gameContext_t;
@@ -86,6 +92,28 @@ void passoDestro(char t[27][23]) {
 
 }
 
+bool generaSparo (char t[27][23]) {
+    bool sparoPossibile = true;
+
+    for (int r = 0; r < 27; r++) {
+        for (int c = 0; c < 23; c++) {
+            if (t[r][c] == MISSILE_SYMBOL) {
+                sparoPossibile = false;
+            }
+        }
+    }
+
+    if (sparoPossibile) {
+        for (int r = 0; r < 27; r++) {
+            for (int c = 0; c < 23; c++) {
+                if (t[r][c] == NAVICELLA_SYMBOL) {
+                    t[r-1][c] = MISSILE_SYMBOL;
+                }
+            }
+        }
+    }
+    return sparoPossibile;
+}
 int main(int argc, char* argv[]) {
     //inizializzazione
     EDL_Init();
