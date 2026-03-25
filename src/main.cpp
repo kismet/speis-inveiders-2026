@@ -39,6 +39,8 @@ typedef struct gameContext {
     uint8_t stato;
 } gameContext_t;
 
+const int RIGHE=27;
+const int COLONNE=23;
 gameContext_t gioco;
 
 // Aiuta a convertire un numero int in puntatore char, utile per stampare EDL_DrawText()
