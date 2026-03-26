@@ -25,6 +25,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
 #include "easy_sdl.h"
 #include "types.h"
 
@@ -101,11 +102,11 @@ void main_menu()
             }
             if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_RETURN) {
                 if (menuIndex == 0) {
-                    gioco.stato = 1;
+                    gioco.stato = GAME_STAUS_PLAY;
                 } else if (menuIndex == 1) {
-                    gioco.stato = 3;
+                    gioco.stato = GAME_STATUS_OPTIONS;
                 } else if (menuIndex == 3) {
-                    gioco.stato = 5;
+                    gioco.stato = GAME_STATUS_QUIT;
                 }
                 //Torno al looop principale dove verrà avviata la gestione del gioco opportuna
                 return;

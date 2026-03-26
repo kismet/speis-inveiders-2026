@@ -29,8 +29,17 @@
 #ifndef SPEIS_INVEIDERS_TYPES_H
 #define SPEIS_INVEIDERS_TYPES_H
 
-typedef struct gameContext {
-    uint8_t stato;
+
+typedef enum GameStaus {
+    GAME_STATUS_MENU,
+    GAME_STAUS_PLAY,
+    GAME_STATUS_OPTIONS,
+    GAME_STATUS_QUIT
+    //TODO complete by students
+} GameStatus_t;
+
+typedef struct GameContext {
+    GameStatus_t stato;
 } GameContext_t;
 
 #endif //SPEIS_INVEIDERS_TYPES_H

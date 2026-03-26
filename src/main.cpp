@@ -118,7 +118,7 @@ int main(int argc, char* argv[]) {
     bool running = true;
     bool playRunning = false;
 
-    gioco.stato = 0;
+    gioco.stato = GAME_STATUS_MENU;
 
     SDL_Event event;
 
@@ -174,16 +174,16 @@ int main(int argc, char* argv[]) {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_EVENT_QUIT) {
                 running = false;
-                gioco.stato = 5;
+                gioco.stato = GAME_STATUS_QUIT;
                 }
 
             if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_ESCAPE) {
                 if (gioco.stato != 1) {
                     running = false;
-                    gioco.stato = 5;
+                    gioco.stato = GAME_STATUS_QUIT;
                 }
                 else {
-                    gioco.stato = 2;
+                    gioco.stato = GAME_STATUS_OPTIONS;
                 }
 
                 }
@@ -206,18 +206,6 @@ int main(int argc, char* argv[]) {
 
                 if (highliner < 0) {
                     highliner = 2;
-                }
-
-            }
-            if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_RETURN) {
-                if (highliner == 0) {
-                    gioco.stato = 1;
-                }
-                else if (highliner == 1) {
-                    gioco.stato = 3;
-                }
-                else {
-                    running = false;
                 }
 
             }
@@ -298,48 +286,8 @@ int main(int argc, char* argv[]) {
 
             EDL_FramePresent();
         }
-        else if (gioco.stato == 0) {
+        else if (gioco.stato == GAME_STATUS_MENU) {
             main_menu();
-            Easy_Asset_t *pathMenu = EDL_LoadAsset("../assets/sprites/mainMenu.png");
-
-            EDL_FrameClear();
-            style.size = 100;
-            EDL_SetTextStyle(&style);
-            EDL_DrawAsset(0, 0, pathMenu, 0, 12);
-            EDL_DrawText(1080/1.8,50, "SPEIS INVEIDERS");
-            if (highliner == 0) {
-                EDL_SetTextStyle(&stileGiallo);
-            }
-            style.size = 50;
-            EDL_DrawText(1080/1.2,325,"play");
-            EDL_SetTextStyle(&style);
-            if (highliner == 1) {
-                EDL_SetTextStyle(&stileGiallo);
-            }
-            EDL_DrawText(640,430,"opzioni");
-            EDL_SetTextStyle(&style);
-            if (highliner == 2) {
-                EDL_SetTextStyle(&stileGiallo);
-            }
-            EDL_DrawText(640,510,"esci");
-            EDL_SetTextStyle(&style);
-
-            // calcola la differenza di almeno 1 sec per resettare e valorizzare fps
-            Uint64 diffTempo = (SDL_GetTicks()-tempoPassato);
-
-            if (diffTempo >= 1000) {
-                stampaInt(fps,valore_FPS,64);
-                fps=0;
-                tempoPassato=SDL_GetTicks();
-
-            }
-            EDL_DrawText(1,1,"FPS: ");
-            EDL_DrawText(100,1,valore_FPS);
-            EDL_DrawAsset(xnave, ynave, navicella, rotation,10);
-
-            EDL_FramePresent();
-
-
         }
         else if (gioco.stato == 2) {
             EDL_FrameClear();
