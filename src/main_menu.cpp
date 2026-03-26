@@ -21,9 +21,9 @@ void Load_Module_Assets() {
         regular = EDL_LoadAsset("../assets/fonts/UbuntuMono-BoldItalic.ttf");
     }
 
-    space = EDL_LoadAsset("assets/libs/assets/fonts/SpaceNova-6Rpd1.otf");
+    space = EDL_LoadAsset("../libs/edl/assets/fonts/SpaceNova-6Rpd1.otf");
     if(space == NULL ) {
-        space = EDL_LoadAsset("../assets/libs/assets/fonts/SpaceNova-6Rpd1.otf");
+        space = EDL_LoadAsset("../libs/edl/assets/fonts/SpaceNova-6Rpd1.otf");
     }
 
     SDL_Color red = { 255, 0, 0 };
