@@ -29,6 +29,7 @@
 #include <iostream>
 
 #include "../../include/easy_sdl.h"
+#include "gameplay.h"
 #include <windows.h>
 
 #include <string>
@@ -44,11 +45,6 @@ const char NEMICO_SYMBOL = 'X';
 
 const unsigned int RIGHE = 27;
 const unsigned int COLONNE = 23;
-
-typedef struct gameContext {
-    uint8_t stato;
-} GameContext_t;
-
 
 bool versoDestra = true;
 
@@ -87,93 +83,10 @@ bool versoDestra = true;
 
 GameContext_t gioco;
 
-// Aiuta a convertire un numero int in puntatore char, utile per stampare EDL_DrawText()
-void stampaInt(int valore, char* buffer, size_t dim) {
-    std::string str = std::to_string(valore);
-    strncpy(buffer, str.c_str(), dim);
-    buffer[dim-1] = '\0'; // sicurezza alla fine di un char* il testo si chiude con un \0
-}
-
-
-void print() {
-    for (int r = 0; r < RIGHE; r++) {
-        for (int c = 0; c < COLONNE; c++) {
-            std::cout << tabellone[r][c];
-        }
-        std::cout << std::endl;
-    }
-}
-
-void passoSinistro() {
-    int indiceNave;
-    for (int c = 0; c < RIGHE; c++) {
-        if (tabellone[26][c] == '^') {
-            indiceNave = c;
-        }
-    }
-    if ( indiceNave != 0) {
-        tabellone[26][indiceNave] = '-';
-        tabellone[26][indiceNave - 1] = '^';
-    }
-
-}
-
-void passoDestro() {
-    int indiceNave;
-    for (int c = 0; c < 23; c++) {
-        if (tabellone[26][c] == '^') {
-            indiceNave = c;
-        }
-    }
-    if ( indiceNave != 0) {
-        tabellone[26][indiceNave] = '-';
-        tabellone[26][indiceNave + 1] = '^';
-    }
-}
-
 void passoDestroNemici() {
     if (versoDestra) {
         for (int i=0; i<RIGHE; i++) {
             if (tabellone[i][COLONNE] == 'X') {}
-        }
-    }
-}
-
-bool generaSparo () {
-    bool sparoPossibile = true;
-
-    for (int r = 0; r < RIGHE; r++) {
-        for (int c = 0; c < COLONNE; c++) {
-            if (tabellone[r][c] == MISSILE_SYMBOL) {
-                sparoPossibile = false;
-            }
-        }
-    }
-
-    if (sparoPossibile) {
-        for (int r = 0; r < RIGHE; r++) {
-            for (int c = 0; c < COLONNE; c++) {
-                if (tabellone[r][c] == NAVICELLA_SYMBOL) {
-                    tabellone[r-1][c] = MISSILE_SYMBOL;
-                }
-            }
-        }
-    }
-    return sparoPossibile;
-}
-
-void avanzaSparo() {
-    for (int r = 0; r < RIGHE; r++) {
-        for (int c = 0; c < COLONNE; c++) {
-            if (tabellone[r][c] == MISSILE_SYMBOL) {
-                if (tabellone[r-1][c] == NEMICO_SYMBOL or tabellone[r-1][c] == 'Y' or tabellone[r-1][c] == 'Z') {
-                    tabellone[r-1][c] = VUOTO_SYMBOL;
-                    tabellone[r][c] = VUOTO_SYMBOL;
-                }else {
-                    tabellone[r-1][c] = MISSILE_SYMBOL;
-                    tabellone[r][c] = VUOTO_SYMBOL;
-                }
-            }
         }
     }
 }

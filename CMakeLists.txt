@@ -20,6 +20,10 @@ find_package(SDL3_image REQUIRED)
 
 add_executable(speis-inveiders src/main.cpp libs/edl/src/easy_sdl.cpp
         src/main_menu.cpp
+        src/printGame.cpp
+        src/stampaInt.cpp
+        src/player_movement.cpp
+        src/player_shot.cpp
 )
 
 target_link_libraries(speis-inveiders
