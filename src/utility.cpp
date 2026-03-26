@@ -27,5 +27,22 @@
 // limitations under the License.
 
 #include "gameplay.h"
+#include <cstring>
 #include <iostream>
 
+using namespace std;
+// Aiuta a convertire un numero int in puntatore char, utile per stampare EDL_DrawText()
+void stampaInt(int valore, char* buffer, int dim) {
+    string str = to_string(valore);
+    strncpy(buffer, str.c_str(), dim);
+    buffer[dim-1] = '\0'; // sicurezza alla fine di un char* il testo si chiude con un \0
+}
+
+void printGame() {
+    for (int r = 0; r < RIGHE; r++) {
+        for (int c = 0; c < COLONNE; c++) {
+            cout << tabellone[r][c];
+        }
+        cout << endl;
+    }
+}
