@@ -26,14 +26,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include <chrono>
-#include <thread>
 #include <iostream>
 
 #include "../../include/easy_sdl.h"
 #include <windows.h>
-//#include <SDL3/SDL.h>
 #include <string>
+#include "gameplay.h"
+
 
 //variabili di supporto per identificazione
 const char MISSILE_SYMBOL = '|';
@@ -47,6 +46,7 @@ const unsigned int COLONNE = 23;
 typedef struct gameContext {
     uint8_t stato;
 } GameContext_t;
+
 
 bool versoDestra = true;
 
@@ -384,6 +384,7 @@ int main(int argc, char* argv[]) {
             EDL_FramePresent();
         }
         else if (gioco.stato == 0) {
+            main_menu();
             Easy_Asset_t *pathMenu = EDL_LoadAsset("../assets/sprites/mainMenu.png");
 
             EDL_FrameClear();
@@ -476,5 +477,6 @@ int main(int argc, char* argv[]) {
     EDL_Destroy();
     return 0;
 }
+
 
 
