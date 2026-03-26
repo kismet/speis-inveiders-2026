@@ -7,6 +7,7 @@ set(SDL3_image_DIR libs/edl/libs/SDL3_image-3.4.0/cmake)
 set(SDL3_ttf_DIR libs/edl/libs/SDL3_ttf-3.2.2/cmake)
 set(CMAKE_CXX_STANDARD 17)
 
+include_directories(include)
 include_directories(libs/edl/include)
 include_directories(libs/edl/libs/SDL3-3.4.0)
 
