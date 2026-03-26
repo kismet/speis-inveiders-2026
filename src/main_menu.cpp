@@ -2,15 +2,26 @@
 // Created by Admin on 25/03/2026.
 //
 #include "easy_sdl.h"
+Easy_Asset_t * regular = NULL;
+Easy_Asset_t * space = NULL;
+TextStyle_t titleStyle;
+TextStyle_t menuStyle;
+TextStyle_t selectedStyle;
 
-void main_menu()
-{
-    Easy_Asset_t * regular = EDL_LoadAsset("assets/fonts/UbuntuMono-BoldItalic.ttf");
+int menuIndex = 0;
+bool running = true;
+
+void Load_Module_Assets() {
+    if ( regular != NULL ) {
+        //Everything already loaded so we are going to exit
+        return;
+    }
+    regular = EDL_LoadAsset("assets/fonts/UbuntuMono-BoldItalic.ttf");
     if(regular == NULL ) {
         regular = EDL_LoadAsset("../assets/fonts/UbuntuMono-BoldItalic.ttf");
     }
 
-    Easy_Asset_t * space = EDL_LoadAsset("assets/libs/assets/fonts/SpaceNova-6Rpd1.otf");
+    space = EDL_LoadAsset("assets/libs/assets/fonts/SpaceNova-6Rpd1.otf");
     if(space == NULL ) {
         space = EDL_LoadAsset("../assets/libs/assets/fonts/SpaceNova-6Rpd1.otf");
     }
@@ -20,22 +31,24 @@ void main_menu()
     SDL_Color purple = { 255, 0, 255 };
 
     //Definisco un primo stile title per il nome del gioco
-    TextStyle_t titleStyle;
     titleStyle.font = regular;
     titleStyle.size = 150;
     titleStyle.foreground = purple;
 
     //Definisco uno stile space cambiando font, colore e dimensione
-    TextStyle_t menuStyle = titleStyle;
+    menuStyle = titleStyle;
     menuStyle.font = space;
     menuStyle.size = 80;
     menuStyle.foreground = yellow;
 
-    TextStyle_t selectedStyle = menuStyle;
+    selectedStyle = menuStyle;
     selectedStyle.foreground = red;
-    int menuIndex = 0;
-    bool running = true;
 
+}
+
+void main_menu()
+{
+    Load_Module_Assets();
     SDL_Event event;
     while (running) {
         while (SDL_PollEvent(&event)) {
