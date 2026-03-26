@@ -2,11 +2,16 @@
 // Created by Admin on 25/03/2026.
 //
 #include "easy_sdl.h"
+#include "types.h"
+
+extern GameContext_t gioco;
+
 Easy_Asset_t * regular = NULL;
 Easy_Asset_t * space = NULL;
 TextStyle_t titleStyle;
 TextStyle_t menuStyle;
 TextStyle_t selectedStyle;
+
 
 int menuIndex = 0;
 bool running = true;
@@ -69,6 +74,17 @@ void main_menu()
                 {
                     menuIndex--;
                 }
+            }
+            if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_RETURN) {
+                if (menuIndex == 0) {
+                    gioco.stato = 1;
+                } else if (menuIndex == 1) {
+                    gioco.stato = 3;
+                } else if (menuIndex == 3) {
+                    gioco.stato = 5;
+                }
+                //Torno al looop principale dove verrà avviata la gestione del gioco opportuna
+                return;
             }
         }
 
