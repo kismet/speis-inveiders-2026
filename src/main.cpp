@@ -93,66 +93,66 @@ void stampaInt(int valore, char* buffer, size_t dim) {
 }
 
 
-void print(char t[][COLONNE]) {
+void print() {
     for (int r = 0; r < RIGHE; r++) {
         for (int c = 0; c < COLONNE; c++) {
-            std::cout << t[r][c];
+            std::cout << tabellone[r][c];
         }
         std::cout << std::endl;
     }
 }
 
-void passoSinistro(char t[RIGHE][COLONNE]) {
+void passoSinistro() {
     int indiceNave;
     for (int c = 0; c < RIGHE; c++) {
-        if (t[26][c] == '^') {
+        if (tabellone[26][c] == '^') {
             indiceNave = c;
         }
     }
     if ( indiceNave != 0) {
-        t[26][indiceNave] = '-';
-        t[26][indiceNave - 1] = '^';
+        tabellone[26][indiceNave] = '-';
+        tabellone[26][indiceNave - 1] = '^';
     }
 
 }
 
-void passoDestro(char t[RIGHE][COLONNE]) {
+void passoDestro() {
     int indiceNave;
     for (int c = 0; c < 23; c++) {
-        if (t[26][c] == '^') {
+        if (tabellone[26][c] == '^') {
             indiceNave = c;
         }
     }
     if ( indiceNave != 0) {
-        t[26][indiceNave] = '-';
-        t[26][indiceNave + 1] = '^';
+        tabellone[26][indiceNave] = '-';
+        tabellone[26][indiceNave + 1] = '^';
     }
 }
 
-void passoDestroNemici(char t[RIGHE][COLONNE]) {
+void passoDestroNemici() {
     if (versoDestra) {
         for (int i=0; i<RIGHE; i++) {
-            if (t[i][COLONNE] == 'X') {}
+            if (tabellone[i][COLONNE] == 'X') {}
         }
     }
 }
 
-bool generaSparo (char t[27][23]) {
+bool generaSparo () {
     bool sparoPossibile = true;
 
-    for (int r = 0; r < 27; r++) {
-        for (int c = 0; c < 23; c++) {
-            if (t[r][c] == MISSILE_SYMBOL) {
+    for (int r = 0; r < RIGHE; r++) {
+        for (int c = 0; c < COLONNE; c++) {
+            if (tabellone[r][c] == MISSILE_SYMBOL) {
                 sparoPossibile = false;
             }
         }
     }
 
     if (sparoPossibile) {
-        for (int r = 0; r < 27; r++) {
-            for (int c = 0; c < 23; c++) {
-                if (t[r][c] == NAVICELLA_SYMBOL) {
-                    t[r-1][c] = MISSILE_SYMBOL;
+        for (int r = 0; r < RIGHE; r++) {
+            for (int c = 0; c < COLONNE; c++) {
+                if (tabellone[r][c] == NAVICELLA_SYMBOL) {
+                    tabellone[r-1][c] = MISSILE_SYMBOL;
                 }
             }
         }
@@ -160,16 +160,16 @@ bool generaSparo (char t[27][23]) {
     return sparoPossibile;
 }
 
-void avanzaSparo(char t [27][23]) {
-    for (int r = 0; r < 27; r++) {
-        for (int c = 0; c < 23; c++) {
-            if (t[r][c] == MISSILE_SYMBOL) {
-                if (t[r-1][c] == NEMICO_SYMBOL or t[r-1][c] == 'Y' or t[r-1][c] == 'Z') {
-                    t[r-1][c] = VUOTO_SYMBOL;
-                    t[r][c] = VUOTO_SYMBOL;
+void avanzaSparo() {
+    for (int r = 0; r < RIGHE; r++) {
+        for (int c = 0; c < COLONNE; c++) {
+            if (tabellone[r][c] == MISSILE_SYMBOL) {
+                if (tabellone[r-1][c] == NEMICO_SYMBOL or tabellone[r-1][c] == 'Y' or tabellone[r-1][c] == 'Z') {
+                    tabellone[r-1][c] = VUOTO_SYMBOL;
+                    tabellone[r][c] = VUOTO_SYMBOL;
                 }else {
-                    t[r-1][c] = MISSILE_SYMBOL;
-                    t[r][c] = VUOTO_SYMBOL;
+                    tabellone[r-1][c] = MISSILE_SYMBOL;
+                    tabellone[r][c] = VUOTO_SYMBOL;
                 }
             }
         }
@@ -311,7 +311,7 @@ int main(int argc, char* argv[]) {
                     xnave=xnave+padding;
                 }
                 else if ( gioco.stato == 1 ) {
-                    passoDestro(tabellone);
+                    passoDestro();
                 }
 
             }
@@ -320,7 +320,7 @@ int main(int argc, char* argv[]) {
                     xnave=xnave-padding;
                 }
                 else if ( gioco.stato == 1 ) {
-                    passoSinistro(tabellone);
+                    passoSinistro();
                 }
 
             }
@@ -341,7 +341,7 @@ int main(int argc, char* argv[]) {
 
             }
             if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_SPACE) {
-                generaSparo(tabellone);
+                generaSparo();
             }
 
         }
@@ -377,7 +377,7 @@ int main(int argc, char* argv[]) {
 
             }
             if (SDL_GetTicks() - tempoAvanzoSparo >= 100) {
-                avanzaSparo(tabellone);
+                avanzaSparo();
                 tempoAvanzoSparo = SDL_GetTicks();
             }
 
