@@ -2,6 +2,7 @@
 // Created by Admin on 25/03/2026.
 //
 #include "easy_sdl.h"
+#include "gameplay.h"
 
 void main_menu()
 {
