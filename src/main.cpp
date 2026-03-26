@@ -31,6 +31,8 @@
 #include "../../include/easy_sdl.h"
 #include <windows.h>
 #include <string>
+#include "gameplay.h"
+
 
 //variabili di supporto per identificazione
 const char MISSILE_SYMBOL = '|';
@@ -382,6 +384,7 @@ int main(int argc, char* argv[]) {
             EDL_FramePresent();
         }
         else if (gioco.stato == 0) {
+            main_menu();
             Easy_Asset_t *pathMenu = EDL_LoadAsset("../assets/sprites/mainMenu.png");
 
             EDL_FrameClear();
