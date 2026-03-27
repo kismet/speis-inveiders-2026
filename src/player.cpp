@@ -24,7 +24,7 @@ void passoDestro() {
             indiceNave = c;
         }
     }
-    if ( indiceNave != 0) {
+    if ( indiceNave != 22) {
         tabellone[26][indiceNave] = '-';
         tabellone[26][indiceNave + 1] = '^';
     }
