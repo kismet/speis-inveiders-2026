@@ -33,7 +33,6 @@
 #include <windows.h>
 
 #include <string>
-#include "gameplay.h"
 #include "types.h"
 
 
@@ -173,7 +172,10 @@ int main(int argc, char* argv[]) {
             if (event.type == SDL_EVENT_QUIT) {
                 running = false;
                 gioco.stato = GAME_STATUS_QUIT;
-                }
+            }
+            if (gioco.stato == GAME_STATUS_OPTIONS && highliner==2 && event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_RETURN) {
+                running = false;
+            }
 
             if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_ESCAPE) {
                 if (gioco.stato != 1) {
@@ -293,7 +295,7 @@ int main(int argc, char* argv[]) {
         else if (gioco.stato == GAME_STATUS_MENU) {
             main_menu();
         }
-        else if (gioco.stato == 2) {
+        else if (gioco.stato == GAME_STATUS_OPTIONS) {
             EDL_FrameClear();
             Easy_Asset_t *pathPause = EDL_LoadAsset("../assets/sprites/pauseMenu.png");
             EDL_DrawAsset(1920/2, 1080/2, pathPause, 0, 7);
