@@ -43,11 +43,11 @@ typedef struct GameContext {
 } GameContext_t;
 
 typedef struct Player {
-    int x;
-    int y;
+    int x = 11;
+    const int Y = 26;
     int spariRimasti = 0;
-    int punteggio;
-    int lives;
+    int punteggio = 0;
+    int lives = 3;
 } Player_t;
 
 #endif //SPEIS_INVEIDERS_TYPES_H
