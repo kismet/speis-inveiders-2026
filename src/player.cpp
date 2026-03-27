@@ -7,14 +7,6 @@
 extern  Player_t player;
 
 void passoSinistro() {
-    /*int indiceNave;
-    for (int c = 0; c < RIGHE; c++) {
-        if (tabellone[26][c] == '^') {
-            indiceNave = c;
-        }
-    }*/
-
-
 
     if ( player.x != 0) {
         tabellone[player.Y][player.x] = '-';
@@ -25,13 +17,6 @@ void passoSinistro() {
 }
 
 void passoDestro() {
-    /*int indiceNave;
-    for (int c = 0; c < 23; c++) {
-        if (tabellone[26][c] == '^') {
-            indiceNave = c;
-        }
-    }*/
-
 
     if ( player.x != 22) {
         tabellone[player.Y][player.x] = '-';
@@ -52,13 +37,7 @@ bool generaSparo () {
     }
 
     if (sparoPossibile) {
-        for (int r = 0; r < RIGHE; r++) {
-            for (int c = 0; c < COLONNE; c++) {
-                if (tabellone[r][c] == NAVICELLA_SYMBOL) {
-                    tabellone[r-1][c] = MISSILE_SYMBOL;
-                }
-            }
-        }
+        tabellone[player.Y-1][player.x] = MISSILE_SYMBOL;
     }
     return sparoPossibile;
 }
@@ -67,9 +46,10 @@ void avanzaSparo() {
     for (int r = 0; r < RIGHE; r++) {
         for (int c = 0; c < COLONNE; c++) {
             if (tabellone[r][c] == MISSILE_SYMBOL) {
-                if (tabellone[r-1][c] == NEMICO_SYMBOL or tabellone[r-1][c] == 'Y' or tabellone[r-1][c] == 'Z') {
+                if (tabellone[r-1][c] == NEMICO_SYMBOL) {
                     tabellone[r-1][c] = VUOTO_SYMBOL;
                     tabellone[r][c] = VUOTO_SYMBOL;
+                    player.punteggio += 100;
                 }else {
                     tabellone[r-1][c] = MISSILE_SYMBOL;
                     tabellone[r][c] = VUOTO_SYMBOL;
