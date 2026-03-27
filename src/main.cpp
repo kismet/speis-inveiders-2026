@@ -96,6 +96,8 @@ int main(int argc, char* argv[]) {
     //inizializzazione
     EDL_Init();
 
+    char stampaPunteggio[1000];
+
     //robe per movimento
     int padding =20;
     int rotation=5;
@@ -245,6 +247,10 @@ int main(int argc, char* argv[]) {
         }
         if (gioco.stato == 1) {
             EDL_FrameClear();
+
+            stampaInt(player.punteggio, stampaPunteggio, 64);
+            //TODO posizionati punteggi in attesa di font stile e posizione
+            EDL_DrawText(550, 50, stampaPunteggio);
 
             yscritta = 150;
             xscritta = 400;
