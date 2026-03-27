@@ -161,12 +161,6 @@ int main(int argc, char* argv[]) {
 
     tempoAvanzoSparo = SDL_GetTicks();
 
-    for (int i = 0; i < RIGHE / 2; i = i + 5) {
-        for (int j = 0; j < COLONNE; j = j + 5) {
-            tabellone[i][j] = 'X';
-        }
-    }
-
     while (running) {
         // conteggia gli fps
         fps++;
