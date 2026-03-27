@@ -109,7 +109,7 @@ int main(int argc, char* argv[]) {
 
     //font e immagine nave
     Easy_Asset_t * font = EDL_LoadAsset("../assets/fonts/UbuntuMono-Regular.ttf");
-    Easy_Asset_t *navicella = EDL_LoadAsset("../assets/sprites/navicella.PNG");
+    player.navicella  = EDL_LoadAsset("../assets/sprites/navicella.PNG");
     Easy_Asset_t *nemico = EDL_LoadAsset("../assets/sprites/alieno.PNG");
 
     uint64_t tempoAvanzoSparo;
@@ -260,7 +260,7 @@ int main(int argc, char* argv[]) {
                         EDL_DrawAsset(xscritta,yscritta,nemico, 180, 1);
                     }
                     else if (CTabellone[0] == NAVICELLA_SYMBOL) {
-                        EDL_DrawAsset(xscritta,yscritta,navicella, 0, 1);
+                        EDL_DrawAsset(xscritta,yscritta,player.navicella, 0, 1);
                     }
                     else if (CTabellone[0] == MISSILE_SYMBOL) {
                         EDL_DrawText(xscritta,yscritta, "|");
