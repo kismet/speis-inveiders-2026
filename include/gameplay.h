@@ -44,8 +44,6 @@ void stampaInt(int valore, char* buffer, int dim);
 
 void printGame();
 
-void main_menu();
-
 void passoSinistro();
 
 void passoDestro();
