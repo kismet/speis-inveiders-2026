@@ -42,6 +42,7 @@ const char MISSILE_SYMBOL = '|';
 const char NAVICELLA_SYMBOL = '^';
 const char VUOTO_SYMBOL = '-';
 const char NEMICO_SYMBOL = 'X';
+const unsigned int MISSILE_BASIC_SPEED = 75;
 
 const unsigned int RIGHE = 27;
 const unsigned int COLONNE = 23;
@@ -280,10 +281,12 @@ int main(int argc, char* argv[]) {
                 xscritta = 400;
 
             }
-            if (SDL_GetTicks() - tempoAvanzoSparo >= 100) {
+            if (SDL_GetTicks() - tempoAvanzoSparo >= MISSILE_BASIC_SPEED) {
                 avanzaSparo();
                 tempoAvanzoSparo = SDL_GetTicks();
             }
+            //TODO mettere la velocià in funzione del livello
+
 
             EDL_FramePresent();
         }

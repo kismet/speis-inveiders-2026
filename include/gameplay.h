@@ -35,6 +35,7 @@ extern const char VUOTO_SYMBOL;
 extern const char NEMICO_SYMBOL;
 extern const unsigned int RIGHE;
 extern const unsigned int COLONNE;
+extern const unsigned int MISSILE_BASIC_SPEED;
 extern char tabellone[27][23];
 
 void main_menu();
