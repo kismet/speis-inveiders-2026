@@ -103,7 +103,8 @@ void muoviProiettiliAlieni() {
             if ( tabellone[i][j] == 4 ) {
                 tabellone[i][j] = VUOTO_SYMBOL;
                 if ( tabellone[i + 1][j] == 2 ) {
-                    ucciso = 1;
+                    //TODO Qual'è il significato di ucciso, attualmente rimosso perchè gli aliene non sparano
+                    //ucciso = 1;
                 } else {
                     tabellone[i + 1][j] = 4;
                 }
