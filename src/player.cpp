@@ -2,31 +2,41 @@
 // Created by Admin on 26/03/2026.
 //
 #include "gameplay.h"
+#include "types.h"
+
+extern  Player_t player;
 
 void passoSinistro() {
-    int indiceNave;
+    /*int indiceNave;
     for (int c = 0; c < RIGHE; c++) {
         if (tabellone[26][c] == '^') {
             indiceNave = c;
         }
-    }
-    if ( indiceNave != 0) {
-        tabellone[26][indiceNave] = '-';
-        tabellone[26][indiceNave - 1] = '^';
+    }*/
+
+
+
+    if ( player.x != 0) {
+        tabellone[player.Y][player.x] = '-';
+        tabellone[player.Y][player.x - 1] = '^';
+        player.x --;
     }
 
 }
 
 void passoDestro() {
-    int indiceNave;
+    /*int indiceNave;
     for (int c = 0; c < 23; c++) {
         if (tabellone[26][c] == '^') {
             indiceNave = c;
         }
-    }
-    if ( indiceNave != 22) {
-        tabellone[26][indiceNave] = '-';
-        tabellone[26][indiceNave + 1] = '^';
+    }*/
+
+
+    if ( player.x != 22) {
+        tabellone[player.Y][player.x] = '-';
+        tabellone[player.Y][player.x + 1] = '^';
+        player.x ++;
     }
 }
 

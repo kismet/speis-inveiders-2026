@@ -82,6 +82,7 @@ bool versoDestra = true;
 
 
 GameContext_t gioco;
+Player_t player;
 
 void passoDestroNemici() {
     if (versoDestra) {
