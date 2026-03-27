@@ -23,6 +23,7 @@ add_executable(speis-inveiders src/main.cpp libs/edl/src/easy_sdl.cpp
         src/printGame.cpp
         src/utility.cpp
         src/player.cpp
+        src/alien.cpp
 )
 
 target_link_libraries(speis-inveiders
