@@ -24,11 +24,11 @@ void Load_Over_Assets() {
     SDL_Color purple = { 255, 0, 255 };
 
     over.titleStyle.font = over.space;
-    over.titleStyle.size = 150;
+    over.titleStyle.size = 170;
     over.titleStyle.foreground = purple;
 
     over.menuStyle = over.titleStyle;
-    over.menuStyle.size = 80;
+    over.menuStyle.size = 100;
     over.menuStyle.foreground = yellow;
 
     over.selectedStyle = over.menuStyle;
@@ -78,31 +78,31 @@ void gameOver() {
 
                 EDL_FrameClear();
                 EDL_SetTextStyle(&over.titleStyle);
-                EDL_DrawText(250,150, "GAME OVER");
+                EDL_DrawText(250,150, 1366, 80, "GAME OVER", TEXT_CENTERED);
 
                 EDL_SetTextStyle(&over.menuStyle);
                 if (over.menuIndex == 0)
                 {
                     EDL_SetTextStyle(&over.selectedStyle);
-                    EDL_DrawText(555,285,"Main menu");
+                    EDL_DrawText(555,285, 1366, 125, "Main menu", TEXT_CENTERED);
                     EDL_SetTextStyle(&over.menuStyle);
-                    EDL_DrawText(575,385,"Restart");
-                    EDL_DrawText(575,485,"Exit");
+                    EDL_DrawText(575,385, 1366, 200, "Restart", TEXT_CENTERED);
+                    EDL_DrawText(575,485, 1366, 275, "Exit", TEXT_CENTERED);
                 }
                 else if (over.menuIndex == 1)
                 {
-                    EDL_DrawText(555,285,"Main menu");
+                    EDL_DrawText(555, 285, 1366, 125, "Main menu", TEXT_CENTERED);
                     EDL_SetTextStyle(&over.selectedStyle);
-                    EDL_DrawText(575,385,"Restart");
+                    EDL_DrawText(575, 385, 1366, 200, "Restart", TEXT_CENTERED);
                     EDL_SetTextStyle(&over.menuStyle);
-                    EDL_DrawText(575,485,"Exit");
+                    EDL_DrawText(575, 485, 1366, 275, "Exit", TEXT_CENTERED);
                 }
                 else if (over.menuIndex == 2)
                 {
-                    EDL_DrawText(555,285,"Main menu");
-                    EDL_DrawText(575,385,"Restart");
+                    EDL_DrawText(555, 285, 1366, 125, "Main menu", TEXT_CENTERED);
+                    EDL_DrawText(575, 385, 1366, 200, "Restart", TEXT_CENTERED);
                     EDL_SetTextStyle(&over.selectedStyle);
-                    EDL_DrawText(575,485,"Exit");
+                    EDL_DrawText(575, 485, 1366, 275, "Exit", TEXT_CENTERED);
                 }
                 EDL_FramePresent();
             }
