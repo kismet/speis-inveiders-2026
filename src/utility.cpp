@@ -46,3 +46,11 @@ void printGame() {
         cout << endl;
     }
 }
+
+void gameOver() {
+    for (int c=0; c<COLONNE; c++) {
+        if (tabellone[26][c] == NEMICO_SYMBOL) {
+            //TODO stampa scritta "GAME OVER"
+        }
+    }
+}
