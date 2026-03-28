@@ -29,6 +29,9 @@
 #include "gameplay.h"
 #include <cstring>
 #include <iostream>
+#include "types.h"
+
+Index_t over;
 
 using namespace std;
 // Aiuta a convertire un numero int in puntatore char, utile per stampare EDL_DrawText()
@@ -50,7 +53,8 @@ void printGame() {
 void gameOver() {
     for (int c=0; c<COLONNE; c++) {
         if (tabellone[26][c] == NEMICO_SYMBOL) {
-            //TODO stampa scritta "GAME OVER"
+            EDL_SetTextStyle(&over.titleStyle);
+            EDL_DrawText(120, 70, "GAME OVER");
         }
     }
 }
