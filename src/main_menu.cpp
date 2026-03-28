@@ -55,13 +55,13 @@ void Load_Module_Assets() {
 
     //Definisco un primo stile title per il nome del gioco
     menu.titleStyle.font = menu.regular;
-    menu.titleStyle.size = 150;
+    menu.titleStyle.size = 170;
     menu.titleStyle.foreground = purple;
 
     //Definisco uno stile space cambiando font, colore e dimensione
     menu.menuStyle = menu.titleStyle;
     menu.menuStyle.font = menu.space;
-    menu.menuStyle.size = 80;
+    menu.menuStyle.size = 100;
     menu.menuStyle.foreground = yellow;
 
     menu.selectedStyle = menu.menuStyle;
@@ -81,7 +81,7 @@ void main_menu()
                 }
             if(event.type == SDL_EVENT_KEY_DOWN && (event.key.scancode == SDL_SCANCODE_S || event.key.scancode == SDL_SCANCODE_DOWN))
             {
-                if (menu.menuIndex+1 <= 3)
+                if (menu.menuIndex+1 < 3)
                 {
                     menu.menuIndex++;
                 }
@@ -97,10 +97,8 @@ void main_menu()
                 if (menu.menuIndex == 0) {
                     gioco.stato = GAME_STATUS_PLAY;
                 } else if (menu.menuIndex == 1) {
-                    gioco.stato = GAME_STATUS_OPTIONS;
-                } else if (menu.menuIndex == 2) {
                     //TODO credits
-                } else if (menu.menuIndex == 3) {
+                } else if (menu.menuIndex == 2) {
                     gioco.stato = GAME_STATUS_QUIT;
                 }
                 //Torno al looop principale dove verrà avviata la gestione del gioco opportuna
@@ -110,43 +108,31 @@ void main_menu()
 
         EDL_FrameClear();
         EDL_SetTextStyle(&menu.titleStyle);
-        EDL_DrawText(120,70,"SPEIS INVEIDERS");
+        EDL_DrawText(0,70, 1366, 80, "SPEIS INVEIDERS", TEXT_CENTERED);
 
         EDL_SetTextStyle(&menu.menuStyle);
         if (menu.menuIndex == 0)
         {
             EDL_SetTextStyle(&menu.selectedStyle);
-            EDL_DrawText(555,285,"Play");
+            EDL_DrawText(0,285, 1366, 125, "Play", TEXT_CENTERED);
             EDL_SetTextStyle(&menu.menuStyle);
-            EDL_DrawText(465,385,"Settings");
-            EDL_DrawText(475,485,"Credits");
-            EDL_DrawText(575,585,"Quit");
+            EDL_DrawText(0,385, 1366, 200, "Credits", TEXT_CENTERED);
+            EDL_DrawText(0,485, 1366, 275, "Quit", TEXT_CENTERED);
         }
         else if (menu.menuIndex == 1)
         {
-            EDL_DrawText(555,285,"Play");
+            EDL_DrawText(0,285, 1366, 125, "Play", TEXT_CENTERED);
             EDL_SetTextStyle(&menu.selectedStyle);
-            EDL_DrawText(465,385,"Settings");
+            EDL_DrawText(0,385, 1366, 200, "Credits", TEXT_CENTERED);
             EDL_SetTextStyle(&menu.menuStyle);
-            EDL_DrawText(475,485,"Credits");
-            EDL_DrawText(575,585,"Quit");
+            EDL_DrawText(0,485, 1366, 275, "Quit", TEXT_CENTERED);
         }
         else if (menu.menuIndex == 2)
         {
-            EDL_DrawText(555,285,"Play");
-            EDL_DrawText(465,385,"Settings");
+            EDL_DrawText(0,285, 1366, 125, "Play", TEXT_CENTERED);
+            EDL_DrawText(0,385, 1366, 200, "Credits", TEXT_CENTERED);
             EDL_SetTextStyle(&menu.selectedStyle);
-            EDL_DrawText(475,485,"Credits");
-            EDL_SetTextStyle(&menu.menuStyle);
-            EDL_DrawText(575,585,"Quit");
-        }
-        else if (menu.menuIndex == 3)
-        {
-            EDL_DrawText(555,285,"Play");
-            EDL_DrawText(465,385,"Settings");
-            EDL_DrawText(475,485,"Credits");
-            EDL_SetTextStyle(&menu.selectedStyle);
-            EDL_DrawText(575,585,"Quit");
+            EDL_DrawText(0,485, 1366, 275, "Quit", TEXT_CENTERED);
         }
 
         EDL_FramePresent();

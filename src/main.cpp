@@ -179,18 +179,6 @@ int main(int argc, char* argv[]) {
                 if (highliner == 0) {
                     gioco.stato = GAME_STATUS_PLAY;
                 }else if (highliner == 1) {
-                    gioco.stato = GAME_STATUS_OPTIONS;
-                }else if (highliner == 2) {
-                    running = false;
-                }
-            }
-
-            if (gioco.stato == GAME_STATUS_OPTIONS && event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_RETURN) {
-                if (highliner == 0) {
-                    gioco.stato = GAME_STATUS_PLAY;
-                }else if (highliner == 1) {
-                    gioco.stato = GAME_STATUS_OPTIONS;
-                }else if (highliner == 2) {
                     running = false;
                 }
             }
@@ -296,51 +284,9 @@ int main(int argc, char* argv[]) {
             main_menu();
         }
         else if (gioco.stato == GAME_STATUS_PAUSE) {
-            
             //Easy_Asset_t *pathPause = EDL_LoadAsset("../assets/schermate/schermoPausa.png");
             //EDL_DrawAsset(0, 0, pathPause, 0, 1);
             pause_menu();
-            /*EDL_DrawText(540,250,"PAUSA");
-            if (highliner == 0) {
-                EDL_SetTextStyle(&stileGiallo);
-            }
-            EDL_DrawText(540,350,"continua");
-            EDL_SetTextStyle(&style);
-            if (highliner == 1) {
-                EDL_SetTextStyle(&stileGiallo);
-            }
-            EDL_DrawText(540,430,"impostazioni");
-            EDL_SetTextStyle(&style);
-            if (highliner == 2) {
-                EDL_SetTextStyle(&stileGiallo);
-            }
-            EDL_DrawText(540,510,"esci");
-            EDL_SetTextStyle(&style);
-            */
-            //EDL_FramePresent();
-
-        }
-        else if (gioco.stato == GAME_STATUS_OPTIONS) {
-            EDL_FrameClear();
-
-            EDL_DrawText(540,250,"OPZIONI");
-            if (highliner == 0) {
-                EDL_SetTextStyle(&stileGiallo);
-            }
-            EDL_DrawText(540,350,"idk"); // da decidere
-            EDL_SetTextStyle(&style);
-            if (highliner == 1) {
-                EDL_SetTextStyle(&stileGiallo);
-            }
-            EDL_DrawText(540,430,"bho"); // da decidere
-            EDL_SetTextStyle(&style);
-            if (highliner == 2) {
-                EDL_SetTextStyle(&stileGiallo);
-            }
-            EDL_DrawText(540,510,"esci");
-            EDL_SetTextStyle(&style);
-
-            EDL_FramePresent();
         }
         else if (gioco.stato == GAME_STATUS_QUIT) {
             running = false;
@@ -350,9 +296,3 @@ int main(int argc, char* argv[]) {
     EDL_Destroy();
     return 0;
 }
-
-
-
-
-
-
