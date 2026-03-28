@@ -88,6 +88,7 @@ void spostaInBassoNemico() {
             }
         }
     }
+    gameOver();
 }
 
 void spostaNemici() {

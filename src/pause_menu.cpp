@@ -1,7 +1,7 @@
 //
 // Created by Admin on 28/03/2026.
 //
-#include "easy_sdl_types.h"
+#include "easy_sdl.h"
 #include "gameplay.h"
 #include "types.h"
 
