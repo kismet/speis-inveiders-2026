@@ -36,6 +36,8 @@
 #include "gameplay.h"
 #include "types.h"
 
+extern void spostaNemici();
+
 
 //variabili di supporto per identificazione
 const char MISSILE_SYMBOL = '|';
@@ -47,6 +49,8 @@ const unsigned int RIGHE = 27;
 const unsigned int COLONNE = 23;
 
 bool versoDestra = true;
+
+int startTime = SDL_GetTicks();
 
     //creazione della matrice
 
@@ -164,6 +168,10 @@ int main(int argc, char* argv[]) {
     while (running) {
         // conteggia gli fps
         fps++;
+
+        if (gioco.stato==GAME_STAUS_PLAY) {
+            spostaNemici();
+        }
 
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_EVENT_QUIT) {

@@ -49,10 +49,22 @@ void passoSinistro();
 
 void passoDestro();
 
-void passoDestroNemici();
-
 bool generaSparo();
 
 void avanzaSparo();
+
+void spostaInBassoNemico();
+
+void spostaASinistraNemici();
+
+void spostaADestraNemici();
+
+bool destra();
+
+bool sinistra();
+
+bool basso();
+
+void spostaNemici();
 
 #endif //SPEIS_INVEIDERS_GAMEPLAY_H
