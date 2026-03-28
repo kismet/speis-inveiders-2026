@@ -35,7 +35,6 @@ extern const char VUOTO_SYMBOL;
 extern const char NEMICO_SYMBOL;
 extern const unsigned int RIGHE;
 extern const unsigned int COLONNE;
-extern const unsigned int MISSILE_BASIC_SPEED;
 extern char tabellone[27][23];
 
 void main_menu();
@@ -44,14 +43,30 @@ void stampaInt(int valore, char* buffer, int dim);
 
 void printGame();
 
+void main_menu();
+
 void passoSinistro();
 
 void passoDestro();
 
-void passoDestroNemici();
-
 bool generaSparo();
 
 void avanzaSparo();
+
+void spostaInBassoNemico();
+
+void spostaASinistraNemici();
+
+void spostaADestraNemici();
+
+bool destra();
+
+bool sinistra();
+
+bool basso();
+
+void spostaNemici();
+
+void gameOver();
 
 #endif //SPEIS_INVEIDERS_GAMEPLAY_H

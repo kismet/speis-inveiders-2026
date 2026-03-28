@@ -33,7 +33,10 @@
 #include <windows.h>
 
 #include <string>
+#include "gameplay.h"
 #include "types.h"
+
+extern void spostaNemici();
 
 
 //variabili di supporto per identificazione
@@ -41,12 +44,13 @@ const char MISSILE_SYMBOL = '|';
 const char NAVICELLA_SYMBOL = '^';
 const char VUOTO_SYMBOL = '-';
 const char NEMICO_SYMBOL = 'X';
-const unsigned int MISSILE_BASIC_SPEED = 75;
 
 const unsigned int RIGHE = 27;
 const unsigned int COLONNE = 23;
 
 bool versoDestra = true;
+
+int startTime = SDL_GetTicks();
 
     //creazione della matrice
 
@@ -82,7 +86,6 @@ bool versoDestra = true;
 
 
 GameContext_t gioco;
-Player_t player;
 
 void passoDestroNemici() {
     if (versoDestra) {
@@ -95,8 +98,6 @@ void passoDestroNemici() {
 int main(int argc, char* argv[]) {
     //inizializzazione
     EDL_Init();
-
-    char stampaPunteggio[1000];
 
     //robe per movimento
     int padding =20;
@@ -111,7 +112,7 @@ int main(int argc, char* argv[]) {
 
     //font e immagine nave
     Easy_Asset_t * font = EDL_LoadAsset("../assets/fonts/UbuntuMono-Regular.ttf");
-    player.navicella  = EDL_LoadAsset("../assets/sprites/navicella.PNG");
+    Easy_Asset_t *navicella = EDL_LoadAsset("../assets/sprites/navicella.PNG");
     Easy_Asset_t *nemico = EDL_LoadAsset("../assets/sprites/alieno.PNG");
 
     uint64_t tempoAvanzoSparo;
@@ -167,6 +168,10 @@ int main(int argc, char* argv[]) {
     while (running) {
         // conteggia gli fps
         fps++;
+
+        if (gioco.stato==GAME_STAUS_PLAY) {
+            spostaNemici();
+        }
 
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_EVENT_QUIT) {
@@ -267,10 +272,6 @@ int main(int argc, char* argv[]) {
         if (gioco.stato == 1) {
             EDL_FrameClear();
 
-            stampaInt(player.punteggio, stampaPunteggio, 64);
-            //TODO posizionati punteggi in attesa di font stile e posizione
-            EDL_DrawText(550, 50, stampaPunteggio);
-
             yscritta = 150;
             xscritta = 400;
 
@@ -285,7 +286,7 @@ int main(int argc, char* argv[]) {
                         EDL_DrawAsset(xscritta,yscritta,nemico, 180, 1);
                     }
                     else if (CTabellone[0] == NAVICELLA_SYMBOL) {
-                        EDL_DrawAsset(xscritta,yscritta,player.navicella, 0, 1);
+                        EDL_DrawAsset(xscritta,yscritta,navicella, 0, 1);
                     }
                     else if (CTabellone[0] == MISSILE_SYMBOL) {
                         EDL_DrawText(xscritta,yscritta, "|");
@@ -299,12 +300,10 @@ int main(int argc, char* argv[]) {
                 xscritta = 400;
 
             }
-            if (SDL_GetTicks() - tempoAvanzoSparo >= MISSILE_BASIC_SPEED) {
+            if (SDL_GetTicks() - tempoAvanzoSparo >= 100) {
                 avanzaSparo();
                 tempoAvanzoSparo = SDL_GetTicks();
             }
-            //TODO mettere la velocià in funzione del livello
-
 
             EDL_FramePresent();
         }
@@ -365,6 +364,7 @@ int main(int argc, char* argv[]) {
     EDL_Destroy();
     return 0;
 }
+
 
 
 
