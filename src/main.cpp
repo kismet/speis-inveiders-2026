@@ -296,10 +296,11 @@ int main(int argc, char* argv[]) {
             main_menu();
         }
         else if (gioco.stato == GAME_STATUS_PAUSE) {
-            EDL_FrameClear();
+            
             //Easy_Asset_t *pathPause = EDL_LoadAsset("../assets/schermate/schermoPausa.png");
             //EDL_DrawAsset(0, 0, pathPause, 0, 1);
-            EDL_DrawText(540,250,"PAUSA");
+            pause_menu();
+            /*EDL_DrawText(540,250,"PAUSA");
             if (highliner == 0) {
                 EDL_SetTextStyle(&stileGiallo);
             }
@@ -315,8 +316,8 @@ int main(int argc, char* argv[]) {
             }
             EDL_DrawText(540,510,"esci");
             EDL_SetTextStyle(&style);
-
-            EDL_FramePresent();
+            */
+            //EDL_FramePresent();
 
         }
         else if (gioco.stato == GAME_STATUS_OPTIONS) {
