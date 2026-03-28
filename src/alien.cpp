@@ -1,6 +1,9 @@
 #include "gameplay.h"
+#include "SDL3/SDL_timer.h"
 
 extern bool versoDestra;
+
+extern int startTime;
 
 bool destra() {
 
@@ -79,19 +82,22 @@ void spostaInBassoNemico() {
 
 void spostaNemici() {
 
-    if ( versoDestra  ) {
-        if ( !destra() ) {
-            spostaADestraNemici();
+    if (startTime+500 < SDL_GetTicks()) {
+        startTime = SDL_GetTicks();
+        if ( versoDestra  ) {
+            if ( !destra() ) {
+                spostaADestraNemici();
+            } else {
+                spostaInBassoNemico();
+                versoDestra = false;
+            }
         } else {
-            spostaInBassoNemico();
-            versoDestra = false;
-        }
-    } else {
-        if ( !sinistra() ) {
-            spostaASinistraNemici();
-        } else {
-            spostaInBassoNemico();
-            versoDestra = true;
+            if ( !sinistra() ) {
+                spostaASinistraNemici();
+            } else {
+                spostaInBassoNemico();
+                versoDestra = true;
+            }
         }
     }
 }
