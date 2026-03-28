@@ -322,24 +322,7 @@ int main(int argc, char* argv[]) {
             EDL_FrameClear();
             Easy_Asset_t *pathPause = EDL_LoadAsset("../assets/sprites/pauseMenu.png");
             EDL_DrawAsset(1920/2, 1080/2, pathPause, 0, 7);
-            EDL_DrawText(540,250,"PAUSA");
-            if (highliner == 0) {
-                EDL_SetTextStyle(&stileGiallo);
-            }
-            EDL_DrawText(540,350,"continua");
-            EDL_SetTextStyle(&style);
-            if (highliner == 1) {
-                EDL_SetTextStyle(&stileGiallo);
-            }
-            EDL_DrawText(540,430,"impostazioni");
-            EDL_SetTextStyle(&style);
-            if (highliner == 2) {
-                EDL_SetTextStyle(&stileGiallo);
-            }
-            EDL_DrawText(540,510,"esci");
-            EDL_SetTextStyle(&style);
-
-            EDL_FramePresent();
+            pause_menu();
 
         }
         else if (gioco.stato == GAME_STATUS_OPTIONS) {

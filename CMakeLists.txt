@@ -24,6 +24,7 @@ add_executable(speis-inveiders src/main.cpp libs/edl/src/easy_sdl.cpp
         src/utility.cpp
         src/player.cpp
         src/alien.cpp
+        src/pause_menu.cpp
 )
 
 target_link_libraries(speis-inveiders

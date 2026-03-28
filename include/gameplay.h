@@ -40,6 +40,8 @@ extern char tabellone[27][23];
 
 void main_menu();
 
+void pause_menu();
+
 void stampaInt(int valore, char* buffer, int dim);
 
 void printGame();
