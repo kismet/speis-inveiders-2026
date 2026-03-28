@@ -31,13 +31,13 @@ void Load_Pause_Assets() {
 
     //Definisco un primo stile title per il nome del gioco
     menu2.titleStyle.font = menu2.regular;
-    menu2.titleStyle.size = 150;
+    menu2.titleStyle.size = 170;
     menu2.titleStyle.foreground = purple;
 
     //Definisco uno stile space cambiando font, colore e dimensione
     menu2.menuStyle = menu2.titleStyle;
     menu2.menuStyle.font = menu2.space;
-    menu2.menuStyle.size = 80;
+    menu2.menuStyle.size = 100;
     menu2.menuStyle.foreground = yellow;
 
     menu2.selectedStyle = menu2.menuStyle;
@@ -84,21 +84,21 @@ void pause_menu()
 
         EDL_FrameClear();
         EDL_SetTextStyle(&menu2.titleStyle);
-        EDL_DrawText(250, 70, "PAUSE MENU");
+        EDL_DrawText(250, 80, 1366, 80, "PAUSE MENU", TEXT_CENTERED);
 
         EDL_SetTextStyle(&menu2.menuStyle);
         if (menu2.menuIndex == 0)
         {
             EDL_SetTextStyle(&menu2.selectedStyle);
-            EDL_DrawText(555,285,"Resume");
+            EDL_DrawText(555, 285, 1366, 150, "Resume", TEXT_CENTERED);
             EDL_SetTextStyle(&menu2.menuStyle);
-            EDL_DrawText(575,385,"Quit");
+            EDL_DrawText(575, 385, 1366, 225, "Quit", TEXT_CENTERED);
         }
         else if (menu2.menuIndex == 1)
         {
-            EDL_DrawText(555,285,"Resume");
+            EDL_DrawText(555, 285, 1366, 150, "Resume", TEXT_CENTERED);
             EDL_SetTextStyle(&menu2.selectedStyle);
-            EDL_DrawText(575,385,"Quit");
+            EDL_DrawText(575, 385, 1366, 225, "Quit", TEXT_CENTERED);
         }
         EDL_FramePresent();
     }
