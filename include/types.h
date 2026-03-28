@@ -54,4 +54,13 @@ typedef struct Player {
     Easy_Asset_t *navicella;
 } Player_t;
 
+typedef struct Index {
+    Easy_Asset_t * regular = NULL;
+    Easy_Asset_t * space = NULL;
+    TextStyle_t titleStyle;
+    TextStyle_t menuStyle;
+    TextStyle_t selectedStyle;
+    int menuIndex = 0;
+} Index_t;
+
 #endif //SPEIS_INVEIDERS_TYPES_H

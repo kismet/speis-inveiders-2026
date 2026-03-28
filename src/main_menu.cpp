@@ -30,30 +30,23 @@
 #include "types.h"
 
 extern GameContext_t gioco;
+Index_t menu;
 
-Easy_Asset_t * regular = NULL;
-Easy_Asset_t * space = NULL;
-TextStyle_t titleStyle;
-TextStyle_t menuStyle;
-TextStyle_t selectedStyle;
-
-
-int menuIndex = 0;
 bool running = true;
 
 void Load_Module_Assets() {
-    if ( regular != NULL ) {
+    if ( menu.regular != NULL ) {
         //Everything already loaded so we are going to exit
         return;
     }
-    regular = EDL_LoadAsset("assets/fonts/UbuntuMono-BoldItalic.ttf");
-    if(regular == NULL ) {
-        regular = EDL_LoadAsset("../assets/fonts/UbuntuMono-BoldItalic.ttf");
+    menu.regular = EDL_LoadAsset("assets/fonts/UbuntuMono-BoldItalic.ttf");
+    if(menu.regular == NULL ) {
+        menu.regular = EDL_LoadAsset("../assets/fonts/UbuntuMono-BoldItalic.ttf");
     }
 
-    space = EDL_LoadAsset("../libs/edl/assets/fonts/SpaceNova-6Rpd1.otf");
-    if(space == NULL ) {
-        space = EDL_LoadAsset("../libs/edl/assets/fonts/SpaceNova-6Rpd1.otf");
+    menu.space = EDL_LoadAsset("../libs/edl/assets/fonts/SpaceNova-6Rpd1.otf");
+    if(menu.space == NULL ) {
+        menu.space = EDL_LoadAsset("../libs/edl/assets/fonts/SpaceNova-6Rpd1.otf");
     }
 
     SDL_Color red = { 255, 0, 0 };
@@ -61,18 +54,18 @@ void Load_Module_Assets() {
     SDL_Color purple = { 255, 0, 255 };
 
     //Definisco un primo stile title per il nome del gioco
-    titleStyle.font = regular;
-    titleStyle.size = 150;
-    titleStyle.foreground = purple;
+    menu.titleStyle.font = menu.regular;
+    menu.titleStyle.size = 150;
+    menu.titleStyle.foreground = purple;
 
     //Definisco uno stile space cambiando font, colore e dimensione
-    menuStyle = titleStyle;
-    menuStyle.font = space;
-    menuStyle.size = 80;
-    menuStyle.foreground = yellow;
+    menu.menuStyle = menu.titleStyle;
+    menu.menuStyle.font = menu.space;
+    menu.menuStyle.size = 80;
+    menu.menuStyle.foreground = yellow;
 
-    selectedStyle = menuStyle;
-    selectedStyle.foreground = red;
+    menu.selectedStyle = menu.menuStyle;
+    menu.selectedStyle.foreground = red;
 
 }
 
@@ -88,26 +81,26 @@ void main_menu()
                 }
             if(event.type == SDL_EVENT_KEY_DOWN && (event.key.scancode == SDL_SCANCODE_S || event.key.scancode == SDL_SCANCODE_DOWN))
             {
-                if (menuIndex+1 <= 3)
+                if (menu.menuIndex+1 <= 3)
                 {
-                    menuIndex++;
+                    menu.menuIndex++;
                 }
             }
             if(event.type == SDL_EVENT_KEY_DOWN && (event.key.scancode == SDL_SCANCODE_W || event.key.scancode == SDL_SCANCODE_UP))
             {
-                if (menuIndex-1 >= 0)
+                if (menu.menuIndex-1 >= 0)
                 {
-                    menuIndex--;
+                    menu.menuIndex--;
                 }
             }
             if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_RETURN) {
-                if (menuIndex == 0) {
+                if (menu.menuIndex == 0) {
                     gioco.stato = GAME_STATUS_PLAY;
-                } else if (menuIndex == 1) {
+                } else if (menu.menuIndex == 1) {
                     gioco.stato = GAME_STATUS_OPTIONS;
-                } else if (menuIndex == 2) {
+                } else if (menu.menuIndex == 2) {
                     //TODO credits
-                } else if (menuIndex == 3) {
+                } else if (menu.menuIndex == 3) {
                     gioco.stato = GAME_STATUS_QUIT;
                 }
                 //Torno al looop principale dove verrà avviata la gestione del gioco opportuna
@@ -116,43 +109,43 @@ void main_menu()
         }
 
         EDL_FrameClear();
-        EDL_SetTextStyle(&titleStyle);
+        EDL_SetTextStyle(&menu.titleStyle);
         EDL_DrawText(120,70,"SPEIS INVEIDERS");
 
-        EDL_SetTextStyle(&menuStyle);
-        if (menuIndex == 0)
+        EDL_SetTextStyle(&menu.menuStyle);
+        if (menu.menuIndex == 0)
         {
-            EDL_SetTextStyle(&selectedStyle);
+            EDL_SetTextStyle(&menu.selectedStyle);
             EDL_DrawText(555,285,"Play");
-            EDL_SetTextStyle(&menuStyle);
+            EDL_SetTextStyle(&menu.menuStyle);
             EDL_DrawText(465,385,"Settings");
             EDL_DrawText(475,485,"Credits");
             EDL_DrawText(575,585,"Quit");
         }
-        else if (menuIndex == 1)
+        else if (menu.menuIndex == 1)
         {
             EDL_DrawText(555,285,"Play");
-            EDL_SetTextStyle(&selectedStyle);
+            EDL_SetTextStyle(&menu.selectedStyle);
             EDL_DrawText(465,385,"Settings");
-            EDL_SetTextStyle(&menuStyle);
+            EDL_SetTextStyle(&menu.menuStyle);
             EDL_DrawText(475,485,"Credits");
             EDL_DrawText(575,585,"Quit");
         }
-        else if (menuIndex == 2)
+        else if (menu.menuIndex == 2)
         {
             EDL_DrawText(555,285,"Play");
             EDL_DrawText(465,385,"Settings");
-            EDL_SetTextStyle(&selectedStyle);
+            EDL_SetTextStyle(&menu.selectedStyle);
             EDL_DrawText(475,485,"Credits");
-            EDL_SetTextStyle(&menuStyle);
+            EDL_SetTextStyle(&menu.menuStyle);
             EDL_DrawText(575,585,"Quit");
         }
-        else if (menuIndex == 3)
+        else if (menu.menuIndex == 3)
         {
             EDL_DrawText(555,285,"Play");
             EDL_DrawText(465,385,"Settings");
             EDL_DrawText(475,485,"Credits");
-            EDL_SetTextStyle(&selectedStyle);
+            EDL_SetTextStyle(&menu.selectedStyle);
             EDL_DrawText(575,585,"Quit");
         }
 
