@@ -36,7 +36,7 @@
 #include "gameplay.h"
 #include "types.h"
 
-extern void spostaNemici();
+
 
 
 //variabili di supporto per identificazione
@@ -44,6 +44,7 @@ const char MISSILE_SYMBOL = '|';
 const char NAVICELLA_SYMBOL = '^';
 const char VUOTO_SYMBOL = '-';
 const char NEMICO_SYMBOL = 'X';
+const unsigned int MISSILE_BASIC_SPEED = 75;
 
 const unsigned int RIGHE = 27;
 const unsigned int COLONNE = 23;
@@ -86,6 +87,7 @@ int startTime = SDL_GetTicks();
 
 
 GameContext_t gioco;
+Player_t player;
 
 void passoDestroNemici() {
     if (versoDestra) {
@@ -98,6 +100,7 @@ void passoDestroNemici() {
 int main(int argc, char* argv[]) {
     //inizializzazione
     EDL_Init();
+    char stampaPunteggio[1000];
 
     //robe per movimento
     int padding =20;
@@ -112,6 +115,7 @@ int main(int argc, char* argv[]) {
 
     //font e immagine nave
     Easy_Asset_t * font = EDL_LoadAsset("../assets/fonts/UbuntuMono-Regular.ttf");
+    player.navicella  = EDL_LoadAsset("../assets/sprites/navicella.PNG");
     Easy_Asset_t *navicella = EDL_LoadAsset("../assets/sprites/navicella.PNG");
     Easy_Asset_t *nemico = EDL_LoadAsset("../assets/sprites/alieno.PNG");
 
@@ -271,6 +275,10 @@ int main(int argc, char* argv[]) {
         }
         if (gioco.stato == 1) {
             EDL_FrameClear();
+
+            stampaInt(player.punteggio, stampaPunteggio, 64);
+            //TODO posizionati punteggi in attesa di font stile e posizione
+            EDL_DrawText(550, 50, stampaPunteggio);
 
             yscritta = 150;
             xscritta = 400;
