@@ -48,6 +48,8 @@ const unsigned int MISSILE_BASIC_SPEED = 75;
 
 const unsigned int RIGHE = 27;
 const unsigned int COLONNE = 23;
+const float scalaCoordinate=0.71;
+
 
 bool versoDestra = true;
 
@@ -280,8 +282,8 @@ int main(int argc, char* argv[]) {
             //TODO posizionati punteggi in attesa di font stile e posizione
             EDL_DrawText(550, 50, stampaPunteggio);
 
-            yscritta = 130;
-            xscritta = 465;
+            yscritta = 130*scalaCoordinate;
+            xscritta = 465*scalaCoordinate;
 
             EDL_SetTextStyle(&style_print);
 
@@ -291,21 +293,21 @@ int main(int argc, char* argv[]) {
                     CTabellone[0] = tabellone[r][c];
                     CTabellone[1] = '\0';
                     if (CTabellone[0] == NEMICO_SYMBOL) {
-                        EDL_DrawAsset(xscritta,yscritta,nemico, 0, 0.25);
+                        EDL_DrawAsset(xscritta,yscritta,nemico, 0, 0.16);
                     }
                     else if (CTabellone[0] == NAVICELLA_SYMBOL) {
-                        EDL_DrawAsset(xscritta,yscritta,navicella, 0, 0.25);
+                        EDL_DrawAsset(xscritta,yscritta,navicella, 0, 0.16);
                     }
                     else if (CTabellone[0] == MISSILE_SYMBOL) {
                         EDL_DrawText(xscritta,yscritta, "|");
                     }
 
-                    xscritta = xscritta + 40;
+                    xscritta = xscritta + 40*scalaCoordinate;
 
                 }
 
-                yscritta = yscritta + 33;
-                xscritta = 465;
+                yscritta = yscritta + 33*scalaCoordinate;
+                xscritta = 465*scalaCoordinate;
 
             }
             if (SDL_GetTicks() - tempoAvanzoSparo >= 100) {
