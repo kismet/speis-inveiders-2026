@@ -178,12 +178,12 @@ int main(int argc, char* argv[]) {
             }
 
             if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_ESCAPE) {
-                if (gioco.stato != 1) {
+                if (gioco.stato != GAME_STATUS_PLAY) {
                     running = false;
                     gioco.stato = GAME_STATUS_QUIT;
                 }
                 else {
-                    gioco.stato = GAME_STATUS_OPTIONS;
+                    gioco.stato = GAME_STATUS_PAUSE;
                 }
 
                 }
@@ -295,7 +295,7 @@ int main(int argc, char* argv[]) {
         else if (gioco.stato == GAME_STATUS_MENU) {
             main_menu();
         }
-        else if (gioco.stato == GAME_STATUS_OPTIONS) {
+        else if (gioco.stato == GAME_STATUS_PAUSE) {
             EDL_FrameClear();
             Easy_Asset_t *pathPause = EDL_LoadAsset("../assets/sprites/pauseMenu.png");
             EDL_DrawAsset(1920/2, 1080/2, pathPause, 0, 7);
@@ -319,7 +319,7 @@ int main(int argc, char* argv[]) {
             EDL_FramePresent();
 
         }
-        else if (gioco.stato == 3) {
+        else if (gioco.stato == GAME_STATUS_OPTIONS) {
             EDL_FrameClear();
 
             EDL_DrawText(540,250,"OPZIONI");
@@ -340,6 +340,9 @@ int main(int argc, char* argv[]) {
             EDL_SetTextStyle(&style);
 
             EDL_FramePresent();
+        }
+        else if (gioco.stato == GAME_STATUS_QUIT) {
+            running = false;
         }
     }
 

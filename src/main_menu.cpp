@@ -102,9 +102,11 @@ void main_menu()
             }
             if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_RETURN) {
                 if (menuIndex == 0) {
-                    gioco.stato = GAME_STAUS_PLAY;
+                    gioco.stato = GAME_STATUS_PLAY;
                 } else if (menuIndex == 1) {
                     gioco.stato = GAME_STATUS_OPTIONS;
+                } else if (menuIndex == 2) {
+                    //TODO credits
                 } else if (menuIndex == 3) {
                     gioco.stato = GAME_STATUS_QUIT;
                 }
