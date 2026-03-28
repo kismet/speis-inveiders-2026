@@ -104,11 +104,6 @@ int main(int argc, char* argv[]) {
     EDL_Init();
     char stampaPunteggio[1000];
 
-    //robe per movimento
-    int padding =20;
-    int rotation=5;
-    int xnave=100;
-    int ynave=100;
 
     //creazione variabili per la gestione del tabellone
     char CTabellone[2];
@@ -118,9 +113,8 @@ int main(int argc, char* argv[]) {
     //font e immagine nave
     Easy_Asset_t * font = EDL_LoadAsset("../assets/fonts/UbuntuMono-Regular.ttf");
     player.navicella  = EDL_LoadAsset("../assets/sprites/navicella.PNG");
-    Easy_Asset_t *navicella = EDL_LoadAsset("../assets/sprites/navicella.PNG");
     Easy_Asset_t *nemico = EDL_LoadAsset("../assets/sprites/alieno.PNG");
-
+    Easy_Asset_t *background = EDL_LoadAsset("../assets/schermate/sfondoInGame.png");
     uint64_t tempoAvanzoSparo;
 
     //variabili per i while e la selezione
@@ -175,9 +169,6 @@ int main(int argc, char* argv[]) {
         // conteggia gli fps
         fps++;
 
-        if (gioco.stato==GAME_STATUS_PLAY) {
-            spostaNemici();
-        }
 
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_EVENT_QUIT) {
@@ -257,6 +248,11 @@ int main(int argc, char* argv[]) {
         if (gioco.stato == 1) {
             EDL_FrameClear();
 
+
+            EDL_DrawAsset(0, 0, background, 0, 0.71);
+
+            spostaNemici();
+
             stampaInt(player.punteggio, stampaPunteggio, 64);
             //TODO posizionati punteggi in attesa di font stile e posizione
             EDL_DrawText(550, 50, stampaPunteggio);
@@ -275,7 +271,7 @@ int main(int argc, char* argv[]) {
                         EDL_DrawAsset(xscritta,yscritta,nemico, 0, 0.16);
                     }
                     else if (CTabellone[0] == NAVICELLA_SYMBOL) {
-                        EDL_DrawAsset(xscritta,yscritta,navicella, 0, 0.16);
+                        EDL_DrawAsset(xscritta,yscritta,player.navicella, 0, 0.16);
                     }
                     else if (CTabellone[0] == MISSILE_SYMBOL) {
                         EDL_DrawText(xscritta,yscritta, "|");
@@ -301,8 +297,8 @@ int main(int argc, char* argv[]) {
         }
         else if (gioco.stato == GAME_STATUS_PAUSE) {
             EDL_FrameClear();
-            Easy_Asset_t *pathPause = EDL_LoadAsset("../assets/sprites/pauseMenu.png");
-            EDL_DrawAsset(1920/2, 1080/2, pathPause, 0, 7);
+            //Easy_Asset_t *pathPause = EDL_LoadAsset("../assets/schermate/schermoPausa.png");
+            //EDL_DrawAsset(0, 0, pathPause, 0, 1);
             EDL_DrawText(540,250,"PAUSA");
             if (highliner == 0) {
                 EDL_SetTextStyle(&stileGiallo);
