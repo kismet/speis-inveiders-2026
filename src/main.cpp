@@ -215,7 +215,7 @@ int main(int argc, char* argv[]) {
 
                 }
 
-            if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_S) {
+            if ((event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_S)||(event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_DOWN))  {
                 //aumento selezione
 
                 highliner++;
@@ -226,7 +226,7 @@ int main(int argc, char* argv[]) {
 
             }
 
-            if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_W) {
+            if ((event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_W)||(event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_UP)) {
                 //diminuzione selezione
 
                 highliner--;
@@ -236,38 +236,17 @@ int main(int argc, char* argv[]) {
                 }
 
             }
-            if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_RIGHT) {
-                if ( gioco.stato == 0 ) {
-                    xnave=xnave+padding;
-                }
-                else if ( gioco.stato == 1 ) {
+           if ((event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_RIGHT)||(event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_D)) {
+
+                if ( gioco.stato == 1 ) {
                     passoDestro();
                 }
 
             }
-            if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_LEFT) {
-                if ( gioco.stato == 0 ) {
-                    xnave=xnave-padding;
-                }
-                else if ( gioco.stato == 1 ) {
+            if ((event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_LEFT)||(event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_A)) {
+                if ( gioco.stato == 1 ) {
                     passoSinistro();
                 }
-
-            }
-            if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_UP) {
-                ynave=ynave-padding;
-
-            }
-            if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_DOWN) {
-                ynave=ynave+padding;
-
-            }
-            if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_Q) {
-                rotation = ((rotation-padding) % 360);
-
-            }
-            if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_E) {
-                rotation = ((rotation+padding) % 360);
 
             }
             if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_SPACE) {
