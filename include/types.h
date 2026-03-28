@@ -29,10 +29,13 @@
 #ifndef SPEIS_INVEIDERS_TYPES_H
 #define SPEIS_INVEIDERS_TYPES_H
 
+#include "easy_sdl.h"
+
 
 typedef enum GameStaus {
     GAME_STATUS_MENU,
     GAME_STAUS_PLAY,
+    GAME_STATUS_PAUSE,
     GAME_STATUS_OPTIONS,
     GAME_STATUS_QUIT
     //TODO complete by students
@@ -41,5 +44,14 @@ typedef enum GameStaus {
 typedef struct GameContext {
     GameStatus_t stato;
 } GameContext_t;
+
+typedef struct Player {
+    int x = 11;
+    const int Y = 26;
+    int spariRimasti = 0;
+    int punteggio = 0;
+    int lives = 3;
+    Easy_Asset_t *navicella;
+} Player_t;
 
 #endif //SPEIS_INVEIDERS_TYPES_H
