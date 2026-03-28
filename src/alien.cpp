@@ -1,9 +1,11 @@
 #include "gameplay.h"
 #include "SDL3/SDL_timer.h"
+#include "types.h"
 
 extern bool versoDestra;
 
 extern int startTime;
+extern Player_t player;
 
 bool destra() {
 
@@ -48,7 +50,11 @@ void spostaADestraNemici() {
 
     for ( int i = 0; i < RIGHE; i++ ) {
         for ( int j = COLONNE - 1; j > 0; j-- ) {
-            if ( tabellone[i][j - 1] == NEMICO_SYMBOL ) {
+            if ( tabellone[i][j - 1] == NEMICO_SYMBOL && tabellone[i][j] == MISSILE_SYMBOL ) {
+                tabellone[i][j - 1] = VUOTO_SYMBOL;
+                tabellone[i][j] = VUOTO_SYMBOL;
+                player.punteggio += 100;
+            } else if ( tabellone[i][j - 1] == NEMICO_SYMBOL && tabellone[i][j] == VUOTO_SYMBOL ) {
                 tabellone[i][j - 1] = VUOTO_SYMBOL;
                 tabellone[i][j] = NEMICO_SYMBOL;
             }
@@ -60,7 +66,11 @@ void spostaASinistraNemici() {
 
     for ( int i = 0; i < RIGHE; i++ ) {
         for ( int j = 0; j < COLONNE - 1; j++ ) {
-            if ( tabellone[i][j + 1] == NEMICO_SYMBOL ) {
+            if ( tabellone[i][j + 1] == NEMICO_SYMBOL && tabellone[i][j] == MISSILE_SYMBOL ) {
+                tabellone[i][j + 1] = VUOTO_SYMBOL;
+                tabellone[i][j] = VUOTO_SYMBOL;
+                player.punteggio += 100;
+            } else if ( tabellone[i][j + 1] == NEMICO_SYMBOL && tabellone[i][j] == VUOTO_SYMBOL ) {
                 tabellone[i][j + 1] = VUOTO_SYMBOL;
                 tabellone[i][j] = NEMICO_SYMBOL;
             }
