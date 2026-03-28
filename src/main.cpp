@@ -280,8 +280,8 @@ int main(int argc, char* argv[]) {
             //TODO posizionati punteggi in attesa di font stile e posizione
             EDL_DrawText(550, 50, stampaPunteggio);
 
-            yscritta = 150;
-            xscritta = 400;
+            yscritta = 130;
+            xscritta = 465;
 
             EDL_SetTextStyle(&style_print);
 
@@ -290,22 +290,22 @@ int main(int argc, char* argv[]) {
 
                     CTabellone[0] = tabellone[r][c];
                     CTabellone[1] = '\0';
-                    if (CTabellone[0] == 'X') {
-                        EDL_DrawAsset(xscritta,yscritta,nemico, 180, 1);
+                    if (CTabellone[0] == NEMICO_SYMBOL) {
+                        EDL_DrawAsset(xscritta,yscritta,nemico, 0, 0.25);
                     }
                     else if (CTabellone[0] == NAVICELLA_SYMBOL) {
-                        EDL_DrawAsset(xscritta,yscritta,navicella, 0, 1);
+                        EDL_DrawAsset(xscritta,yscritta,navicella, 0, 0.25);
                     }
                     else if (CTabellone[0] == MISSILE_SYMBOL) {
                         EDL_DrawText(xscritta,yscritta, "|");
                     }
 
-                    xscritta = xscritta + 20;
+                    xscritta = xscritta + 40;
 
                 }
 
-                yscritta = yscritta + 20;
-                xscritta = 400;
+                yscritta = yscritta + 33;
+                xscritta = 465;
 
             }
             if (SDL_GetTicks() - tempoAvanzoSparo >= 100) {
