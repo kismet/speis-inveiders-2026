@@ -173,8 +173,24 @@ int main(int argc, char* argv[]) {
                 running = false;
                 gioco.stato = GAME_STATUS_QUIT;
             }
-            if (gioco.stato == GAME_STATUS_OPTIONS && highliner==2 && event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_RETURN) {
-                running = false;
+            if (gioco.stato == GAME_STATUS_PAUSE && event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_RETURN) {
+                if (highliner == 0) {
+                    gioco.stato = GAME_STATUS_PLAY;
+                }else if (highliner == 1) {
+                    gioco.stato = GAME_STATUS_OPTIONS;
+                }else if (highliner == 2) {
+                    running = false;
+                }
+            }
+
+            if (gioco.stato == GAME_STATUS_OPTIONS && event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_RETURN) {
+                if (highliner == 0) {
+                    gioco.stato = GAME_STATUS_PLAY;
+                }else if (highliner == 1) {
+                    gioco.stato = GAME_STATUS_OPTIONS;
+                }else if (highliner == 2) {
+                    running = false;
+                }
             }
 
             if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_ESCAPE) {
