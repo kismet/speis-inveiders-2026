@@ -54,7 +54,7 @@ void spostaADestraNemici() {
                 tabellone[i][j - 1] = VUOTO_SYMBOL;
                 tabellone[i][j] = VUOTO_SYMBOL;
                 player.punteggio += 100;
-            } else if ( tabellone[i][j - 1] == NEMICO_SYMBOL && tabellone[i][j] == VUOTO_SYMBOL ) {
+            } else if ( tabellone[i][j - 1] == NEMICO_SYMBOL && (tabellone[i][j] == VUOTO_SYMBOL || tabellone[i][j] == BARRIER_SYMBOL )) {
                 tabellone[i][j - 1] = VUOTO_SYMBOL;
                 tabellone[i][j] = NEMICO_SYMBOL;
             }

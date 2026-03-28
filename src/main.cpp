@@ -44,6 +44,7 @@ const char MISSILE_SYMBOL = '|';
 const char NAVICELLA_SYMBOL = '^';
 const char VUOTO_SYMBOL = '-';
 const char NEMICO_SYMBOL = 'X';
+const char BARRIER_SYMBOL = 'O';
 const unsigned int MISSILE_BASIC_SPEED = 75;
 
 const unsigned int RIGHE = 27;
@@ -56,8 +57,7 @@ bool versoDestra = true;
 int startTime = SDL_GetTicks();
 
     //creazione della matrice
-
-    char tabellone[RIGHE][COLONNE] = {
+    const char TABELLONE[RIGHE][COLONNE] = {
         {'-', '-', '-', '-', '-', '-', '-', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', '-', '-', '-', '-', '-', '-', '-'},
@@ -86,6 +86,7 @@ int startTime = SDL_GetTicks();
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '^', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
     };
+    char tabellone[RIGHE][COLONNE];
 
 
 GameContext_t gioco;
@@ -102,6 +103,8 @@ void passoDestroNemici() {
 int main(int argc, char* argv[]) {
     //inizializzazione
     EDL_Init();
+    inizializzaPartita (tabellone, TABELLONE);
+
     char stampaPunteggio[1000];
 
 
