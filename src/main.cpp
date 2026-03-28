@@ -169,7 +169,7 @@ int main(int argc, char* argv[]) {
         // conteggia gli fps
         fps++;
 
-        if (gioco.stato==GAME_STAUS_PLAY) {
+        if (gioco.stato==GAME_STATUS_PLAY) {
             spostaNemici();
         }
 
