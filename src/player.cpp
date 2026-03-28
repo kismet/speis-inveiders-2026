@@ -57,7 +57,7 @@ void avanzaSparo() {
     for (int r = 0; r < RIGHE; r++) {
         for (int c = 0; c < COLONNE; c++) {
             if (tabellone[r][c] == MISSILE_SYMBOL) {
-                if (tabellone[r-1][c] == NEMICO_SYMBOL or tabellone[r-1][c] == 'Y' or tabellone[r-1][c] == 'Z') {
+                if (tabellone[r-1][c] == NEMICO_SYMBOL) {
                     tabellone[r-1][c] = VUOTO_SYMBOL;
                     tabellone[r][c] = VUOTO_SYMBOL;
                 }else {
@@ -68,4 +68,3 @@ void avanzaSparo() {
         }
     }
 }
-
