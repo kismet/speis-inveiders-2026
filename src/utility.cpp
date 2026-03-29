@@ -48,7 +48,7 @@ void printGame() {
 }
 
 void inizializzaPartita (char dst[27][23], const char source[27][23]) {
-    for (int r = 0; r < 23; r++) {
+    for (int r = 0; r < 27; r++) {
         for (int c = 0; c < 23; c++) {
             dst[r][c] = source[r][c];
         }

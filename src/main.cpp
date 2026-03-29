@@ -83,7 +83,7 @@ int startTime = SDL_GetTicks();
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
-        {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', 'O', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
+        {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '^', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
     };
@@ -222,8 +222,7 @@ int main(int argc, char* argv[]) {
 
             }
            if ((event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_RIGHT)||(event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_D)) {
-
-                if ( gioco.stato == 1 ) {
+               if ( gioco.stato == 1 ) {
                     passoDestro();
                 }
 
@@ -272,9 +271,6 @@ int main(int argc, char* argv[]) {
                     }
                     else if (CTabellone[0] == MISSILE_NEMICO_SYMBOL) {
                         EDL_DrawText(xscritta,yscritta, "1");
-                    }
-                    else if (CTabellone[0] == BARRIER_SYMBOL) {
-                        EDL_DrawText(xscritta,yscritta, "O");
                     }
 
                     xscritta = xscritta + 40*scalaCoordinate;
