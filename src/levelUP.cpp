@@ -5,6 +5,7 @@
 #include "gameplay.h"
 #include "types.h"
 
+extern Player_t player;
 extern GameContext_t gioco;
 Index_t lvlUP;
 bool newLevel = false;
@@ -102,6 +103,8 @@ void levelUP()
                     }
                     else if (lvlUP.menuIndex == 1)
                     {
+                        player.punteggio = 0;
+                        gioco.level = 1;
                         gioco.stato = GAME_STATUS_MENU;
                     }
                     else if (lvlUP.menuIndex == 2)
