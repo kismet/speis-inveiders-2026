@@ -281,6 +281,7 @@ int main(int argc, char* argv[]) {
             }
             if (SDL_GetTicks() - tempoAvanzoSparo >= 100) {
                 avanzaSparo();
+                levelUP();
                 tempoAvanzoSparo = SDL_GetTicks();
             }
 
