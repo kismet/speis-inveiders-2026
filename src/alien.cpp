@@ -62,8 +62,7 @@ void avanzoSparoAlieni (char t [27][23]) {
                     tabellone[r+1][c] = MISSILE_NEMICO_SYMBOL;
                     tabellone[r][c] = VUOTO_SYMBOL;
                 }
-                else if (tabellone[r][c] == BARRIER_SYMBOL) {
-                    tabellone[r+1][c] = VUOTO_SYMBOL;
+                else if (tabellone[r][c] == tabellone[26][c]) {
                     tabellone[r][c] = VUOTO_SYMBOL;
                 }
             }
@@ -182,23 +181,6 @@ void spostaNemici() {
             } else {
                 spostaInBassoNemico();
                 versoDestra = true;
-            }
-        }
-    }
-}
-
-void muoviProiettiliAlieni() {
-
-    for ( int i = RIGHE - 2 ; i >= 0; i-- ) {
-        for ( int j = 0; j < COLONNE; j++ ) {
-            if ( tabellone[i][j] == 4 ) {
-                tabellone[i][j] = VUOTO_SYMBOL;
-                if ( tabellone[i + 1][j] == 2 ) {
-                    //TODO Qual'è il significato di ucciso, attualmente rimosso perchè gli aliene non sparano
-                    //ucciso = 1;
-                } else {
-                    tabellone[i + 1][j] = 4;
-                }
             }
         }
     }
