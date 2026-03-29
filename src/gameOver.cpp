@@ -94,7 +94,6 @@ void gameOver() {
                     EDL_SetTextStyle(&over.selectedStyle);
                     EDL_DrawText(555,285, 1366, 125, "Main menu", TEXT_CENTERED);
                     EDL_SetTextStyle(&over.menuStyle);
-
                     EDL_DrawText(575,385, 1366, 200, "Restart", TEXT_CENTERED);
                     EDL_DrawText(575,485, 1366, 275, "Exit", TEXT_CENTERED);
                 }

@@ -103,7 +103,6 @@ void passoDestroNemici() {
 int main(int argc, char* argv[]) {
     //inizializzazione
     EDL_Init();
-    inizializzaPartita (tabellone, TABELLONE);
 
     char stampaPunteggio[1000];
 

@@ -79,6 +79,10 @@ void spostaASinistraNemici() {
 
 void spostaInBassoNemico() {
 
+    if (basso())
+    {
+        gameOver();
+    }
     for ( int i = RIGHE - 1; i > 0; i--) {
         for ( int j = 0; j < COLONNE; j++ ) {
             if ( tabellone[i - 1][j] == NEMICO_SYMBOL ) {
@@ -87,7 +91,6 @@ void spostaInBassoNemico() {
             }
         }
     }
-    gameOver();
 }
 
 void spostaNemici() {

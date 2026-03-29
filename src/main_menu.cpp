@@ -28,6 +28,7 @@
 
 #include "easy_sdl.h"
 #include "types.h"
+#include "gameplay.h"
 
 extern GameContext_t gioco;
 Index_t menu;
@@ -74,6 +75,7 @@ void main_menu()
 {
     Load_Module_Assets();
     SDL_Event event;
+    inizializzaPartita(tabellone, TABELLONE);
     while (running) {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_EVENT_QUIT ||
