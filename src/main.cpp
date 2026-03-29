@@ -36,9 +36,6 @@
 #include "gameplay.h"
 #include "types.h"
 
-
-
-
 //variabili di supporto per identificazione
 const char MISSILE_SYMBOL = '|';
 const char NAVICELLA_SYMBOL = '^';
@@ -48,10 +45,14 @@ const char BARRIER_SYMBOL = 'O';
 const char MISSILE_NEMICO_SYMBOL = '1';
 const unsigned int MISSILE_BASIC_SPEED = 75;
 
+extern unsigned int missile_time = 100;
+extern unsigned int movement_time = 1500;
+extern unsigned int missile_time_reduction = 0;
+extern unsigned int movement_time_reduction = 0;
+
 const unsigned int RIGHE = 27;
 const unsigned int COLONNE = 23;
 const float scalaCoordinate=0.71;
-
 
 bool versoDestra = true;
 
@@ -88,7 +89,6 @@ int startTime = SDL_GetTicks();
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '^', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
     };
     char tabellone[RIGHE][COLONNE];
-
 
 GameContext_t gioco;
 Player_t player;
@@ -146,7 +146,6 @@ int main(int argc, char* argv[]) {
     SDL_Color white = {255, 255, 255};
     SDL_Color yellow = {255, 255, 0};
 
-
     //creazione degli stili
     TextStyle_t style;
     style.font = font;
@@ -170,14 +169,12 @@ int main(int argc, char* argv[]) {
     //assegno il valore iniziale degli fps a 0
     stampaInt(0, valore_FPS, 64);
 
-
     tempoAvanzoSparo = SDL_GetTicks();
     tempoSparoAlieno = SDL_GetTicks();
 
     while (running) {
         // conteggia gli fps
         fps++;
-
 
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_EVENT_QUIT) {
@@ -284,13 +281,13 @@ int main(int argc, char* argv[]) {
                 xscritta = 465*scalaCoordinate;
 
             }
-            if (SDL_GetTicks() - tempoAvanzoSparo >= 100) {
+            if (SDL_GetTicks() - tempoAvanzoSparo >= missile_time - missile_time_reduction) {
                 avanzaSparo();
                 avanzoSparoAlieni(tabellone);
                 tempoAvanzoSparo = SDL_GetTicks();
             }
 
-            if (SDL_GetTicks() - tempoSparoAlieno >= 1500) {
+            if (SDL_GetTicks() - tempoSparoAlieno >= movement_time - movement_time_reduction) {
                 sparoAlieni(tabellone);
                 tempoSparoAlieno = SDL_GetTicks();
             }

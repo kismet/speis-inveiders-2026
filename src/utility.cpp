@@ -29,6 +29,8 @@
 #include "gameplay.h"
 #include <cstring>
 #include <iostream>
+#include "main.cpp"
+
 
 using namespace std;
 // Aiuta a convertire un numero int in puntatore char, utile per stampare EDL_DrawText()
@@ -52,5 +54,24 @@ void inizializzaPartita (char dst[27][23], const char source[27][23]) {
         for (int c = 0; c < 23; c++) {
             dst[r][c] = source[r][c];
         }
+    }
+}
+
+void vittoria (char t[27][23], int &missile_time, int &movement_time) {
+    bool vinto = true;
+    for (int r = 0; r < 27; r++) {
+        for (int c = 0; c < 23; c++) {
+            if (t[r][c] = NEMICO_SYMBOL) {
+                vinto = false;
+            }
+        }
+    }
+
+    if (vinto) {
+        missile_time_reduction = (2/100) * missile_time;
+        movement_time_reduction = (2/100) * movement_time;
+
+        missile_time += missile_time_reduction;
+        movement_time += movement_time_reduction;
     }
 }
