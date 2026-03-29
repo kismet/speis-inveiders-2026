@@ -91,6 +91,7 @@ int startTime = SDL_GetTicks();
 
 GameContext_t gioco;
 Player_t player;
+Index_t interfaccia;
 
 void passoDestroNemici() {
     if (versoDestra) {
@@ -98,6 +99,20 @@ void passoDestroNemici() {
             if (tabellone[i][COLONNE] == 'X') {}
         }
     }
+}
+
+void Load_Interface_Assets()
+{
+    interfaccia.regular = EDL_LoadAsset("assets/fonts/Quadrillion-Sb-It.otf");
+    if(interfaccia.regular == NULL ) {
+        interfaccia.regular = EDL_LoadAsset("../assets/fonts/Quadrillion-Sb-It.otf");
+    }
+
+    SDL_Color purple = { 255, 0, 255 };
+
+    interfaccia.titleStyle.font = interfaccia.regular;
+    interfaccia.titleStyle.size = 25;
+    interfaccia.titleStyle.foreground = purple;
 }
 
 int main(int argc, char* argv[]) {
@@ -119,6 +134,7 @@ int main(int argc, char* argv[]) {
     player.navicella  = EDL_LoadAsset("../assets/sprites/navicella.PNG");
     Easy_Asset_t *nemico = EDL_LoadAsset("../assets/sprites/alieno.PNG");
     Easy_Asset_t *background = EDL_LoadAsset("../assets/schermate/sfondoInGame.png");
+    Load_Interface_Assets();
     uint64_t tempoAvanzoSparo;
 
     //variabili per i while e la selezione
@@ -250,6 +266,9 @@ int main(int argc, char* argv[]) {
             //TODO posizionati punteggi in attesa di font stile e posizione
             EDL_DrawText(550, 50, stampaPunteggio);
             EDL_DrawText(950, 50, stampaLivello);
+            EDL_SetTextStyle(&interfaccia.titleStyle);
+            EDL_DrawText(415,50, "POINTS:");
+            EDL_DrawText(825,50, "LEVEL:");
 
             yscritta = 130*scalaCoordinate;
             xscritta = 465*scalaCoordinate;
