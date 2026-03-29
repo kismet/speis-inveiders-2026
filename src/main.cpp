@@ -118,7 +118,10 @@ int main(int argc, char* argv[]) {
     Easy_Asset_t * font = EDL_LoadAsset("../assets/fonts/UbuntuMono-Regular.ttf");
     player.navicella  = EDL_LoadAsset("../assets/sprites/navicella.PNG");
     Easy_Asset_t *nemico = EDL_LoadAsset("../assets/sprites/alieno.PNG");
+    Easy_Asset_t *sparoNemico = EDL_LoadAsset("../assets/sprites/proiettileAlieno.PNG");
+    Easy_Asset_t *sparo = EDL_LoadAsset("../assets/sprites/proiettileNavicella.PNG");
     Easy_Asset_t *background = EDL_LoadAsset("../assets/schermate/sfondoInGame.png");
+
     uint64_t tempoAvanzoSparo;
     uint64_t tempoSparoAlieno;
 
@@ -267,10 +270,10 @@ int main(int argc, char* argv[]) {
                         EDL_DrawAsset(xscritta,yscritta,player.navicella, 0, 0.16);
                     }
                     else if (CTabellone[0] == MISSILE_SYMBOL) {
-                        EDL_DrawText(xscritta,yscritta, "|");
+                        EDL_DrawAsset(xscritta,yscritta,sparo, 0, 0.1);
                     }
                     else if (CTabellone[0] == MISSILE_NEMICO_SYMBOL) {
-                        EDL_DrawText(xscritta,yscritta, "1");
+                        EDL_DrawAsset(xscritta,yscritta,sparoNemico, 180, 0.1);
                     }
 
                     xscritta = xscritta + 40*scalaCoordinate;

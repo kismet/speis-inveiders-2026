@@ -45,8 +45,8 @@ void sparoAlieni (char t [27][23]) {
 }
 
 void avanzoSparoAlieni (char t [27][23]) {
-    for (int r = 0; r < RIGHE; r++) {
-        for (int c = 0; c < COLONNE; c++) {
+    for (int r = 26; r >= 0; r--) {
+        for (int c = 22; c >= 0; c--) {
             if (tabellone[r][c] == MISSILE_NEMICO_SYMBOL) {
                 if (tabellone[r+1][c] == NAVICELLA_SYMBOL) {
                     if (player.lives < 0) {
@@ -167,7 +167,7 @@ void spostaInBassoNemico() {
 
 void spostaNemici() {
 
-    if (startTime+50 < SDL_GetTicks()) {
+    if (startTime+500 < SDL_GetTicks()) {
         startTime = SDL_GetTicks();
         if ( versoDestra  ) {
             if ( !destra() ) {
