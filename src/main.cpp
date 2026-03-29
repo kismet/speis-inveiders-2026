@@ -283,12 +283,12 @@ int main(int argc, char* argv[]) {
             }
             if (SDL_GetTicks() - tempoAvanzoSparo >= 100) {
                 avanzaSparo();
-                //avanzoSparoAlieni(tabellone);
+                avanzoSparoAlieni(tabellone);
                 tempoAvanzoSparo = SDL_GetTicks();
             }
 
             if (SDL_GetTicks() - tempoSparoAlieno >= 1500) {
-                //sparoAlieni(tabellone);
+                sparoAlieni(tabellone);
                 tempoSparoAlieno = SDL_GetTicks();
             }
 
