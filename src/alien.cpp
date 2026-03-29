@@ -3,7 +3,6 @@
 #include "types.h"
 
 extern bool versoDestra;
-
 extern int startTime;
 extern Player_t player;
 

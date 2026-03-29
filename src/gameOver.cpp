@@ -83,7 +83,6 @@ void gameOver() {
                     }
                 }
 
-                // TODO sistemare i font della schermata game over
                 EDL_FrameClear();
                 EDL_DrawAsset(0, 0, over.background, 0, 0.71);
                 EDL_SetTextStyle(&over.titleStyle);
