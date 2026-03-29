@@ -45,6 +45,7 @@ const char NAVICELLA_SYMBOL = '^';
 const char VUOTO_SYMBOL = '-';
 const char NEMICO_SYMBOL = 'X';
 const char BARRIER_SYMBOL = 'O';
+const char MISSILE_NEMICO_SYMBOL = '1';
 const unsigned int MISSILE_BASIC_SPEED = 75;
 
 const unsigned int RIGHE = 27;
@@ -82,7 +83,7 @@ int startTime = SDL_GetTicks();
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
-        {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
+        {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', 'O', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '^', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
     };
@@ -119,6 +120,7 @@ int main(int argc, char* argv[]) {
     Easy_Asset_t *nemico = EDL_LoadAsset("../assets/sprites/alieno.PNG");
     Easy_Asset_t *background = EDL_LoadAsset("../assets/schermate/sfondoInGame.png");
     uint64_t tempoAvanzoSparo;
+    uint64_t tempoSparoAlieno;
 
     //variabili per i while e la selezione
     int highliner = 0;
@@ -167,6 +169,7 @@ int main(int argc, char* argv[]) {
 
 
     tempoAvanzoSparo = SDL_GetTicks();
+    tempoSparoAlieno = SDL_GetTicks();
 
     while (running) {
         // conteggia gli fps
@@ -267,6 +270,12 @@ int main(int argc, char* argv[]) {
                     else if (CTabellone[0] == MISSILE_SYMBOL) {
                         EDL_DrawText(xscritta,yscritta, "|");
                     }
+                    else if (CTabellone[0] == MISSILE_NEMICO_SYMBOL) {
+                        EDL_DrawText(xscritta,yscritta, "1");
+                    }
+                    else if (CTabellone[0] == BARRIER_SYMBOL) {
+                        EDL_DrawText(xscritta,yscritta, "O");
+                    }
 
                     xscritta = xscritta + 40*scalaCoordinate;
 
@@ -278,7 +287,13 @@ int main(int argc, char* argv[]) {
             }
             if (SDL_GetTicks() - tempoAvanzoSparo >= 100) {
                 avanzaSparo();
+                //avanzoSparoAlieni(tabellone);
                 tempoAvanzoSparo = SDL_GetTicks();
+            }
+
+            if (SDL_GetTicks() - tempoSparoAlieno >= 1500) {
+                //sparoAlieni(tabellone);
+                tempoSparoAlieno = SDL_GetTicks();
             }
 
             EDL_FramePresent();

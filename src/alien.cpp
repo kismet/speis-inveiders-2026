@@ -1,11 +1,75 @@
 #include "gameplay.h"
 #include "SDL3/SDL_timer.h"
 #include "types.h"
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
 
 extern bool versoDestra;
 
 extern int startTime;
 extern Player_t player;
+
+void sparoAlieni (char t [27][23]) {
+    srand(time(0));
+    int sceltaAlieno = rand() % 10; // creo il numero casuale
+
+    int ultimaRigaAlieni;
+    int colonnaAlieno;
+    for (int r = 0; r < 27; r++) {
+        for (int c = 0; c < 23; c++) {
+            if (t[r][c] == NEMICO_SYMBOL) {
+                ultimaRigaAlieni = r;
+            }
+        }
+    }
+
+    for (int c = 0;c < 23;) {
+        if (t[ultimaRigaAlieni][c] == NEMICO_SYMBOL) {
+            if (sceltaAlieno == 0) {
+                colonnaAlieno = c;
+                c = 23;
+            }
+            sceltaAlieno--;
+        }
+        if (c == 22) {
+            c = 0;
+        }
+        else {
+            c++;
+        }
+    }
+
+    t[ultimaRigaAlieni + 1][colonnaAlieno] = MISSILE_NEMICO_SYMBOL;
+
+}
+
+void avanzoSparoAlieni (char t [27][23]) {
+    for (int r = 0; r < RIGHE; r++) {
+        for (int c = 0; c < COLONNE; c++) {
+            if (tabellone[r][c] == MISSILE_NEMICO_SYMBOL) {
+                if (tabellone[r+1][c] == NAVICELLA_SYMBOL) {
+                    if (player.lives < 0) {
+                        tabellone[r+1][c] = NAVICELLA_SYMBOL;
+                        player.lives--;
+                    }
+                    else {
+                        tabellone[r+1][c] = VUOTO_SYMBOL;
+                    }
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                }
+                else if (tabellone[r+1][c] == VUOTO_SYMBOL) {
+                    tabellone[r+1][c] = MISSILE_NEMICO_SYMBOL;
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                }
+                else if (tabellone[r][c] == BARRIER_SYMBOL) {
+                    tabellone[r+1][c] = VUOTO_SYMBOL;
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                }
+            }
+        }
+    }
+}
 
 bool destra() {
 
@@ -93,7 +157,7 @@ void spostaInBassoNemico() {
 
 void spostaNemici() {
 
-    if (startTime+500 < SDL_GetTicks()) {
+    if (startTime+50 < SDL_GetTicks()) {
         startTime = SDL_GetTicks();
         if ( versoDestra  ) {
             if ( !destra() ) {
