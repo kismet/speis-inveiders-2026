@@ -59,6 +59,7 @@ typedef struct Index {
     TextStyle_t titleStyle;
     TextStyle_t menuStyle;
     TextStyle_t selectedStyle;
+    Easy_Asset_t* background;
     int menuIndex = 0;
 } Index_t;
 

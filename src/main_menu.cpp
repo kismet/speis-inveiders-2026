@@ -48,6 +48,7 @@ void Load_Module_Assets() {
     if(menu.space == NULL ) {
         menu.space = EDL_LoadAsset("../libs/edl/assets/fonts/SpaceNova-6Rpd1.otf");
     }
+    menu.background = EDL_LoadAsset("../assets/schermate/sfondoMainMenu.png");
 
     SDL_Color red = { 255, 0, 0 };
     SDL_Color yellow = { 255, 255, 0 };
@@ -107,6 +108,7 @@ void main_menu()
         }
 
         EDL_FrameClear();
+        EDL_DrawAsset(0, 0, menu.background, 0, 0.71);
         EDL_SetTextStyle(&menu.titleStyle);
         EDL_DrawText(0,70, 1366, 80, "SPEIS INVEIDERS", TEXT_CENTERED);
 
