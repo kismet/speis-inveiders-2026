@@ -78,4 +78,6 @@ void resetStatusPlay();
 
 void inizializzaPartita (char dst[27][23], const char source[27][23]);
 
+void levelUP();
+
 #endif //SPEIS_INVEIDERS_GAMEPLAY_H

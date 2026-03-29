@@ -27,6 +27,7 @@ add_executable(speis-inveiders src/main.cpp libs/edl/src/easy_sdl.cpp
         src/pause_menu.cpp
         src/gameOver.cpp
         src/reset_status_play.cpp
+        src/levelUP.cpp
 )
 
 target_link_libraries(speis-inveiders
