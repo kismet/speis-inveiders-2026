@@ -106,6 +106,7 @@ int main(int argc, char* argv[]) {
     gioco.level = 1;
 
     char stampaPunteggio[1000];
+    char stampaLivello[1000];
 
 
     //creazione variabili per la gestione del tabellone
@@ -244,9 +245,11 @@ int main(int argc, char* argv[]) {
 
             spostaNemici();
 
+            stampaInt(gioco.level, stampaLivello, 64);
             stampaInt(player.punteggio, stampaPunteggio, 64);
             //TODO posizionati punteggi in attesa di font stile e posizione
             EDL_DrawText(550, 50, stampaPunteggio);
+            EDL_DrawText(950, 50, stampaLivello);
 
             yscritta = 130*scalaCoordinate;
             xscritta = 465*scalaCoordinate;

@@ -45,6 +45,7 @@ void Load_Over_Assets() {
 void gameOver() {
     for (int c = 0; c < COLONNE; c++) {
         if (tabellone[26][c] == NEMICO_SYMBOL) {
+            gioco.level = 1;
             Load_Over_Assets();
             SDL_Event event;
             while (gOver)

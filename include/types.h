@@ -42,7 +42,7 @@ typedef enum GameStaus {
 
 typedef struct GameContext {
     GameStatus_t stato;
-    unsigned int level;
+    int level;
 } GameContext_t;
 
 typedef struct Player {
