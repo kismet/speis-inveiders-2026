@@ -7,7 +7,7 @@
 
 extern GameContext_t gioco;
 Index_t lvlUP;
-bool newLevel = true;
+bool newLevel = false;
 
 bool nemiciVivi()
 {
@@ -17,6 +17,8 @@ bool nemiciVivi()
         {
             if (tabellone[r][c] == NEMICO_SYMBOL)
             {
+                gioco.level += 1;
+                newLevel = true;
                 return false;
             }
         }
@@ -62,6 +64,86 @@ void levelUP()
 {
     if (!nemiciVivi())
     {
-        //TODO stampa scritte per accedere al livello successivo
+        Load_NewLevel_Assets();
+        SDL_Event event;
+        while (newLevel)
+        {
+            while (SDL_PollEvent(&event))
+            {
+                if (event.type == SDL_EVENT_QUIT ||
+                    (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_ESCAPE))
+                {
+                    newLevel = false;
+                    gioco.stato = GAME_STATUS_MENU;
+                }
+                if (event.type == SDL_EVENT_KEY_DOWN && (event.key.scancode == SDL_SCANCODE_S || event.key.scancode ==
+                    SDL_SCANCODE_DOWN))
+                {
+                    if (lvlUP.menuIndex + 1 < 2)
+                    {
+                        lvlUP.menuIndex++;
+                    }
+                }
+                if (event.type == SDL_EVENT_KEY_DOWN && (event.key.scancode == SDL_SCANCODE_W || event.key.scancode ==
+                    SDL_SCANCODE_UP))
+                {
+                    if (lvlUP.menuIndex - 1 >= 0)
+                    {
+                        lvlUP.menuIndex--;
+                    }
+                }
+                if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_RETURN)
+                {
+                    if (lvlUP.menuIndex == 0)
+                    {
+                        //TODO inizializza nuovo tabellone e nuova difficolta'
+                        gioco.stato = GAME_STATUS_PLAY;
+                    }
+                    else if (lvlUP.menuIndex == 1)
+                    {
+                        gioco.stato = GAME_STATUS_MENU;
+                    }
+                    else if (lvlUP.menuIndex == 2)
+                    {
+                        gioco.stato = GAME_STATUS_QUIT;
+                    }
+                    //Torno al looop principale dove verrà avviata la gestione del gioco opportuna
+                    return;
+                }
+            }
+
+
+            EDL_FrameClear();
+            EDL_DrawAsset(0, 0, lvlUP.background, 0, 0.71);
+            EDL_SetTextStyle(&lvlUP.titleStyle);
+            EDL_DrawText(250, 80, 1366, 80, "LEVEL PASSED", TEXT_CENTERED);
+
+            EDL_SetTextStyle(&lvlUP.menuStyle);
+            if (lvlUP.menuIndex == 0)
+            {
+                EDL_SetTextStyle(&lvlUP.selectedStyle);
+                EDL_DrawText(0,285, 1366, 125, "New level", TEXT_CENTERED);
+                EDL_SetTextStyle(&lvlUP.menuStyle);
+                EDL_DrawText(0,385, 1366, 200, "Main menu", TEXT_CENTERED);
+                EDL_DrawText(0,485, 1366, 275, "Quit", TEXT_CENTERED);
+            }
+            else if (lvlUP.menuIndex == 1)
+            {
+                EDL_DrawText(0,285, 1366, 125, "New level", TEXT_CENTERED);
+                EDL_SetTextStyle(&lvlUP.selectedStyle);
+                EDL_DrawText(0,385, 1366, 200, "Main menu", TEXT_CENTERED);
+                EDL_SetTextStyle(&lvlUP.menuStyle);
+                EDL_DrawText(0,485, 1366, 275, "Quit", TEXT_CENTERED);
+            }
+            else if (lvlUP.menuIndex == 2)
+            {
+                EDL_DrawText(0,285, 1366, 125, "New level", TEXT_CENTERED);
+                EDL_DrawText(0,385, 1366, 200, "Main menu", TEXT_CENTERED);
+                EDL_SetTextStyle(&lvlUP.selectedStyle);
+                EDL_DrawText(0,485, 1366, 275, "Quit", TEXT_CENTERED);
+            }
+            EDL_FramePresent();
+        }
+        EDL_Destroy();
     }
 }
