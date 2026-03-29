@@ -41,12 +41,12 @@ void Load_Module_Assets() {
     }
     menu.regular = EDL_LoadAsset("assets/fonts/UbuntuMono-BoldItalic.ttf");
     if(menu.regular == NULL ) {
-        menu.regular = EDL_LoadAsset("../assets/fonts/UbuntuMono-BoldItalic.ttf");
+        menu.regular = EDL_LoadAsset("../assets/fonts/Quadrillion-Sb-It.otf");
     }
 
-    menu.space = EDL_LoadAsset("../libs/edl/assets/fonts/SpaceNova-6Rpd1.otf");
+    menu.space = EDL_LoadAsset("../assets/fonts/SpaceNova-6Rpd1.otf");
     if(menu.space == NULL ) {
-        menu.space = EDL_LoadAsset("../libs/edl/assets/fonts/SpaceNova-6Rpd1.otf");
+        menu.space = EDL_LoadAsset("../assets/fonts/SpaceNova-6Rpd1.otf");
     }
     menu.background = EDL_LoadAsset("../assets/schermate/sfondoMainMenu.png");
 
@@ -56,7 +56,7 @@ void Load_Module_Assets() {
 
     //Definisco un primo stile title per il nome del gioco
     menu.titleStyle.font = menu.regular;
-    menu.titleStyle.size = 170;
+    menu.titleStyle.size = 120;
     menu.titleStyle.foreground = purple;
 
     //Definisco uno stile space cambiando font, colore e dimensione
@@ -102,7 +102,7 @@ void main_menu()
                 } else if (menu.menuIndex == 2) {
                     gioco.stato = GAME_STATUS_QUIT;
                 }
-                //Torno al looop principale dove verrà avviata la gestione del gioco opportuna
+                //Torno al looop principale dove verrà avviata la gestation del gioco opportuna
                 return;
             }
         }

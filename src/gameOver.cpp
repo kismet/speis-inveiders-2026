@@ -14,24 +14,29 @@ void Load_Over_Assets() {
         //Everything already loaded so we are going to exit
         return;
     }
-    over.space = EDL_LoadAsset("../libs/edl/assets/fonts/SpaceNova-6Rpd1.otf");
+    over.space = EDL_LoadAsset("../assets/fonts/SpaceNova-6Rpd1.otf");
     if(over.space == NULL ) {
-        over.space = EDL_LoadAsset("../libs/edl/assets/fonts/SpaceNova-6Rpd1.otf");
+        over.space = EDL_LoadAsset("../assets/fonts/Quadrillion-Sb-It.otf");
     }
+    if(over.regular == NULL)
+    {
+        over.regular = EDL_LoadAsset("../assets/fonts/SpaceNova-6Rpd1.otf");
+    }
+    over.background = EDL_LoadAsset("../assets/schermate/sfondoInGame.png");
 
     SDL_Color red = { 255, 0, 0 };
     SDL_Color yellow = { 255, 255, 0 };
     SDL_Color purple = { 255, 0, 255 };
 
     over.titleStyle.font = over.space;
-    over.titleStyle.size = 170;
+    over.titleStyle.size = 150;
     over.titleStyle.foreground = purple;
 
-    over.menuStyle = over.titleStyle;
+    over.menuStyle.font = over.regular;
     over.menuStyle.size = 100;
     over.menuStyle.foreground = yellow;
 
-    over.selectedStyle = over.menuStyle;
+    over.selectedStyle.font = over.regular;
     over.selectedStyle.foreground = red;
 
 }
@@ -77,7 +82,9 @@ void gameOver() {
                     }
                 }
 
+                // TODO sistemare i font della schermata game over
                 EDL_FrameClear();
+                EDL_DrawAsset(0, 0, over.background, 0, 0.71);
                 EDL_SetTextStyle(&over.titleStyle);
                 EDL_DrawText(250,150, 1366, 80, "GAME OVER", TEXT_CENTERED);
 
@@ -87,6 +94,7 @@ void gameOver() {
                     EDL_SetTextStyle(&over.selectedStyle);
                     EDL_DrawText(555,285, 1366, 125, "Main menu", TEXT_CENTERED);
                     EDL_SetTextStyle(&over.menuStyle);
+
                     EDL_DrawText(575,385, 1366, 200, "Restart", TEXT_CENTERED);
                     EDL_DrawText(575,485, 1366, 275, "Exit", TEXT_CENTERED);
                 }

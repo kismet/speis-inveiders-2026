@@ -17,14 +17,14 @@ void Load_Pause_Assets() {
     }
     menu2.regular = EDL_LoadAsset("assets/fonts/UbuntuMono-BoldItalic.ttf");
     if(menu2.regular == NULL ) {
-        menu2.regular = EDL_LoadAsset("../assets/fonts/UbuntuMono-BoldItalic.ttf");
+        menu2.regular = EDL_LoadAsset("../assets/fonts/Quadrillion-Sb-It.otf");
     }
 
-    menu2.space = EDL_LoadAsset("../libs/edl/assets/fonts/SpaceNova-6Rpd1.otf");
+    menu2.space = EDL_LoadAsset("../assets/fonts/SpaceNova-6Rpd1.otf");
     if(menu2.space == NULL ) {
-        menu2.space = EDL_LoadAsset("../libs/edl/assets/fonts/SpaceNova-6Rpd1.otf");
+        menu2.space = EDL_LoadAsset("../assets/fonts/SpaceNova-6Rpd1.otf");
     }
-    menu2.background = EDL_LoadAsset("../assets/schermate/sfondoMainMenu.png");
+    menu2.background = EDL_LoadAsset("../assets/schermate/sfondoInGame.png");
 
     SDL_Color red = { 255, 0, 0 };
     SDL_Color yellow = { 255, 255, 0 };
@@ -32,7 +32,7 @@ void Load_Pause_Assets() {
 
     //Definisco un primo stile title per il nome del gioco
     menu2.titleStyle.font = menu2.regular;
-    menu2.titleStyle.size = 170;
+    menu2.titleStyle.size = 120;
     menu2.titleStyle.foreground = purple;
 
     //Definisco uno stile space cambiando font, colore e dimensione
@@ -86,7 +86,7 @@ void pause_menu()
         EDL_FrameClear();
         EDL_DrawAsset(0, 0, menu2.background, 0, 0.71);
         EDL_SetTextStyle(&menu2.titleStyle);
-        EDL_DrawText(250, 80, 1366, 80, "PAUSE MENU", TEXT_CENTERED);
+        EDL_DrawText(250, 80, 1366, 80, "PAUSE", TEXT_CENTERED);
 
         EDL_SetTextStyle(&menu2.menuStyle);
         if (menu2.menuIndex == 0)
