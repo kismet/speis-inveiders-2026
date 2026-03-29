@@ -15,7 +15,7 @@ void Load_Pause_Assets() {
         //Everything already loaded so we are going to exit
         return;
     }
-    menu2.regular = EDL_LoadAsset("assets/fonts/UbuntuMono-BoldItalic.ttf");
+    menu2.regular = EDL_LoadAsset("assets/fonts/Quadrillion-Sb-It.otf");
     if(menu2.regular == NULL ) {
         menu2.regular = EDL_LoadAsset("../assets/fonts/Quadrillion-Sb-It.otf");
     }

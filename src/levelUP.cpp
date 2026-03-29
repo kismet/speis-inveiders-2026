@@ -29,7 +29,7 @@ void Load_NewLevel_Assets() {
         //Everything already loaded so we are going to exit
         return;
     }
-    lvlUP.regular = EDL_LoadAsset("assets/fonts/UbuntuMono-BoldItalic.ttf");
+    lvlUP.regular = EDL_LoadAsset("assets/fonts/Quadrillion-Sb-It.otf");
     if(lvlUP.regular == NULL ) {
         lvlUP.regular = EDL_LoadAsset("../assets/fonts/Quadrillion-Sb-It.otf");
     }
