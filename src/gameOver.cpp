@@ -67,7 +67,8 @@ void gameOver() {
                         if (over.menuIndex == 0) {
                             gioco.stato = GAME_STATUS_MENU;
                         } else if (over.menuIndex == 1) {
-                            //TODO funzione di restart
+                            resetStatusPlay();
+                            gioco.stato = GAME_STATUS_PLAY;
                         } else if (over.menuIndex == 2) {
                             gioco.stato = GAME_STATUS_QUIT;
                         }

@@ -72,6 +72,6 @@ void spostaNemici();
 
 void gameOver();
 
+void resetStatusPlay();
+
 #endif //SPEIS_INVEIDERS_GAMEPLAY_H
-
-
