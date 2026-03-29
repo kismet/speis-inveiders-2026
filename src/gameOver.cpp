@@ -14,10 +14,11 @@ void Load_Over_Assets() {
         //Everything already loaded so we are going to exit
         return;
     }
-    over.space = EDL_LoadAsset("../assets/fonts/SpaceNova-6Rpd1.otf");
+    over.space = EDL_LoadAsset("../assets/fonts/Quadrillion-Sb-It.otf");
     if(over.space == NULL ) {
         over.space = EDL_LoadAsset("../assets/fonts/Quadrillion-Sb-It.otf");
     }
+    over.regular = EDL_LoadAsset("../assets/fonts/SpaceNova-6Rpd1.otf");
     if(over.regular == NULL)
     {
         over.regular = EDL_LoadAsset("../assets/fonts/SpaceNova-6Rpd1.otf");
@@ -36,7 +37,7 @@ void Load_Over_Assets() {
     over.menuStyle.size = 100;
     over.menuStyle.foreground = yellow;
 
-    over.selectedStyle.font = over.regular;
+    over.selectedStyle = over.menuStyle;
     over.selectedStyle.foreground = red;
 
 }

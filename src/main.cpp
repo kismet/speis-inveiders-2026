@@ -236,7 +236,7 @@ int main(int argc, char* argv[]) {
             }
 
         }
-        if (gioco.stato == 1) {
+        if (gioco.stato == GAME_STATUS_PLAY) {
             EDL_FrameClear();
 
 
