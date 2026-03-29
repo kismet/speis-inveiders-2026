@@ -17,13 +17,13 @@ bool nemiciVivi()
         {
             if (tabellone[r][c] == NEMICO_SYMBOL)
             {
-                gioco.level += 1;
-                newLevel = true;
-                return false;
+                return true;
             }
         }
     }
-    return true;
+    gioco.level += 1;
+    newLevel = true;
+    return false;
 }
 
 void Load_NewLevel_Assets() {
@@ -74,12 +74,12 @@ void levelUP()
                     (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_ESCAPE))
                 {
                     newLevel = false;
-                    gioco.stato = GAME_STATUS_MENU;
+                    gioco.stato = GAME_STATUS_QUIT;
                 }
                 if (event.type == SDL_EVENT_KEY_DOWN && (event.key.scancode == SDL_SCANCODE_S || event.key.scancode ==
                     SDL_SCANCODE_DOWN))
                 {
-                    if (lvlUP.menuIndex + 1 < 2)
+                    if (lvlUP.menuIndex + 1 < 3)
                     {
                         lvlUP.menuIndex++;
                     }
@@ -96,7 +96,8 @@ void levelUP()
                 {
                     if (lvlUP.menuIndex == 0)
                     {
-                        //TODO inizializza nuovo tabellone e nuova difficolta'
+                        //TODO aumenta difficolta'
+                        inizializzaPartita(tabellone, TABELLONE);
                         gioco.stato = GAME_STATUS_PLAY;
                     }
                     else if (lvlUP.menuIndex == 1)

@@ -50,6 +50,7 @@ void avanzaSparo() {
                     tabellone[r-1][c] = VUOTO_SYMBOL;
                     tabellone[r][c] = VUOTO_SYMBOL;
                     player.punteggio += 100;
+                    levelUP();
                 }else {
                     tabellone[r-1][c] = MISSILE_SYMBOL;
                     tabellone[r][c] = VUOTO_SYMBOL;
