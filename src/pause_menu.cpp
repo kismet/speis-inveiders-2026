@@ -24,6 +24,7 @@ void Load_Pause_Assets() {
     if(menu2.space == NULL ) {
         menu2.space = EDL_LoadAsset("../libs/edl/assets/fonts/SpaceNova-6Rpd1.otf");
     }
+    menu2.background = EDL_LoadAsset("../assets/schermate/sfondoMainMenu.png");
 
     SDL_Color red = { 255, 0, 0 };
     SDL_Color yellow = { 255, 255, 0 };
@@ -83,6 +84,7 @@ void pause_menu()
         }
 
         EDL_FrameClear();
+        EDL_DrawAsset(0, 0, menu2.background, 0, 0.71);
         EDL_SetTextStyle(&menu2.titleStyle);
         EDL_DrawText(250, 80, 1366, 80, "PAUSE MENU", TEXT_CENTERED);
 
