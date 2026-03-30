@@ -85,6 +85,7 @@ void gameOver() {
                             gioco.stato = GAME_STATUS_MENU;
                         } else if (over.menuIndex == 1) {
                             resetStatusPlay();
+                            player.lives = 3;
                             gioco.stato = GAME_STATUS_PLAY;
                         } else if (over.menuIndex == 2) {
                             gioco.stato = GAME_STATUS_QUIT;
