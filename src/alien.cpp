@@ -67,10 +67,8 @@ void avanzoSparoAlieni () {
                         player.lives--;
                     }
                     if (player.lives <= 0) {
-                        gameOver();
-                    }
-                    else {
                         tabellone[r+1][c] = VUOTO_SYMBOL;
+                        gameOver();
                     }
                     tabellone[r][c] = VUOTO_SYMBOL;
                 }
