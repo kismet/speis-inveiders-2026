@@ -49,7 +49,6 @@ void credits() {
             if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_RETURN) {
                 if (crediti.menuIndex == 0) {
                     gioco.stato = GAME_STATUS_MENU;
-                    stampaCredits = false;
                 }
                 return;
             }
