@@ -36,7 +36,8 @@ typedef enum GameStaus {
     GAME_STATUS_MENU,
     GAME_STATUS_PLAY,
     GAME_STATUS_PAUSE,
-    GAME_STATUS_QUIT
+    GAME_STATUS_QUIT,
+    GAME_STATUS_CREDITS
     //TODO complete by students
 } GameStatus_t;
 

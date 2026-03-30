@@ -100,7 +100,7 @@ void main_menu()
                 if (menu.menuIndex == 0) {
                     gioco.stato = GAME_STATUS_PLAY;
                 } else if (menu.menuIndex == 1) {
-                    //TODO credits
+                    gioco.stato = GAME_STATUS_CREDITS;
                 } else if (menu.menuIndex == 2) {
                     gioco.stato = GAME_STATUS_QUIT;
                 }

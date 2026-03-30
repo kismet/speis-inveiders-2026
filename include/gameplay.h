@@ -80,4 +80,6 @@ void inizializzaPartita (char dst[27][23], const char source[27][23]);
 
 void levelUP();
 
+void credits();
+
 #endif //SPEIS_INVEIDERS_GAMEPLAY_H

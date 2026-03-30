@@ -317,6 +317,9 @@ int main(int argc, char* argv[]) {
         else if (gioco.stato == GAME_STATUS_QUIT) {
             running = false;
         }
+        else if (gioco.stato == GAME_STATUS_CREDITS) {
+            credits();
+        }
     }
 
     EDL_Destroy();
