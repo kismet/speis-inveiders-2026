@@ -31,8 +31,7 @@ void Load_Over_Assets() {
         over.space = EDL_LoadAsset("../assets/fonts/Quadrillion-Sb-It.otf");
     }
     over.regular = EDL_LoadAsset("../assets/fonts/SpaceNova-6Rpd1.otf");
-    if(over.regular == NULL)
-    {
+    if(over.regular == NULL) {
         over.regular = EDL_LoadAsset("../assets/fonts/SpaceNova-6Rpd1.otf");
     }
     over.background = EDL_LoadAsset("../assets/schermate/sfondoInGame.png");

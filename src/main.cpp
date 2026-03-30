@@ -116,6 +116,7 @@ int main(int argc, char* argv[]) {
     Easy_Asset_t *sparoNemico = EDL_LoadAsset("../assets/sprites/proiettileAlieno.PNG");
     Easy_Asset_t *sparo = EDL_LoadAsset("../assets/sprites/proiettileNavicella.PNG");
     Easy_Asset_t *background = EDL_LoadAsset("../assets/schermate/sfondoInGame.png");
+    Easy_Asset_t *cuore = EDL_LoadAsset("../assets/sprites/cuore.png");
     Load_Interface_Assets();
     uint64_t tempoAvanzoSparo;
     uint64_t tempoSparoAlieno;
@@ -236,6 +237,7 @@ int main(int argc, char* argv[]) {
         if (gioco.stato == GAME_STATUS_PLAY) {
             EDL_FrameClear();
 
+            int xCuori = 725;
 
             EDL_DrawAsset(0, 0, background, 0, 0.71);
 
@@ -247,7 +249,13 @@ int main(int argc, char* argv[]) {
             //TODO posizionati punteggi in attesa di font stile e posizione
             EDL_DrawText(425, 50, stampaPunteggio);
             EDL_DrawText(1000, 50, stampaLivello);
-            EDL_DrawText(725, 50, stampaVite);
+            for (int i = player.lives; i > 0; i--) {
+                EDL_DrawAsset(xCuori, 42, cuore, 0, 0.3);
+                xCuori += 40;
+            }
+
+            xCuori = 725;
+
             EDL_SetTextStyle(&interfaccia.titleStyle);
             EDL_DrawText(300,50, "POINTS:");
             EDL_DrawText(875,50, "LEVEL:");
