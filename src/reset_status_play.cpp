@@ -29,7 +29,6 @@ void resetStatusPlay()
 {
     EDL_FrameClear();
     player.punteggio=0;
-    //TODO la posizione dovrebbe essere presa dal tabellone che si considera come inizio
     player.x=11;
 
     player.lives = 3;

@@ -13,9 +13,10 @@
 // limitations under the License.
 
 #include "gameplay.h"
+#include "types.h"
 #include <cstring>
 #include <iostream>
-
+extern Player_t player;
 
 using namespace std;
 // Aiuta a convertire un numero int in puntatore char, utile per stampare EDL_DrawText()
@@ -34,11 +35,20 @@ void printGame() {
     }
 }
 
-void inizializzaPartita (char dst[27][23], const char source[27][23]) {
+void inizializzaPartita (char dst[27][23], const char source[27][23], char modalita) {
+
+    
     for (int r = 0; r < 27; r++) {
         for (int c = 0; c < 23; c++) {
             dst[r][c] = source[r][c];
         }
+    }
+    if (modalita == 'c') {//continua
+        player.x=11;
+    }else if (modalita == 'm') {
+        player.x=11;
+        player.lives=3;
+        player.punteggio=0;
     }
 }
 

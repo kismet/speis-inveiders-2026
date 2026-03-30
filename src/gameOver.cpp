@@ -83,9 +83,9 @@ void gameOver() {
                     if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_RETURN) {
                         if (over.menuIndex == 0) {
                             gioco.stato = GAME_STATUS_MENU;
-                            resetStatusPlay();
+                            inizializzaPartita(tabellone, TABELLONE, 'm');
                         } else if (over.menuIndex == 1) {
-                            resetStatusPlay();
+                             inizializzaPartita(tabellone, TABELLONE, 'm');
                             gioco.stato = GAME_STATUS_PLAY;
                         } else if (over.menuIndex == 2) {
                             gioco.stato = GAME_STATUS_QUIT;

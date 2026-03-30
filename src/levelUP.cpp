@@ -115,12 +115,12 @@ void levelUP()
                     if (lvlUP.menuIndex == 0)
                     {
                         //TODO aumenta difficolta'
-                        inizializzaPartita(tabellone, TABELLONE);
+                        inizializzaPartita(tabellone, TABELLONE,'c');
                         gioco.stato = GAME_STATUS_PLAY;
                     }
                     else if (lvlUP.menuIndex == 1)
                     {
-                        resetStatusPlay();
+                        inizializzaPartita(tabellone, TABELLONE,'m');
                         gioco.level=1;
                         gioco.stato = GAME_STATUS_MENU;
                     }

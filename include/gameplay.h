@@ -24,8 +24,8 @@ extern const char MISSILE_NEMICO_SYMBOL;
 extern const unsigned int RIGHE;
 extern const unsigned int COLONNE;
 extern const unsigned int MISSILE_BASIC_SPEED;
-extern unsigned int missile_time_reduction;
-extern unsigned int movement_time_reduction;
+extern double missile_time_reduction;
+extern double movement_time_reduction;
 extern char tabellone[27][23];
 extern const char TABELLONE[27][23];
 
@@ -67,7 +67,7 @@ void gameOver();
 
 void resetStatusPlay();
 
-void inizializzaPartita (char dst[27][23], const char source[27][23]);
+void inizializzaPartita (char dst[27][23], const char source[27][23], char modalita);
 
 void levelUP();
 

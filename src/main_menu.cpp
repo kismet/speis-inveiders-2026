@@ -62,7 +62,7 @@ void main_menu()
 {
     Load_Module_Assets();
     SDL_Event event;
-    inizializzaPartita(tabellone, TABELLONE);
+    inizializzaPartita(tabellone, TABELLONE,'m');
     while (running) {
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_EVENT_QUIT ||

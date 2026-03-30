@@ -173,7 +173,7 @@ void spostaInBassoNemico() {
 
 void spostaNemici() {
 
-    if (startTime+500 < SDL_GetTicks()) {
+    if (startTime+500UL < SDL_GetTicks()) {
         startTime = SDL_GetTicks();
         if ( versoDestra  ) {
             if ( !destra() ) {

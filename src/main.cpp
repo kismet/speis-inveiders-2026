@@ -33,8 +33,8 @@ const unsigned int MISSILE_BASIC_SPEED = 75;
 
 unsigned int missile_time = 100;
 unsigned int movement_time = 1500;
-unsigned int missile_time_reduction = 0;
-unsigned int movement_time_reduction = 0;
+double missile_time_reduction = 0;
+double movement_time_reduction = 0;
 
 const unsigned int RIGHE = 27;
 const unsigned int COLONNE = 23;
