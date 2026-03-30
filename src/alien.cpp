@@ -159,10 +159,6 @@ void spostaASinistraNemici() {
 
 void spostaInBassoNemico() {
 
-    if (basso())
-    {
-        gameOver();
-    }
     for ( int i = RIGHE - 1; i > 0; i--) {
         for ( int j = 0; j < COLONNE; j++ ) {
             if ( tabellone[i - 1][j] == NEMICO_SYMBOL ) {
@@ -171,11 +167,15 @@ void spostaInBassoNemico() {
             }
         }
     }
+    if (basso())
+    {
+        gameOver();
+    }
 }
 
 void spostaNemici() {
 
-    if (startTime+50 < SDL_GetTicks()) {
+    if (startTime+500 < SDL_GetTicks()) {
         startTime = SDL_GetTicks();
         if ( versoDestra  ) {
             if ( !destra() ) {
