@@ -23,11 +23,15 @@ extern char tabellone[27][23];
 extern Player_t player;
 extern bool versoDestra;
 
+//TODO aggiungere parametri per indicare qual'è il livello e se vogliamo reset o no dei punteggi
 void resetStatusPlay()
 {
     player.punteggio=0;
+    //TODO la posizione dovrebbe essere presa dal tabellone che si considera come inizio
     player.x=11;
 
+    //TODO Usare la copia
+    //TODO Reset delle vite
     for (int i=0; i<RIGHE; i++)
     {
         for (int j=0; j<COLONNE; j++)
