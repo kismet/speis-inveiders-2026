@@ -17,6 +17,7 @@
 #include "types.h"
 
 extern GameContext_t gioco;
+extern Player_t player;
 Index_t over;
 bool gOver = true;
 
@@ -55,7 +56,7 @@ void Load_Over_Assets() {
 
 void gameOver() {
     for (int c = 0; c < COLONNE; c++) {
-        if (tabellone[26][c] == NEMICO_SYMBOL) {
+        if (tabellone[26][c] == NEMICO_SYMBOL || player.lives <= 0) {
             gioco.level = 1;
             Load_Over_Assets();
             SDL_Event event;

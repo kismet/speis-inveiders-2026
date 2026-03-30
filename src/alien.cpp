@@ -62,9 +62,12 @@ void avanzoSparoAlieni (char t [27][23]) {
         for (int c = 22; c >= 0; c--) {
             if (tabellone[r][c] == MISSILE_NEMICO_SYMBOL) {
                 if (tabellone[r+1][c] == NAVICELLA_SYMBOL) {
-                    if (player.lives < 0) {
+                    if (player.lives > 0) {
                         tabellone[r+1][c] = NAVICELLA_SYMBOL;
                         player.lives--;
+                    }
+                    if (player.lives <= 0) {
+                        gameOver();
                     }
                     else {
                         tabellone[r+1][c] = VUOTO_SYMBOL;
