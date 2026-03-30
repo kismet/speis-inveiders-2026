@@ -18,6 +18,9 @@
 
 extern Player_t player;
 extern GameContext_t gioco;
+extern unsigned int missile_time;
+extern unsigned int movement_time;
+
 Index_t lvlUP;
 bool newLevel = false;
 
@@ -78,6 +81,7 @@ void levelUP()
     {
         Load_NewLevel_Assets();
         SDL_Event event;
+        continuoConVittoria(tabellone, missile_time, movement_time);
         while (newLevel)
         {
             while (SDL_PollEvent(&event))

@@ -42,21 +42,11 @@ void inizializzaPartita (char dst[27][23], const char source[27][23]) {
     }
 }
 
-void vittoria (char t[27][23], int &missile_time, int &movement_time) {
-    bool vinto = true;
-    for (int r = 0; r < 27; r++) {
-        for (int c = 0; c < 23; c++) {
-            if (t[r][c] = NEMICO_SYMBOL) {
-                vinto = false;
-            }
-        }
-    }
+void continuoConVittoria (char t[27][23], unsigned int &missile_time, unsigned int &movement_time) {
+    missile_time_reduction = (2/100) * missile_time;
+    movement_time_reduction = (2/100) * movement_time;
 
-    if (vinto) {
-        missile_time_reduction = (2/100) * missile_time;
-        movement_time_reduction = (2/100) * movement_time;
+    missile_time -= missile_time_reduction;
+    movement_time -= movement_time_reduction;
 
-        missile_time += missile_time_reduction;
-        movement_time += movement_time_reduction;
-    }
 }

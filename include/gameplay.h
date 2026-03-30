@@ -72,7 +72,10 @@ void inizializzaPartita (char dst[27][23], const char source[27][23]);
 void levelUP();
 
 void credits();
+
 void avanzoSparoAlieni (char t [27][23]);
+
+void continuoConVittoria (char t[27][23], unsigned int &missile_time, unsigned int &movement_time);
 
 #endif //SPEIS_INVEIDERS_GAMEPLAY_H
 
