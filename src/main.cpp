@@ -109,6 +109,7 @@ int main(int argc, char* argv[]) {
 
     char stampaPunteggio[1000];
     char stampaLivello[1000];
+    char stampaVite[1000];
 
 
     //creazione variabili per la gestione del tabellone
@@ -250,12 +251,15 @@ int main(int argc, char* argv[]) {
 
             stampaInt(gioco.level, stampaLivello, 64);
             stampaInt(player.punteggio, stampaPunteggio, 64);
+            stampaInt(player.lives, stampaVite, 64);
             //TODO posizionati punteggi in attesa di font stile e posizione
-            EDL_DrawText(550, 50, stampaPunteggio);
-            EDL_DrawText(950, 50, stampaLivello);
+            EDL_DrawText(425, 50, stampaPunteggio);
+            EDL_DrawText(1000, 50, stampaLivello);
+            EDL_DrawText(725, 50, stampaVite);
             EDL_SetTextStyle(&interfaccia.titleStyle);
-            EDL_DrawText(415,50, "POINTS:");
-            EDL_DrawText(825,50, "LEVEL:");
+            EDL_DrawText(300,50, "POINTS:");
+            EDL_DrawText(875,50, "LEVEL:");
+            EDL_DrawText(600,50, "LIVES:");
 
             yscritta = 130*scalaCoordinate;
             xscritta = 465*scalaCoordinate;
