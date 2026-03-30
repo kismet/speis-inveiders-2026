@@ -33,15 +33,15 @@ void Load_Credits_Assets() {
     SDL_Color purple = { 255, 0, 255 };
 
     crediti.titleStyle.font = crediti.space;
-    crediti.titleStyle.size = 150;
+    crediti.titleStyle.size = 140;
     crediti.titleStyle.foreground = purple;
 
     crediti.menuStyle = crediti.titleStyle;
-    crediti.menuStyle.size = 30;
+    crediti.menuStyle.size = 25;
     crediti.menuStyle.foreground = white;
 
     crediti.selectedStyle = crediti.menuStyle;
-    crediti.selectedStyle.size = 15;
+    crediti.selectedStyle.size = 20;
     crediti.selectedStyle.foreground = red;
 }
 
@@ -73,26 +73,28 @@ void credits() {
         EDL_SetTextStyle(&crediti.menuStyle);
         if (crediti.menuIndex == 0)
         {
-            EDL_DrawText(555, 190, 1366, 100, "Lorenzo Buono", TEXT_CENTERED);
-            EDL_DrawText(555, 215, 1366, 100, "Luca Calcagni", TEXT_CENTERED);
-            EDL_DrawText(555, 240, 1366, 100, "Leonardo Capezzuoli", TEXT_CENTERED);
-            EDL_DrawText(555, 265, 1366, 100, "Alessandro Ciardelli", TEXT_CENTERED);
-            EDL_DrawText(555, 290, 1366, 100, "Amos Clipa", TEXT_CENTERED);
-            EDL_DrawText(555, 315, 1366, 100, "Andrea Di Modugno", TEXT_CENTERED);
-            EDL_DrawText(555, 340, 1366, 100, "Andy Dushku", TEXT_CENTERED);
-            EDL_DrawText(555, 365, 1366, 100, "Lorenzo Esposito", TEXT_CENTERED);
-            EDL_DrawText(555, 390, 1366, 100, "Michele Gargiulo", TEXT_CENTERED);
-            EDL_DrawText(555, 415, 1366, 100, "Duccio Ghelli", TEXT_CENTERED);
-            EDL_DrawText(555, 440, 1366, 100, "Alessio Giangrave'", TEXT_CENTERED);
-            EDL_DrawText(555, 465, 1366, 100, "Gianmarco Landucci", TEXT_CENTERED);
-            EDL_DrawText(555, 490, 1366, 100, "Marco Mannucci", TEXT_CENTERED);
-            EDL_DrawText(555, 515, 1366, 100, "Marco Pandolfi", TEXT_CENTERED);
-            EDL_DrawText(555, 540, 1366, 100, "Dario Salatti", TEXT_CENTERED);
-            EDL_DrawText(555, 565, 1366, 100, "Gianmarco Tosi", TEXT_CENTERED);
-            EDL_DrawText(555, 590, 1366, 100, "Elia Turini", TEXT_CENTERED);
-            EDL_DrawText(555, 615, 1366, 100, "Gioele Zoppi", TEXT_CENTERED);
+            EDL_DrawText(555, 155, 1366, 100, "Stefano Lenzi", TEXT_CENTERED);
+            EDL_DrawText(555, 180, 1366, 100, "Enio Parlanti", TEXT_CENTERED);
+            EDL_DrawText(555, 205, 1366, 100, "Lorenzo Buono", TEXT_CENTERED);
+            EDL_DrawText(555, 230, 1366, 100, "Luca Calcagni", TEXT_CENTERED);
+            EDL_DrawText(555, 255, 1366, 100, "Leonardo Capezzuoli", TEXT_CENTERED);
+            EDL_DrawText(555, 280, 1366, 100, "Alessandro Ciardelli", TEXT_CENTERED);
+            EDL_DrawText(555, 305, 1366, 100, "Amos Clipa", TEXT_CENTERED);
+            EDL_DrawText(555, 330, 1366, 100, "Andrea Di Modugno", TEXT_CENTERED);
+            EDL_DrawText(555, 355, 1366, 100, "Andy Dushku", TEXT_CENTERED);
+            EDL_DrawText(555, 380, 1366, 100, "Lorenzo Esposito", TEXT_CENTERED);
+            EDL_DrawText(555, 405, 1366, 100, "Michele Gargiulo", TEXT_CENTERED);
+            EDL_DrawText(555, 430, 1366, 100, "Duccio Ghelli", TEXT_CENTERED);
+            EDL_DrawText(555, 455, 1366, 100, "Alessio Giangrave'", TEXT_CENTERED);
+            EDL_DrawText(555, 480, 1366, 100, "Gianmarco Landucci", TEXT_CENTERED);
+            EDL_DrawText(555, 505, 1366, 100, "Marco Mannucci", TEXT_CENTERED);
+            EDL_DrawText(555, 530, 1366, 100, "Marco Pandolfi", TEXT_CENTERED);
+            EDL_DrawText(555, 555, 1366, 100, "Dario Salatti", TEXT_CENTERED);
+            EDL_DrawText(555, 580, 1366, 100, "Gianmarco Tosi", TEXT_CENTERED);
+            EDL_DrawText(555, 605, 1366, 100, "Elia Turini", TEXT_CENTERED);
+            EDL_DrawText(555, 630, 1366, 100, "Gioele Zoppi", TEXT_CENTERED);
             EDL_SetTextStyle(&crediti.selectedStyle);
-            EDL_DrawText(555, 660, 1366, 100, "PRESS ENTER TO RETURN TO MAIN MENU", TEXT_CENTERED);
+            EDL_DrawText(555, 675, 1366, 100, "PRESS ENTER TO RETURN TO MAIN MENU", TEXT_CENTERED);
         }
         EDL_FramePresent();
     }
