@@ -166,6 +166,7 @@ void spostaInBassoNemico() {
             else if ( tabellone[i - 1][j] == NEMICO_SYMBOL && tabellone[i][j] == MISSILE_SYMBOL ) {
                 tabellone[i - 1][j] = VUOTO_SYMBOL;
                 tabellone[i][j] = VUOTO_SYMBOL;
+                player.punteggio += 100;
             }
         }
     }
