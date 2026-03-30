@@ -130,7 +130,7 @@ int main(int argc, char* argv[]) {
     SDL_Event event;
 
     //per il calcolo degli FPS
-    int fps=0; // valore perr frame per second
+    int fps=0; // valore per frame per second
     char valore_FPS[64]; // variabile di test per stampare fps
 
     /*
