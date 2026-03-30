@@ -137,14 +137,14 @@ void levelUP()
             if (lvlUP.menuIndex == 0)
             {
                 EDL_SetTextStyle(&lvlUP.selectedStyle);
-                EDL_DrawText(0,285, 1366, 125, "New level", TEXT_CENTERED);
+                EDL_DrawText(0,285, 1366, 125, "Next level", TEXT_CENTERED);
                 EDL_SetTextStyle(&lvlUP.menuStyle);
                 EDL_DrawText(0,385, 1366, 200, "Main menu", TEXT_CENTERED);
                 EDL_DrawText(0,485, 1366, 275, "Quit", TEXT_CENTERED);
             }
             else if (lvlUP.menuIndex == 1)
             {
-                EDL_DrawText(0,285, 1366, 125, "New level", TEXT_CENTERED);
+                EDL_DrawText(0,285, 1366, 125, "Next level", TEXT_CENTERED);
                 EDL_SetTextStyle(&lvlUP.selectedStyle);
                 EDL_DrawText(0,385, 1366, 200, "Main menu", TEXT_CENTERED);
                 EDL_SetTextStyle(&lvlUP.menuStyle);
@@ -152,7 +152,7 @@ void levelUP()
             }
             else if (lvlUP.menuIndex == 2)
             {
-                EDL_DrawText(0,285, 1366, 125, "New level", TEXT_CENTERED);
+                EDL_DrawText(0,285, 1366, 125, "Next level", TEXT_CENTERED);
                 EDL_DrawText(0,385, 1366, 200, "Main menu", TEXT_CENTERED);
                 EDL_SetTextStyle(&lvlUP.selectedStyle);
                 EDL_DrawText(0,485, 1366, 275, "Quit", TEXT_CENTERED);
