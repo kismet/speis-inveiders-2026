@@ -159,9 +159,13 @@ void spostaInBassoNemico() {
 
     for ( int i = RIGHE - 1; i > 0; i--) {
         for ( int j = 0; j < COLONNE; j++ ) {
-            if ( tabellone[i - 1][j] == NEMICO_SYMBOL ) {
+            if ( tabellone[i - 1][j] == NEMICO_SYMBOL && tabellone[i][j] != MISSILE_SYMBOL ) {
                 tabellone[i - 1][j] = VUOTO_SYMBOL;
                 tabellone[i][j] = NEMICO_SYMBOL;
+            }
+            else if ( tabellone[i - 1][j] == NEMICO_SYMBOL && tabellone[i][j] == MISSILE_SYMBOL ) {
+                tabellone[i - 1][j] = VUOTO_SYMBOL;
+                tabellone[i][j] = VUOTO_SYMBOL;
             }
         }
     }
