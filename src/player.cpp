@@ -20,9 +20,16 @@ extern  Player_t player;
 void passoSinistro() {
 
     if ( player.x != 0) {
+        if (tabellone[player.Y][player.x - 1] ==MISSILE_NEMICO_SYMBOL) {
+            player.lives--;
+            if (player.lives <= 0) {
+                gameOver();
+            }
+        }
         tabellone[player.Y][player.x] = '-';
-        tabellone[player.Y][player.x - 1] = '^';
+        tabellone[player.Y][player.x - 1] = NAVICELLA_SYMBOL;
         player.x --;
+
     }
 
 }
@@ -30,9 +37,16 @@ void passoSinistro() {
 void passoDestro() {
 
     if ( player.x != 22) {
+        if (tabellone[player.Y][player.x + 1] ==MISSILE_NEMICO_SYMBOL) {
+            player.lives--;
+            if (player.lives <= 0) {
+                gameOver();
+            }
+        }
         tabellone[player.Y][player.x] = '-';
         tabellone[player.Y][player.x + 1] = '^';
         player.x ++;
+
     }
 }
 

@@ -61,7 +61,7 @@ bool basso();
 
 void spostaNemici();
 
-void sparoAlieni (char t [27][23]);
+void sparoAlieni ();
 
 void gameOver();
 
@@ -73,7 +73,7 @@ void levelUP();
 
 void credits();
 
-void avanzoSparoAlieni (char t [27][23]);
+void avanzoSparoAlieni ();
 
 void continuoConVittoria (char t[27][23], unsigned int &missile_time, unsigned int &movement_time);
 

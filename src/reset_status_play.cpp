@@ -22,30 +22,22 @@ extern GameContext_t gioco;
 extern char tabellone[27][23];
 extern Player_t player;
 extern bool versoDestra;
+extern const char TABELLONE[27][23];
 
 //TODO aggiungere parametri per indicare qual'è il livello e se vogliamo reset o no dei punteggi
 void resetStatusPlay()
 {
+    EDL_FrameClear();
     player.punteggio=0;
     //TODO la posizione dovrebbe essere presa dal tabellone che si considera come inizio
     player.x=11;
 
-    //TODO Usare la copia
-    //TODO Reset delle vite
-    for (int i=0; i<RIGHE; i++)
-    {
-        for (int j=0; j<COLONNE; j++)
-        {
-            tabellone[i][j]=VUOTO_SYMBOL;
-        }
-    }
-    for (int i = 0; i < 8; i++) {
-        for (int j = 7; j <= 15; j++) {
-            tabellone[i][j] = NEMICO_SYMBOL;
+    player.lives = 3;
+    for (int i=0; i<RIGHE; i++){
+        for (int j=0; j<COLONNE; j++){
+            tabellone[i][j]=TABELLONE[i][j];
         }
     }
 
-    tabellone[26][11]=NAVICELLA_SYMBOL;
-
-    gioco.stato=GAME_STATUS_PLAY;
+   // gioco.stato=GAME_STATUS_PLAY;
 }

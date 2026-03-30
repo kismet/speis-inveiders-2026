@@ -23,7 +23,7 @@ extern bool versoDestra;
 extern int startTime;
 extern Player_t player;
 
-void sparoAlieni (char t [27][23]) {
+void sparoAlieni () {
     srand(time(0));
     int sceltaAlieno = rand() % 10; // creo il numero casuale
 
@@ -31,14 +31,14 @@ void sparoAlieni (char t [27][23]) {
     int colonnaAlieno;
     for (int r = 0; r < 27; r++) {
         for (int c = 0; c < 23; c++) {
-            if (t[r][c] == NEMICO_SYMBOL) {
+            if (tabellone[r][c] == NEMICO_SYMBOL) {
                 ultimaRigaAlieni = r;
             }
         }
     }
 
     for (int c = 0;c < 23;) {
-        if (t[ultimaRigaAlieni][c] == NEMICO_SYMBOL) {
+        if (tabellone[ultimaRigaAlieni][c] == NEMICO_SYMBOL) {
             if (sceltaAlieno == 0) {
                 colonnaAlieno = c;
                 c = 23;
@@ -53,11 +53,11 @@ void sparoAlieni (char t [27][23]) {
         }
     }
 
-    t[ultimaRigaAlieni + 1][colonnaAlieno] = MISSILE_NEMICO_SYMBOL;
+    tabellone[ultimaRigaAlieni + 1][colonnaAlieno] = MISSILE_NEMICO_SYMBOL;
 
 }
 
-void avanzoSparoAlieni (char t [27][23]) {
+void avanzoSparoAlieni () {
     for (int r = 26; r >= 0; r--) {
         for (int c = 22; c >= 0; c--) {
             if (tabellone[r][c] == MISSILE_NEMICO_SYMBOL) {

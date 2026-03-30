@@ -43,8 +43,8 @@ void inizializzaPartita (char dst[27][23], const char source[27][23]) {
 }
 
 void continuoConVittoria (char t[27][23], unsigned int &missile_time, unsigned int &movement_time) {
-    missile_time_reduction = (2/100) * missile_time;
-    movement_time_reduction = (2/100) * movement_time;
+    missile_time_reduction = (2.0/100) * missile_time;
+    movement_time_reduction = (2.0/100) * movement_time;
 
     missile_time -= missile_time_reduction;
     movement_time -= movement_time_reduction;

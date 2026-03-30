@@ -80,13 +80,6 @@ GameContext_t gioco;
 Player_t player;
 Index_t interfaccia;
 
-void passoDestroNemici() {
-    if (versoDestra) {
-        for (int i=0; i<RIGHE; i++) {
-            if (tabellone[i][COLONNE] == 'X') {}
-        }
-    }
-}
 
 void Load_Interface_Assets()
 {
@@ -295,12 +288,12 @@ int main(int argc, char* argv[]) {
             if (SDL_GetTicks() - tempoAvanzoSparo >= missile_time) {
                 avanzaSparo();
                 levelUP();
-                avanzoSparoAlieni(tabellone);
+                avanzoSparoAlieni();
                 tempoAvanzoSparo = SDL_GetTicks();
             }
 
             if (SDL_GetTicks() - tempoSparoAlieno >= movement_time) {
-                sparoAlieni(tabellone);
+                sparoAlieni();
                 tempoSparoAlieno = SDL_GetTicks();
             }
 

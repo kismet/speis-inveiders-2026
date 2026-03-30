@@ -75,6 +75,8 @@ void Load_NewLevel_Assets() {
 
 }
 
+void inizializzaPartita();
+
 void levelUP()
 {
     if (!nemiciVivi())
@@ -118,8 +120,8 @@ void levelUP()
                     }
                     else if (lvlUP.menuIndex == 1)
                     {
-                        player.punteggio = 0;
-                        gioco.level = 1;
+                        resetStatusPlay();
+                        gioco.level=1;
                         gioco.stato = GAME_STATUS_MENU;
                     }
                     else if (lvlUP.menuIndex == 2)
