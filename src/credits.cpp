@@ -15,8 +15,8 @@
 #include "gameplay.h"
 #include "easy_sdl.h"
 #include "types.h"
+#include "globals.h"
 
-extern GameContext_t gioco;
 Index_t crediti;
 bool stampaCredits = true;
 

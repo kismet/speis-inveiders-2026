@@ -16,7 +16,7 @@
 #include "types.h"
 #include <cstring>
 #include <iostream>
-extern Player_t player;
+#include "globals.h"
 
 using namespace std;
 // Aiuta a convertire un numero int in puntatore char, utile per stampare EDL_DrawText()

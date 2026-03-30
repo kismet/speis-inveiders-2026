@@ -15,9 +15,8 @@
 #include "gameplay.h"
 #include "easy_sdl.h"
 #include "types.h"
+#include "globals.h"
 
-extern GameContext_t gioco;
-extern Player_t player;
 Index_t over;
 bool gOver = true;
 

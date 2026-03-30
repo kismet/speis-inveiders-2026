@@ -15,14 +15,9 @@
 #include "gameplay.h"
 #include "easy_sdl.h"
 #include "types.h"
+#include "globals.h"
 
 using namespace std;
-
-extern GameContext_t gioco;
-extern char tabellone[27][23];
-extern Player_t player;
-extern bool versoDestra;
-extern const char TABELLONE[27][23];
 
 //TODO aggiungere parametri per indicare qual'è il livello e se vogliamo reset o no dei punteggi
 void resetStatusPlay()

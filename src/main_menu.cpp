@@ -16,8 +16,8 @@
 #include "easy_sdl.h"
 #include "types.h"
 #include "gameplay.h"
+#include "globals.h"
 
-extern GameContext_t gioco;
 Index_t menu;
 
 bool running = true;

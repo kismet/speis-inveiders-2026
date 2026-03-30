@@ -15,8 +15,8 @@
 #include "easy_sdl.h"
 #include "gameplay.h"
 #include "types.h"
+#include "globals.h"
 
-extern GameContext_t gioco;
 Index_t menu2;
 bool paused = true;
 

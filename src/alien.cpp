@@ -18,10 +18,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-
-extern bool versoDestra;
-extern int startTime;
-extern Player_t player;
+#include "globals.h"
 
 void sparoAlieni () {
     srand(time(0));

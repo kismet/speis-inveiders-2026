@@ -14,8 +14,7 @@
 
 #include "gameplay.h"
 #include "types.h"
-
-extern  Player_t player;
+#include "globals.h"
 
 void passoSinistro() {
 

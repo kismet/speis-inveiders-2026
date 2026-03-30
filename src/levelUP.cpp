@@ -15,11 +15,7 @@
 #include "easy_sdl.h"
 #include "gameplay.h"
 #include "types.h"
-
-extern Player_t player;
-extern GameContext_t gioco;
-extern unsigned int missile_time;
-extern unsigned int movement_time;
+#include "globals.h"
 
 Index_t lvlUP;
 bool newLevel = false;
