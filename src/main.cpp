@@ -19,7 +19,6 @@
 #include <windows.h>
 
 #include <string>
-#include "gameplay.h"
 #include "types.h"
 
 //variabili di supporto per identificazione
