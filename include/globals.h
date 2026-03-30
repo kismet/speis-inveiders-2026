@@ -1,0 +1,8 @@
+//
+// Created by Admin on 31/03/2026.
+//
+
+#ifndef SPEIS_INVEIDERS_GLOBALS_H
+#define SPEIS_INVEIDERS_GLOBALS_H
+
+#endif //SPEIS_INVEIDERS_GLOBALS_H
