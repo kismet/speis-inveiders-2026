@@ -20,7 +20,7 @@
 #include <iostream>
 
 extern bool versoDestra;
-extern int startTime;
+extern uint64_t startTime;
 extern Player_t player;
 
 void sparoAlieni (char t [27][23]) {
