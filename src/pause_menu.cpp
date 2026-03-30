@@ -71,7 +71,7 @@ void pause_menu()
                    }
             if(event.type == SDL_EVENT_KEY_DOWN && (event.key.scancode == SDL_SCANCODE_S || event.key.scancode == SDL_SCANCODE_DOWN))
             {
-                if (menu2.menuIndex+1 < 2)
+                if (menu2.menuIndex+1 < 3)
                 {
                     menu2.menuIndex++;
                 }
@@ -87,6 +87,8 @@ void pause_menu()
                 if (menu2.menuIndex == 0) {
                     gioco.stato = GAME_STATUS_PLAY;
                 } else if (menu2.menuIndex == 1) {
+                    gioco.stato = GAME_STATUS_MENU;
+                } else if (menu2.menuIndex == 2) {
                     gioco.stato = GAME_STATUS_QUIT;
                 }
                 //Torno al looop principale dove verrà avviata la gestione del gioco opportuna
@@ -103,15 +105,25 @@ void pause_menu()
         if (menu2.menuIndex == 0)
         {
             EDL_SetTextStyle(&menu2.selectedStyle);
-            EDL_DrawText(555, 285, 1366, 150, "Resume", TEXT_CENTERED);
+            EDL_DrawText(555, 285, 1366, 75, "Resume", TEXT_CENTERED);
             EDL_SetTextStyle(&menu2.menuStyle);
-            EDL_DrawText(575, 385, 1366, 225, "Quit", TEXT_CENTERED);
+            EDL_DrawText(555, 385, 1366, 150, "Main menu", TEXT_CENTERED);
+            EDL_DrawText(555, 485, 1366, 225, "Quit", TEXT_CENTERED);
         }
         else if (menu2.menuIndex == 1)
         {
-            EDL_DrawText(555, 285, 1366, 150, "Resume", TEXT_CENTERED);
+            EDL_DrawText(555, 285, 1366, 75, "Resume", TEXT_CENTERED);
             EDL_SetTextStyle(&menu2.selectedStyle);
-            EDL_DrawText(575, 385, 1366, 225, "Quit", TEXT_CENTERED);
+            EDL_DrawText(555, 385, 1366, 150, "Main menu", TEXT_CENTERED);
+            EDL_SetTextStyle(&menu2.menuStyle);
+            EDL_DrawText(555, 485, 1366, 225, "Quit", TEXT_CENTERED);
+        }
+        else if (menu2.menuIndex == 2)
+        {
+            EDL_DrawText(555, 285, 1366, 75, "Resume", TEXT_CENTERED);
+            EDL_DrawText(555, 385, 1366, 150, "Main menu", TEXT_CENTERED);
+            EDL_SetTextStyle(&menu2.selectedStyle);
+            EDL_DrawText(555, 485, 1366, 225, "Quit", TEXT_CENTERED);
         }
         EDL_FramePresent();
     }
