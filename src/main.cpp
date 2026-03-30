@@ -36,21 +36,23 @@
 #include "gameplay.h"
 #include "types.h"
 
-
-
-
 //variabili di supporto per identificazione
 const char MISSILE_SYMBOL = '|';
 const char NAVICELLA_SYMBOL = '^';
 const char VUOTO_SYMBOL = '-';
 const char NEMICO_SYMBOL = 'X';
 const char BARRIER_SYMBOL = 'O';
+const char MISSILE_NEMICO_SYMBOL = '1';
 const unsigned int MISSILE_BASIC_SPEED = 75;
+
+extern unsigned int missile_time = 100;
+extern unsigned int movement_time = 1500;
+extern unsigned int missile_time_reduction = 0;
+extern unsigned int movement_time_reduction = 0;
 
 const unsigned int RIGHE = 27;
 const unsigned int COLONNE = 23;
 const float scalaCoordinate=0.71;
-
 
 bool versoDestra = true;
 
@@ -87,7 +89,6 @@ int startTime = SDL_GetTicks();
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '^', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
     };
     char tabellone[RIGHE][COLONNE];
-
 
 GameContext_t gioco;
 Player_t player;
@@ -133,9 +134,12 @@ int main(int argc, char* argv[]) {
     Easy_Asset_t * font = EDL_LoadAsset("../assets/fonts/UbuntuMono-Regular.ttf");
     player.navicella  = EDL_LoadAsset("../assets/sprites/navicella.PNG");
     Easy_Asset_t *nemico = EDL_LoadAsset("../assets/sprites/alieno.PNG");
+    Easy_Asset_t *sparoNemico = EDL_LoadAsset("../assets/sprites/proiettileAlieno.PNG");
+    Easy_Asset_t *sparo = EDL_LoadAsset("../assets/sprites/proiettileNavicella.PNG");
     Easy_Asset_t *background = EDL_LoadAsset("../assets/schermate/sfondoInGame.png");
     Load_Interface_Assets();
     uint64_t tempoAvanzoSparo;
+    uint64_t tempoSparoAlieno;
 
     //variabili per i while e la selezione
     int highliner = 0;
@@ -157,7 +161,6 @@ int main(int argc, char* argv[]) {
     */
     SDL_Color white = {255, 255, 255};
     SDL_Color yellow = {255, 255, 0};
-
 
     //creazione degli stili
     TextStyle_t style;
@@ -182,13 +185,12 @@ int main(int argc, char* argv[]) {
     //assegno il valore iniziale degli fps a 0
     stampaInt(0, valore_FPS, 64);
 
-
     tempoAvanzoSparo = SDL_GetTicks();
+    tempoSparoAlieno = SDL_GetTicks();
 
     while (running) {
         // conteggia gli fps
         fps++;
-
 
         while (SDL_PollEvent(&event)) {
             if (event.type == SDL_EVENT_QUIT) {
@@ -236,8 +238,7 @@ int main(int argc, char* argv[]) {
 
             }
            if ((event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_RIGHT)||(event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_D)) {
-
-                if ( gioco.stato == 1 ) {
+               if ( gioco.stato == 1 ) {
                     passoDestro();
                 }
 
@@ -287,7 +288,10 @@ int main(int argc, char* argv[]) {
                         EDL_DrawAsset(xscritta,yscritta,player.navicella, 0, 0.16);
                     }
                     else if (CTabellone[0] == MISSILE_SYMBOL) {
-                        EDL_DrawText(xscritta,yscritta, "|");
+                        EDL_DrawAsset(xscritta,yscritta,sparo, 0, 0.1);
+                    }
+                    else if (CTabellone[0] == MISSILE_NEMICO_SYMBOL) {
+                        EDL_DrawAsset(xscritta,yscritta,sparoNemico, 180, 0.1);
                     }
 
                     xscritta = xscritta + 40*scalaCoordinate;
@@ -298,10 +302,16 @@ int main(int argc, char* argv[]) {
                 xscritta = 465*scalaCoordinate;
 
             }
-            if (SDL_GetTicks() - tempoAvanzoSparo >= 100) {
+            if (SDL_GetTicks() - tempoAvanzoSparo >= missile_time - missile_time_reduction) {
                 avanzaSparo();
                 levelUP();
+                avanzoSparoAlieni(tabellone);
                 tempoAvanzoSparo = SDL_GetTicks();
+            }
+
+            if (SDL_GetTicks() - tempoSparoAlieno >= movement_time - movement_time_reduction) {
+                sparoAlieni(tabellone);
+                tempoSparoAlieno = SDL_GetTicks();
             }
 
             EDL_FramePresent();
