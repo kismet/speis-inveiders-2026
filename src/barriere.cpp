@@ -16,7 +16,12 @@ void inizializzaBarriere()
     barr1.colonna = 5;
     barr2.colonna = 11;
     barr3.colonna = 17;
+
+    barr1.lives = 3;
+    barr2.lives = barr1.lives;
+    barr3.lives = barr1.lives;
 }
+
 void checkVitaBarriera() {
     if (barr1.lives<=0) {
         tabellone[24][barr1.colonna]=VUOTO_SYMBOL;
@@ -28,6 +33,7 @@ void checkVitaBarriera() {
         tabellone[24][barr3.colonna]=VUOTO_SYMBOL;
     }
 }
+
 void checkBarriera(int c) {
     switch (c) {
         case 5: barr1.lives--;

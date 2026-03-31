@@ -29,7 +29,7 @@ typedef enum GameStaus {
 
 typedef struct BarrierContext {
     int colonna;
-    int lives = 3;
+    int lives;
 } BarrierContext_t;
 
 typedef struct GameContext {
