@@ -146,7 +146,7 @@ int main(int argc, char* argv[]) {
     }
     */
     SDL_Color white = {255, 255, 255};
-    SDL_Color yellow = {255, 255, 0};
+    SDL_Color yellow = { 255, 255, 0 };
 
     //creazione degli stili
     TextStyle_t style;
