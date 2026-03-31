@@ -7,40 +7,38 @@
 #include <string>
 #include "types.h"
 
-BarrierContext_t barr1;
-BarrierContext_t barr2;
-BarrierContext_t barr3;
+BarrierContext_t barriere[23];
 
 void inizializzaBarriere()
 {
-    barr1.colonna = 5;
-    barr2.colonna = 11;
-    barr3.colonna = 17;
+    barriere[1].colonna = 5;
+    barriere[2].colonna = 11;
+    barriere[3].colonna = 17;
 
-    barr1.lives = 3;
-    barr2.lives = barr1.lives;
-    barr3.lives = barr1.lives;
+    barriere[1].lives = 3;
+    barriere[2].lives = barriere[1].lives;
+    barriere[3].lives = barriere[1].lives;
 }
 
 void checkVitaBarriera() {
-    if (barr1.lives<=0) {
-        tabellone[24][barr1.colonna]=VUOTO_SYMBOL;
+    if (barriere[1].lives<=0) {
+        tabellone[24][barriere[1].colonna]=VUOTO_SYMBOL;
     }
-    if (barr2.lives<=0) {
-        tabellone[24][barr2.colonna]=VUOTO_SYMBOL;
+    if (barriere[2].lives<=0) {
+        tabellone[24][barriere[2].colonna]=VUOTO_SYMBOL;
     }
-    if (barr3.lives<=0) {
-        tabellone[24][barr3.colonna]=VUOTO_SYMBOL;
+    if (barriere[3].lives<=0) {
+        tabellone[24][barriere[3].colonna]=VUOTO_SYMBOL;
     }
 }
 
 void checkBarriera(int c) {
     switch (c) {
-        case 5: barr1.lives--;
+        case 5: barriere[1].lives--;
             break;
-        case 11: barr2.lives--;
+        case 11: barriere[2].lives--;
             break;
-        case 17: barr3.lives--;
+        case 17: barriere[3].lives--;
             break;
     }
     checkVitaBarriera();
