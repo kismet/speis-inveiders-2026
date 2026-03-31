@@ -41,7 +41,7 @@ typedef struct GameContext {
 typedef struct Player {
     int x = 11;
     const int Y = 26;
-    int spariRimasti = 0;
+    unsigned int spari = 0;
     int punteggio = 0;
     int lives = 3;
     Easy_Asset_t *navicella;

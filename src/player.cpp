@@ -52,15 +52,13 @@ void passoDestro() {
 bool generaSparo () {
     bool sparoPossibile = true;
 
-    for (int r = 0; r < RIGHE; r++) {
-        for (int c = 0; c < COLONNE; c++) {
-            if (tabellone[r][c] == MISSILE_SYMBOL) {
-                sparoPossibile = false;
-            }
-        }
+    if (player.spari >= 3)
+    {
+        sparoPossibile = false;
     }
 
     if (sparoPossibile) {
+        player.spari++;
         tabellone[player.Y-1][player.x] = MISSILE_SYMBOL;
     }
     return sparoPossibile;
@@ -72,14 +70,17 @@ void avanzaSparo() {
             if (tabellone[r][c] == MISSILE_SYMBOL) {
                 if (r == 0) {
                     tabellone[r][c] = VUOTO_SYMBOL;
+                    player.spari--;
                 }
                 else if (tabellone[r-1][c] == NEMICO_SYMBOL) {
                     tabellone[r-1][c] = VUOTO_SYMBOL;
                     tabellone[r][c] = VUOTO_SYMBOL;
+                    player.spari--;
                     player.punteggio += 100;
                 } else if (tabellone[r-1][c] == BARRIER_SYMBOL) {
                     checkBarriera(c);
                     tabellone[r][c] = VUOTO_SYMBOL;
+                    player.spari--;
                 }
                 else {
                     tabellone[r-1][c] = MISSILE_SYMBOL;

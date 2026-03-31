@@ -125,7 +125,7 @@ void spostaDestraNemici() {
                 }
 
                 else if (tabellone[r][c + 1] == MISSILE_SYMBOL) {
-
+                    player.spari--;
                     tabellone[r][c] = VUOTO_SYMBOL;
                     tabellone[r][c + 1] = VUOTO_SYMBOL;
                 }
@@ -152,7 +152,7 @@ void spostaSinistraNemici() {
                 }
 
                 else if (tabellone[r][c - 1] == MISSILE_SYMBOL) {
-
+                    player.spari--;
                     tabellone[r][c] = VUOTO_SYMBOL;
                     tabellone[r][c - 1] = VUOTO_SYMBOL;
                 }
@@ -179,6 +179,7 @@ void spostaInBassoNemico() {
             else if ( tabellone[i - 1][j] == NEMICO_SYMBOL && tabellone[i][j] == MISSILE_SYMBOL ) {
                 tabellone[i - 1][j] = VUOTO_SYMBOL;
                 tabellone[i][j] = VUOTO_SYMBOL;
+                player.spari--;
                 player.punteggio += 100;
             }
         }
