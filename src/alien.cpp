@@ -135,6 +135,19 @@ void spostaDestraNemici() {
                     tabellone[r][c] = MISSILE_NEMICO_SYMBOL;
                     tabellone[r][c + 1] = NEMICO_SYMBOL;
                 }
+
+                else if (tabellone[r][c + 1] == BARRIER_SYMBOL)
+                {
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                    for (int i = 0; i < 23; i++)
+                    {
+                        if (barriere[i].colonna == c+1)
+                        {
+                            barriere[i].lives = 0;
+                        }
+                    }
+                    checkBarriera(c+1);
+                }
             }
         }
     }
@@ -163,6 +176,19 @@ void spostaSinistraNemici() {
 
                     tabellone[r][c] = MISSILE_NEMICO_SYMBOL;
                     tabellone[r][c - 1] = NEMICO_SYMBOL;
+                }
+
+                else if (tabellone[r][c - 1] == BARRIER_SYMBOL)
+                {
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                    for (int i = 0; i < 23; i++)
+                    {
+                        if (barriere[i].colonna == c-1)
+                        {
+                            barriere[i].lives = 0;
+                        }
+                    }
+                    checkBarriera(c-1);
                 }
             }
         }
