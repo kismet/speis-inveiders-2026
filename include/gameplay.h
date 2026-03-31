@@ -28,7 +28,8 @@ extern double missile_time_reduction;
 extern double movement_time_reduction;
 extern char tabellone[27][23];
 extern const char TABELLONE[27][23];
-
+extern unsigned const int START_MISSILE_TIME;
+extern unsigned const int START_MOVEMENT_TIME;
 void main_menu();
 
 void pause_menu();

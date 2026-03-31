@@ -43,19 +43,22 @@ void inizializzaPartita (char dst[27][23], const char source[27][23], char modal
             dst[r][c] = source[r][c];
         }
     }
+    inizializzaBarriere();
     if (modalita == 'c') {//continua
         player.x=11;
     }else if (modalita == 'm') {
         player.x=11;
         player.lives=3;
         player.punteggio=0;
-        inizializzaBarriere();
+        missile_time_reduction=START_MISSILE_TIME;
+        movement_time_reduction=START_MOVEMENT_TIME;
+
     }
 }
 
 void continuoConVittoria (char t[27][23], unsigned int &missile_time, unsigned int &movement_time) {
-    missile_time_reduction = (2.0/100) * missile_time;
-    movement_time_reduction = (2.0/100) * movement_time;
+    missile_time_reduction = (25.0/100) * missile_time;
+    movement_time_reduction = (25.0/100) * movement_time;
 
     missile_time -= missile_time_reduction;
     movement_time -= movement_time_reduction;

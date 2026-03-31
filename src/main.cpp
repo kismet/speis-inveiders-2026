@@ -30,8 +30,11 @@ const char BARRIER_SYMBOL = 'O';
 const char MISSILE_NEMICO_SYMBOL = '1';
 const unsigned int MISSILE_BASIC_SPEED = 75;
 
-unsigned int missile_time = 100;
-unsigned int movement_time = 1500;
+unsigned const int START_MISSILE_TIME = 100;
+unsigned const int START_MOVEMENT_TIME = 1500;
+
+unsigned int missile_time = START_MISSILE_TIME;
+unsigned int movement_time = START_MOVEMENT_TIME;
 double missile_time_reduction = 0;
 double movement_time_reduction = 0;
 
