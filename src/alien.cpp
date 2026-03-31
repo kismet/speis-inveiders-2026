@@ -21,32 +21,16 @@
 #include "globals.h"
 
 void sparoAlieni () {
-    int sceltaAlieno = rand() % 10; // creo il numero casuale
+    int colonnaAlieno = rand() % 8; // creo il numero casuale
 
     int ultimaRigaAlieni = -1;
-    int colonnaAlieno = -1;
+    colonnaAlieno += gioco.primaColonnaAlieni;
+    int contatoreColonne = 0, contatorRighe = 0;
+    bool continua = true;
 
-    for (int r = 0; r < RIGHE; r++) {
-        for (int c = 0; c < COLONNE; c++) {
-            if (tabellone[r][c] == NEMICO_SYMBOL) {
-                ultimaRigaAlieni = r;
-            }
-        }
-    }
-
-    for (int c = 0;c < COLONNE;) {
-        if (tabellone[ultimaRigaAlieni][c] == NEMICO_SYMBOL) {
-            if (sceltaAlieno == 0) {
-                colonnaAlieno = c;
-                c = 23;
-            }
-            sceltaAlieno--;
-        }
-        if (c == 22) {
-            c = 0;
-        }
-        else {
-            c++;
+    for (int r = 0; r < RIGHE - 1; r++) {
+        if (tabellone[r][colonnaAlieno] == NEMICO_SYMBOL) {
+            ultimaRigaAlieni = r;
         }
     }
 
@@ -129,36 +113,59 @@ bool basso() {
     return toccaBasso;
 }
 
-void spostaADestraNemici() {
+void spostaDestraNemici() {
+    for ( int r = 0; r < RIGHE; r++ ) {
+        for ( int c = 22; c >= 0; c-- ) {
+            if ( tabellone[r][c] == NEMICO_SYMBOL ) {
 
-    for ( int i = 0; i < RIGHE; i++ ) {
-        for ( int j = COLONNE - 1; j > 0; j-- ) {
-            if ( tabellone[i][j - 1] == NEMICO_SYMBOL && tabellone[i][j] == MISSILE_SYMBOL ) {
-                tabellone[i][j - 1] = VUOTO_SYMBOL;
-                tabellone[i][j] = VUOTO_SYMBOL;
-                player.punteggio += 100;
-            } else if ( tabellone[i][j - 1] == NEMICO_SYMBOL && (tabellone[i][j] == VUOTO_SYMBOL || tabellone[i][j] == BARRIER_SYMBOL )) {
-                tabellone[i][j - 1] = VUOTO_SYMBOL;
-                tabellone[i][j] = NEMICO_SYMBOL;
+                if ( tabellone[r][c + 1] == VUOTO_SYMBOL ) {
+
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                    tabellone[r][c + 1] = NEMICO_SYMBOL;
+                }
+
+                else if (tabellone[r][c + 1] == MISSILE_SYMBOL) {
+
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                    tabellone[r][c + 1] = VUOTO_SYMBOL;
+                }
+
+                else if (tabellone[r][c + 1] == MISSILE_NEMICO_SYMBOL) {
+                    tabellone[r][c] = MISSILE_NEMICO_SYMBOL;
+                    tabellone[r][c + 1] = NEMICO_SYMBOL;
+                }
             }
         }
     }
+    gioco.primaColonnaAlieni++;
 }
 
-void spostaASinistraNemici() {
+void spostaSinistraNemici() {
+    for ( int r = 0; r < RIGHE; r++ ) {
+        for ( int c = 0; c < COLONNE; c++ ) {
+            if ( tabellone[r][c] == NEMICO_SYMBOL ) {
 
-    for ( int i = 0; i < RIGHE; i++ ) {
-        for ( int j = 0; j < COLONNE - 1; j++ ) {
-            if ( tabellone[i][j + 1] == NEMICO_SYMBOL && tabellone[i][j] == MISSILE_SYMBOL ) {
-                tabellone[i][j + 1] = VUOTO_SYMBOL;
-                tabellone[i][j] = VUOTO_SYMBOL;
-                player.punteggio += 100;
-            } else if ( tabellone[i][j + 1] == NEMICO_SYMBOL && tabellone[i][j] == VUOTO_SYMBOL ) {
-                tabellone[i][j + 1] = VUOTO_SYMBOL;
-                tabellone[i][j] = NEMICO_SYMBOL;
+                if ( tabellone[r][c - 1] == VUOTO_SYMBOL ) {
+
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                    tabellone[r][c - 1] = NEMICO_SYMBOL;
+                }
+
+                else if (tabellone[r][c - 1] == MISSILE_SYMBOL) {
+
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                    tabellone[r][c - 1] = VUOTO_SYMBOL;
+                }
+
+                else if (tabellone[r][c - 1] == MISSILE_NEMICO_SYMBOL) {
+
+                    tabellone[r][c] = MISSILE_NEMICO_SYMBOL;
+                    tabellone[r][c - 1] = NEMICO_SYMBOL;
+                }
             }
         }
     }
+    gioco.primaColonnaAlieni--;
 }
 
 void spostaInBassoNemico() {
@@ -188,14 +195,14 @@ void spostaNemici() {
         startTime = SDL_GetTicks();
         if ( versoDestra  ) {
             if ( !destra() ) {
-                spostaADestraNemici();
+                spostaDestraNemici();
             } else {
                 spostaInBassoNemico();
                 versoDestra = false;
             }
         } else {
             if ( !sinistra() ) {
-                spostaASinistraNemici();
+                spostaSinistraNemici();
             } else {
                 spostaInBassoNemico();
                 versoDestra = true;

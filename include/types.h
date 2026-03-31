@@ -35,6 +35,7 @@ typedef struct BarrierContext {
 typedef struct GameContext {
     GameStatus_t stato;
     int level;
+    int primaColonnaAlieni = 7;
 } GameContext_t;
 
 typedef struct Player {
