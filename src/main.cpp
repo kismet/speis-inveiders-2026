@@ -95,8 +95,10 @@ void Load_Interface_Assets()
 }
 
 int main(int argc, char* argv[]) {
+
     //inizializzazione
     EDL_Init();
+    srand(time(0));
     gioco.level = 1;
 
     char stampaPunteggio[1000];

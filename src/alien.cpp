@@ -21,7 +21,6 @@
 #include "globals.h"
 
 void sparoAlieni () {
-    srand(time(0));
     int sceltaAlieno = rand() % 10; // creo il numero casuale
 
     int ultimaRigaAlieni;
