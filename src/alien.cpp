@@ -23,17 +23,18 @@
 void sparoAlieni () {
     int sceltaAlieno = rand() % 10; // creo il numero casuale
 
-    int ultimaRigaAlieni;
-    int colonnaAlieno;
-    for (int r = 0; r < 27; r++) {
-        for (int c = 0; c < 23; c++) {
+    int ultimaRigaAlieni = -1;
+    int colonnaAlieno = -1;
+
+    for (int r = 0; r < RIGHE; r++) {
+        for (int c = 0; c < COLONNE; c++) {
             if (tabellone[r][c] == NEMICO_SYMBOL) {
                 ultimaRigaAlieni = r;
             }
         }
     }
 
-    for (int c = 0;c < 23;) {
+    for (int c = 0;c < COLONNE;) {
         if (tabellone[ultimaRigaAlieni][c] == NEMICO_SYMBOL) {
             if (sceltaAlieno == 0) {
                 colonnaAlieno = c;
@@ -49,7 +50,9 @@ void sparoAlieni () {
         }
     }
 
-    tabellone[ultimaRigaAlieni + 1][colonnaAlieno] = MISSILE_NEMICO_SYMBOL;
+    if (ultimaRigaAlieni < RIGHE - 1) {
+        tabellone[ultimaRigaAlieni + 1][colonnaAlieno] = MISSILE_NEMICO_SYMBOL;
+    }
 
 }
 
@@ -73,6 +76,9 @@ void avanzoSparoAlieni () {
                     tabellone[r][c] = VUOTO_SYMBOL;
                 }
                 else if (tabellone[r][c] == tabellone[26][c]) {
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                }
+                else if (r == RIGHE - 1) {
                     tabellone[r][c] = VUOTO_SYMBOL;
                 }
             }

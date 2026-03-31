@@ -70,7 +70,10 @@ void avanzaSparo() {
     for (int r = 0; r < RIGHE; r++) {
         for (int c = 0; c < COLONNE; c++) {
             if (tabellone[r][c] == MISSILE_SYMBOL) {
-                if (tabellone[r-1][c] == NEMICO_SYMBOL) {
+                if (r == 0) {
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                }
+                else if (tabellone[r-1][c] == NEMICO_SYMBOL) {
                     tabellone[r-1][c] = VUOTO_SYMBOL;
                     tabellone[r][c] = VUOTO_SYMBOL;
                     player.punteggio += 100;
