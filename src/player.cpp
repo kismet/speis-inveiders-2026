@@ -77,7 +77,11 @@ void avanzaSparo() {
                     tabellone[r-1][c] = VUOTO_SYMBOL;
                     tabellone[r][c] = VUOTO_SYMBOL;
                     player.punteggio += 100;
-                }else {
+                } else if (tabellone[r-1][c] == BARRIER_SYMBOL) {
+                    checkBarriera(c);
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                }
+                else {
                     tabellone[r-1][c] = MISSILE_SYMBOL;
                     tabellone[r][c] = VUOTO_SYMBOL;
                 }

@@ -75,6 +75,10 @@ void avanzoSparoAlieni () {
                     tabellone[r+1][c] = MISSILE_NEMICO_SYMBOL;
                     tabellone[r][c] = VUOTO_SYMBOL;
                 }
+                else if (tabellone[r+1][c] == BARRIER_SYMBOL) {
+                    checkBarriera(c);
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                }
                 else if (tabellone[r][c] == tabellone[26][c]) {
                     tabellone[r][c] = VUOTO_SYMBOL;
                 }

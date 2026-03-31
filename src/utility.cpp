@@ -49,6 +49,7 @@ void inizializzaPartita (char dst[27][23], const char source[27][23], char modal
         player.x=11;
         player.lives=3;
         player.punteggio=0;
+        inizializzaBarriere();
     }
 }
 

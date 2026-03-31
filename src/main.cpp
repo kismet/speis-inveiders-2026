@@ -119,6 +119,7 @@ int main(int argc, char* argv[]) {
     Easy_Asset_t *sparo = EDL_LoadAsset("../assets/sprites/proiettileNavicella.PNG");
     Easy_Asset_t *background = EDL_LoadAsset("../assets/schermate/sfondoInGame.png");
     Easy_Asset_t *cuore = EDL_LoadAsset("../assets/sprites/cuore.png");
+    Easy_Asset_t *barriera = EDL_LoadAsset("../assets/sprites/scudoProiettili.png");
     Load_Interface_Assets();
     uint64_t tempoAvanzoSparo;
     uint64_t tempoSparoAlieno;
@@ -284,6 +285,9 @@ int main(int argc, char* argv[]) {
                     }
                     else if (CTabellone[0] == MISSILE_NEMICO_SYMBOL) {
                         EDL_DrawAsset(xscritta,yscritta,sparoNemico, 180, 0.1);
+
+                    }else if (CTabellone[0] == BARRIER_SYMBOL) {
+                        EDL_DrawAsset(xscritta,yscritta,barriera, 0, 0.16);
                     }
 
                     xscritta = xscritta + 40*scalaCoordinate;
