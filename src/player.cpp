@@ -57,6 +57,17 @@ bool generaSparo () {
         sparoPossibile = false;
     }
 
+    for (int c = 0; c < COLONNE; c++)
+    {
+        if (tabellone[26][c] == NAVICELLA_SYMBOL)
+        {
+            if (tabellone[25][c] == MISSILE_SYMBOL)
+            {
+                sparoPossibile = false;
+            }
+        }
+    }
+
     if (sparoPossibile) {
         player.spari++;
         tabellone[player.Y-1][player.x] = MISSILE_SYMBOL;
