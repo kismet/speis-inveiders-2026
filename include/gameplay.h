@@ -77,6 +77,12 @@ void avanzoSparoAlieni ();
 
 void continuoConVittoria (char t[27][23], unsigned int &missile_time, unsigned int &movement_time);
 
+void checkBarriera(int c);
+
+void inizializzaBarriere();
+
+void checkVitaBarriera();
+
 #endif //SPEIS_INVEIDERS_GAMEPLAY_H
 
 

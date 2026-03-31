@@ -27,6 +27,11 @@ typedef enum GameStaus {
     //TODO complete by students
 } GameStatus_t;
 
+typedef struct BarrierContext {
+    int colonna;
+    int lives = 3;
+} BarrierContext_t;
+
 typedef struct GameContext {
     GameStatus_t stato;
     int level;
