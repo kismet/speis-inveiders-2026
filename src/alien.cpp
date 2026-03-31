@@ -126,6 +126,7 @@ void spostaDestraNemici() {
 
                 else if (tabellone[r][c + 1] == MISSILE_SYMBOL) {
                     player.spari--;
+                    player.punteggio += 100;
                     tabellone[r][c] = VUOTO_SYMBOL;
                     tabellone[r][c + 1] = VUOTO_SYMBOL;
                 }
@@ -153,6 +154,7 @@ void spostaSinistraNemici() {
 
                 else if (tabellone[r][c - 1] == MISSILE_SYMBOL) {
                     player.spari--;
+                    player.punteggio += 100;
                     tabellone[r][c] = VUOTO_SYMBOL;
                     tabellone[r][c - 1] = VUOTO_SYMBOL;
                 }
