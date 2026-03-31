@@ -50,6 +50,7 @@ void inizializzaPartita (char dst[27][23], const char source[27][23], char modal
         player.x=11;
         player.lives=3;
         player.punteggio=0;
+        gioco.level=1;
         missile_time_reduction=START_MISSILE_TIME;
         movement_time_reduction=START_MOVEMENT_TIME;
 
