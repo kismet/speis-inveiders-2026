@@ -13,7 +13,6 @@ extern unsigned int missile_time;
 extern unsigned int movement_time;
 extern Player_t player;
 extern GameContext_t gioco;
-extern bool versoDestra;
 extern const char TABELLONE[27][23];
 extern char tabellone[27][23];
 
