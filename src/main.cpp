@@ -28,6 +28,7 @@ const char VUOTO_SYMBOL = '-';
 const char NEMICO_SYMBOL = 'X';
 const char BARRIER_SYMBOL = 'O';
 const char MISSILE_NEMICO_SYMBOL = '1';
+const char MISSILE_NEMICO_E_NEMICO_SYMBOL = 'Y';
 const unsigned int MISSILE_BASIC_SPEED = 75;
 
 unsigned const int START_MISSILE_TIME = 100;

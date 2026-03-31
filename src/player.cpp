@@ -55,7 +55,7 @@ bool generaSparo () {
     for (int r = 0; r < RIGHE; r++) {
         for (int c = 0; c < COLONNE; c++) {
             if (tabellone[r][c] == MISSILE_SYMBOL) {
-                sparoPossibile = false;
+                sparoPossibile = true;
             }
         }
     }
