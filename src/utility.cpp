@@ -18,6 +18,7 @@
 #include <iostream>
 #include "globals.h"
 
+
 using namespace std;
 // Aiuta a convertire un numero int in puntatore char, utile per stampare EDL_DrawText()
 void stampaInt(int valore, char* buffer, int dim) {
@@ -51,17 +52,21 @@ void inizializzaPartita (char dst[27][23], const char source[27][23], char modal
         player.lives=3;
         player.punteggio=0;
         gioco.level=1;
-        missile_time_reduction=START_MISSILE_TIME;
-        movement_time_reduction=START_MOVEMENT_TIME;
+        missile_time=START_MISSILE_TIME;
+        movement_time=START_MOVEMENT_TIME;
 
     }
 }
 
-void continuoConVittoria (char t[27][23], unsigned int &missile_time, unsigned int &movement_time) {
-    missile_time_reduction = (25.0/100) * missile_time;
-    movement_time_reduction = (25.0/100) * movement_time;
-
-    missile_time -= missile_time_reduction;
-    movement_time -= movement_time_reduction;
-
+void continuoConVittoria () {
+    if (missile_time<=MISSILE_TIME_REDUCTION) {
+        missile_time = 25.0;
+    }else{
+        missile_time -= MISSILE_TIME_REDUCTION;
+    }
+    if (movement_time<=MISSILE_TIME_REDUCTION) {
+        movement_time = 10.0;
+    }else{
+    movement_time -= MISSILE_TIME_REDUCTION;
+    }
 }

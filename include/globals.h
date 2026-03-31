@@ -9,11 +9,12 @@
 
 extern bool versoDestra;
 extern int startTime;
-extern unsigned int missile_time;
-extern unsigned int movement_time;
+extern int missile_time;
+extern int movement_time;
 extern Player_t player;
 extern GameContext_t gioco;
 extern const char TABELLONE[27][23];
 extern char tabellone[27][23];
+
 
 #endif //SPEIS_INVEIDERS_GLOBALS_H

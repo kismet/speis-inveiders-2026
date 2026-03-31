@@ -24,8 +24,8 @@ extern const char MISSILE_NEMICO_SYMBOL;
 extern const unsigned int RIGHE;
 extern const unsigned int COLONNE;
 extern const unsigned int MISSILE_BASIC_SPEED;
-extern double missile_time_reduction;
-extern double movement_time_reduction;
+extern const double MISSILE_TIME_REDUCTION;
+extern const double MOVEMENT_TIME_REDUCTION;
 extern char tabellone[27][23];
 extern const char TABELLONE[27][23];
 extern unsigned const int START_MISSILE_TIME;
@@ -76,7 +76,7 @@ void credits();
 
 void avanzoSparoAlieni ();
 
-void continuoConVittoria (char t[27][23], unsigned int &missile_time, unsigned int &movement_time);
+void continuoConVittoria ();
 
 void checkBarriera(int c);
 

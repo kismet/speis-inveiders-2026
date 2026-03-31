@@ -22,6 +22,10 @@
 #include "types.h"
 
 //variabili di supporto per identificazione
+int missile_time = START_MISSILE_TIME;
+int movement_time = START_MOVEMENT_TIME;
+const double MISSILE_TIME_REDUCTION= 25.0;
+const double MOVEMENT_TIME_REDUCTION= 375.0;
 const char MISSILE_SYMBOL = '|';
 const char NAVICELLA_SYMBOL = '^';
 const char VUOTO_SYMBOL = '-';
@@ -33,10 +37,8 @@ const unsigned int MISSILE_BASIC_SPEED = 75;
 unsigned const int START_MISSILE_TIME = 100;
 unsigned const int START_MOVEMENT_TIME = 1500;
 
-unsigned int missile_time = START_MISSILE_TIME;
-unsigned int movement_time = START_MOVEMENT_TIME;
-double missile_time_reduction = 0;
-double movement_time_reduction = 0;
+
+
 
 const unsigned int RIGHE = 27;
 const unsigned int COLONNE = 23;

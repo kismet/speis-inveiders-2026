@@ -79,7 +79,7 @@ void levelUP()
     {
         Load_NewLevel_Assets();
         SDL_Event event;
-        continuoConVittoria(tabellone, missile_time, movement_time);
+        continuoConVittoria();
         while (newLevel)
         {
             while (SDL_PollEvent(&event))
