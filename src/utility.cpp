@@ -46,6 +46,7 @@ void inizializzaPartita (char dst[27][23], const char source[27][23], char modal
         }
     }
     inizializzaBarriere();
+    gioco.primaColonnaAlieni=7;
     if (modalita == 'c') {//continua
         player.x=11;
     }else if (modalita == 'm') {
