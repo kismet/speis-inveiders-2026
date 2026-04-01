@@ -22,6 +22,7 @@ extern const char NEMICO_SYMBOL;
 extern const char BARRIER_SYMBOL;
 extern const char MISSILE_NEMICO_SYMBOL;
 extern const char MISSILE_NEMICO_E_NEMICO_SYMBOL;
+extern const char BOMB_SYMBOL;
 extern const unsigned int RIGHE;
 extern const unsigned int COLONNE;
 extern const unsigned int MISSILE_BASIC_SPEED;
@@ -84,6 +85,12 @@ void checkBarriera(int c);
 void inizializzaBarriere();
 
 void checkVitaBarriera();
+
+void generaBomba ();
+
+void spostaBomba ();
+
+void esplodiBomba (int righe, int colonna);
 
 #endif //SPEIS_INVEIDERS_GAMEPLAY_H
 

@@ -78,6 +78,9 @@ void avanzoSparoAlieni () {
                 else if (tabellone[r][c] == tabellone[26][c]) {
                     tabellone[r][c] = VUOTO_SYMBOL;
                 }
+                else if (tabellone[r + 1][c] == BOMB_SYMBOL) {
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                }
             }
             if ( tabellone[r][c] == MISSILE_NEMICO_E_NEMICO_SYMBOL ) {
                 if (tabellone[r+1][c] == NAVICELLA_SYMBOL) {
@@ -104,6 +107,9 @@ void avanzoSparoAlieni () {
                     tabellone[r+1][c] = MISSILE_NEMICO_E_NEMICO_SYMBOL;
                 }
                 else if (tabellone[r][c] == tabellone[26][c]) {
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                }
+                else if (tabellone[r + 1][c] == BOMB_SYMBOL) {
                     tabellone[r][c] = VUOTO_SYMBOL;
                 }
             }
@@ -173,6 +179,10 @@ void spostaDestraNemici() {
                     tabellone[r][c] = VUOTO_SYMBOL;
                     tabellone[r][c + 1] = MISSILE_NEMICO_E_NEMICO_SYMBOL;
                 }
+
+                if (tabellone[r][c + 1] == MISSILE_NEMICO_SYMBOL) {
+                    esplodiBomba(r,c);
+                }
             }
             if ( tabellone[r][c] == MISSILE_NEMICO_E_NEMICO_SYMBOL ) {
                 if ( tabellone[r][c + 1] == VUOTO_SYMBOL ) {
@@ -196,6 +206,10 @@ void spostaDestraNemici() {
 
                     tabellone[r][c] = MISSILE_NEMICO_SYMBOL;
                     tabellone[r][c + 1] = VUOTO_SYMBOL;
+                }
+
+                if (tabellone[r][c + 1] == MISSILE_NEMICO_SYMBOL) {
+                    esplodiBomba(r,c);
                 }
             }
         }
@@ -226,6 +240,10 @@ void spostaSinistraNemici() {
                     tabellone[r][c] = VUOTO_SYMBOL;
                     tabellone[r][c - 1] = MISSILE_NEMICO_E_NEMICO_SYMBOL;
                 }
+
+                if (tabellone[r][c - 1] == BOMB_SYMBOL) {
+                    esplodiBomba(r,c);
+                }
             }
             if ( tabellone[r][c] == MISSILE_NEMICO_E_NEMICO_SYMBOL ) {
                 if ( tabellone[r][c - 1] == VUOTO_SYMBOL ) {
@@ -250,6 +268,10 @@ void spostaSinistraNemici() {
                     tabellone[r][c] = MISSILE_NEMICO_SYMBOL;
                     tabellone[r][c - 1] = VUOTO_SYMBOL;
                 }
+
+                if (tabellone[r][c - 1] == BOMB_SYMBOL) {
+                    esplodiBomba(r,c);
+                }
             }
         }
     }
@@ -269,6 +291,9 @@ void spostaInBassoNemico() {
                 tabellone[i][j] = VUOTO_SYMBOL;
                 player.spari--;
                 player.punteggio += 100;
+            }
+            if (tabellone[i - 1][j] == NEMICO_SYMBOL && tabellone[i][j] != BOMB_SYMBOL) {
+                esplodiBomba(i, j);
             }
         }
     }
