@@ -36,6 +36,7 @@ void Load_Over_Assets() {
     over.background = EDL_LoadAsset("../assets/schermate/sfondoInGame.png");
 
     SDL_Color red = { 255, 0, 0 };
+    SDL_Color white = { 255, 255, 255 };
     SDL_Color yellow = { 255, 255, 0 };
     SDL_Color purple = { 255, 0, 255 };
 
@@ -50,12 +51,16 @@ void Load_Over_Assets() {
     over.selectedStyle = over.menuStyle;
     over.selectedStyle.foreground = red;
 
+    over.extraStyle = over.menuStyle;
+    over.extraStyle.foreground = white;
+    over.extraStyle.size = 50;
 }
 
 void gameOver() {
             gioco.level = 1;
             Load_Over_Assets();
             SDL_Event event;
+
             while (gOver)
             {
                 while (SDL_PollEvent(&event))
@@ -97,6 +102,10 @@ void gameOver() {
                 EDL_DrawAsset(0, 0, over.background, 0, 0.71);
                 EDL_SetTextStyle(&over.titleStyle);
                 EDL_DrawText(250,150, 1366, 80, "GAME OVER", TEXT_CENTERED);
+                stampaInt(player.punteggio, stampaPunteggio, 64);
+                EDL_SetTextStyle(&over.extraStyle);
+                EDL_DrawText(290,50, 1366, 100, stampaPunteggio, TEXT_CENTERED);
+                EDL_DrawText(290,10, 1366, 100, "POINTS:", TEXT_CENTERED);
 
                 EDL_SetTextStyle(&over.menuStyle);
                 if (over.menuIndex == 0)

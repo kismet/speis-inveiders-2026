@@ -41,6 +41,8 @@ const unsigned int RIGHE = 27;
 const unsigned int COLONNE = 23;
 const float scalaCoordinate=0.71;
 
+char stampaPunteggio[1000];
+
 bool versoDestra = true;
 int startTime = SDL_GetTicks();
 
@@ -105,7 +107,7 @@ int main(int argc, char* argv[]) {
     srand(time(0));
     gioco.level = 1;
 
-    char stampaPunteggio[1000];
+
     char stampaLivello[1000];
 
 
@@ -145,6 +147,7 @@ int main(int argc, char* argv[]) {
     tempoAvanzoSparo = SDL_GetTicks();
     tempoAvanzoSparoAlieno = SDL_GetTicks();
     tempoSparoAlieno = SDL_GetTicks();
+
 
     while (running) {
         // conteggia gli fps
