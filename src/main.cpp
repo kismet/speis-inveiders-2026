@@ -225,7 +225,7 @@ int main(int argc, char* argv[]) {
         if (gioco.stato == GAME_STATUS_PLAY) {
             EDL_FrameClear();
             int xCuori = 725;
-            int xBomba = 100;
+            int xBomba = 115;
             EDL_DrawAsset(0, 0, background, 0, 0.71);
 
             spostaNemici();
@@ -234,6 +234,7 @@ int main(int argc, char* argv[]) {
             stampaInt(gioco.level, stampaLivello, 64);
             stampaInt(player.punteggio, stampaPunteggio, 64);
             //TODO posizionati punteggi in attesa di font stile e posizione
+            EDL_DrawAsset(100, 400, depositoBombe, 0, 0.3);
             EDL_DrawText(425, 50, stampaPunteggio);
             EDL_DrawText(1000, 50, stampaLivello);
             for (int i = player.lives; i > 0; i--) {
@@ -241,8 +242,8 @@ int main(int argc, char* argv[]) {
                 xCuori += 40;
             }
             for (int i = player.bombs; i > 0; i--) {
-                EDL_DrawAsset(xBomba, 500, bomba, 0, 0.3);
-                xBomba += 40;
+                EDL_DrawAsset(xBomba, 420, bomba, 0, 0.3);
+                xBomba += 43;
             }
 
             xCuori = 725;
