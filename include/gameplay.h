@@ -21,6 +21,7 @@ extern const char VUOTO_SYMBOL;
 extern const char NEMICO_SYMBOL;
 extern const char BARRIER_SYMBOL;
 extern const char MISSILE_NEMICO_SYMBOL;
+extern const char MISSILE_NEMICO_E_NEMICO_SYMBOL;
 extern const unsigned int RIGHE;
 extern const unsigned int COLONNE;
 extern const unsigned int MISSILE_BASIC_SPEED;

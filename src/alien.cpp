@@ -43,7 +43,7 @@ void sparoAlieni () {
 void avanzoSparoAlieni () {
     for (int r = 26; r >= 0; r--) {
         for (int c = 22; c >= 0; c--) {
-            if (tabellone[r][c] == MISSILE_NEMICO_SYMBOL) {
+            if (tabellone[r][c] == MISSILE_NEMICO_SYMBOL ) {
                 if (tabellone[r+1][c] == NAVICELLA_SYMBOL) {
                     if (player.lives > 0) {
                         tabellone[r+1][c] = NAVICELLA_SYMBOL;
@@ -63,10 +63,39 @@ void avanzoSparoAlieni () {
                     checkBarriera(c);
                     tabellone[r][c] = VUOTO_SYMBOL;
                 }
+                else if (tabellone[r+1][c] == NEMICO_SYMBOL) {
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                    tabellone[r+1][c] = MISSILE_NEMICO_E_NEMICO_SYMBOL;
+                }
                 else if (tabellone[r][c] == tabellone[26][c]) {
                     tabellone[r][c] = VUOTO_SYMBOL;
                 }
-                else if (r == RIGHE - 1) {
+            }
+            if ( tabellone[r][c] == MISSILE_NEMICO_E_NEMICO_SYMBOL ) {
+                if (tabellone[r+1][c] == NAVICELLA_SYMBOL) {
+                    if (player.lives > 0) {
+                        tabellone[r+1][c] = NAVICELLA_SYMBOL;
+                        player.lives--;
+                    }
+                    if (player.lives <= 0) {
+                        tabellone[r+1][c] = VUOTO_SYMBOL;
+                        gameOver();
+                    }
+                    tabellone[r][c] = NEMICO_SYMBOL;
+                }
+                else if (tabellone[r+1][c] == VUOTO_SYMBOL) {
+                    tabellone[r+1][c] = MISSILE_NEMICO_SYMBOL;
+                    tabellone[r][c] = NEMICO_SYMBOL;
+                }
+                else if (tabellone[r+1][c] == BARRIER_SYMBOL) {
+                    checkBarriera(c);
+                    tabellone[r][c] = NEMICO_SYMBOL;
+                }
+                else if (tabellone[r+1][c] == NEMICO_SYMBOL) {
+                    tabellone[r][c] = NEMICO_SYMBOL;
+                    tabellone[r+1][c] = MISSILE_NEMICO_E_NEMICO_SYMBOL;
+                }
+                else if (tabellone[r][c] == tabellone[26][c]) {
                     tabellone[r][c] = VUOTO_SYMBOL;
                 }
             }
@@ -132,7 +161,15 @@ void spostaDestraNemici() {
                 }
 
                 else if (tabellone[r][c + 1] == MISSILE_NEMICO_SYMBOL) {
-                    tabellone[r][c] = MISSILE_NEMICO_SYMBOL;
+
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                    tabellone[r][c + 1] = MISSILE_NEMICO_E_NEMICO_SYMBOL;
+                }
+            }
+            if ( tabellone[r][c] == MISSILE_NEMICO_E_NEMICO_SYMBOL ) {
+                if ( tabellone[r][c + 1] == VUOTO_SYMBOL ) {
+
+                    tabellone[r][c] = VUOTO_SYMBOL;
                     tabellone[r][c + 1] = NEMICO_SYMBOL;
                 }
 
@@ -147,6 +184,10 @@ void spostaDestraNemici() {
                         }
                     }
                     checkBarriera(c+1);
+                else if (tabellone[r][c + 1] == MISSILE_SYMBOL) {
+
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                    tabellone[r][c + 1] = VUOTO_SYMBOL;
                 }
             }
         }
@@ -174,7 +215,14 @@ void spostaSinistraNemici() {
 
                 else if (tabellone[r][c - 1] == MISSILE_NEMICO_SYMBOL) {
 
-                    tabellone[r][c] = MISSILE_NEMICO_SYMBOL;
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                    tabellone[r][c - 1] = MISSILE_NEMICO_E_NEMICO_SYMBOL;
+                }
+            }
+            if ( tabellone[r][c] == MISSILE_NEMICO_E_NEMICO_SYMBOL ) {
+                if ( tabellone[r][c - 1] == VUOTO_SYMBOL ) {
+
+                    tabellone[r][c] = VUOTO_SYMBOL;
                     tabellone[r][c - 1] = NEMICO_SYMBOL;
                 }
 
@@ -189,6 +237,10 @@ void spostaSinistraNemici() {
                         }
                     }
                     checkBarriera(c-1);
+                else if (tabellone[r][c - 1] == MISSILE_SYMBOL) {
+
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                    tabellone[r][c - 1] = VUOTO_SYMBOL;
                 }
             }
         }

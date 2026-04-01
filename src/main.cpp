@@ -32,6 +32,7 @@ const char VUOTO_SYMBOL = '-';
 const char NEMICO_SYMBOL = 'X';
 const char BARRIER_SYMBOL = 'O';
 const char MISSILE_NEMICO_SYMBOL = '1';
+const char MISSILE_NEMICO_E_NEMICO_SYMBOL = 'Y';
 const unsigned int MISSILE_BASIC_SPEED = 75;
 
 unsigned const int START_MISSILE_TIME = 100;
@@ -247,6 +248,10 @@ int main(int argc, char* argv[]) {
                     CTabellone[1] = '\0';
                     if (CTabellone[0] == NEMICO_SYMBOL) {
                         EDL_DrawAsset(xscritta,yscritta,nemico, 0, 0.16);
+                    }
+                    else if (CTabellone[0] == MISSILE_NEMICO_E_NEMICO_SYMBOL) {
+                        EDL_DrawAsset(xscritta,yscritta,nemico, 0, 0.16);
+                        EDL_DrawAsset(xscritta,yscritta,sparoNemico, 180, 0.1);
                     }
                     else if (CTabellone[0] == NAVICELLA_SYMBOL) {
                         EDL_DrawAsset(xscritta,yscritta,player.navicella, 0, 0.16);
