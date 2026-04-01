@@ -124,6 +124,7 @@ int main(int argc, char* argv[]) {
     Easy_Asset_t *barriera = EDL_LoadAsset("../assets/sprites/scudoProiettili.png");
     Load_Interface_Assets();
     uint64_t tempoAvanzoSparo;
+    uint64_t tempoAvanzoSparoAlieno;
     uint64_t tempoSparoAlieno;
 
     //variabili per i while e la selezione
@@ -142,6 +143,7 @@ int main(int argc, char* argv[]) {
     stampaInt(0, valore_FPS, 64);
 
     tempoAvanzoSparo = SDL_GetTicks();
+    tempoAvanzoSparoAlieno = SDL_GetTicks();
     tempoSparoAlieno = SDL_GetTicks();
 
     while (running) {
@@ -267,11 +269,15 @@ int main(int argc, char* argv[]) {
                 xscritta = 465*scalaCoordinate;
 
             }
-            if (SDL_GetTicks() - tempoAvanzoSparo >= missile_time) {
+            if (SDL_GetTicks() - tempoAvanzoSparo >= 100) {
                 avanzaSparo();
+                tempoAvanzoSparo = SDL_GetTicks();
+            }
+
+            if (SDL_GetTicks() - tempoAvanzoSparoAlieno >= missile_time) {
                 levelUP();
                 avanzoSparoAlieni();
-                tempoAvanzoSparo = SDL_GetTicks();
+                tempoAvanzoSparoAlieno = SDL_GetTicks();
             }
 
             if (SDL_GetTicks() - tempoSparoAlieno >= movement_time) {
