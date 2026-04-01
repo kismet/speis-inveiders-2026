@@ -22,6 +22,10 @@
 #include "types.h"
 
 //variabili di supporto per identificazione
+int missile_time = START_MISSILE_TIME;
+int movement_time = START_MOVEMENT_TIME;
+const double MISSILE_TIME_REDUCTION= 25.0;
+const double MOVEMENT_TIME_REDUCTION= 375.0;
 const char MISSILE_SYMBOL = '|';
 const char NAVICELLA_SYMBOL = '^';
 const char VUOTO_SYMBOL = '-';
@@ -30,17 +34,14 @@ const char BARRIER_SYMBOL = 'O';
 const char MISSILE_NEMICO_SYMBOL = '1';
 const unsigned int MISSILE_BASIC_SPEED = 75;
 
-unsigned int missile_time = 100;
-unsigned int movement_time = 1500;
-double missile_time_reduction = 0;
-double movement_time_reduction = 0;
+unsigned const int START_MISSILE_TIME = 100;
+unsigned const int START_MOVEMENT_TIME = 1500;
 
 const unsigned int RIGHE = 27;
 const unsigned int COLONNE = 23;
 const float scalaCoordinate=0.71;
 
 bool versoDestra = true;
-
 int startTime = SDL_GetTicks();
 
     //creazione della matrice
@@ -69,7 +70,7 @@ int startTime = SDL_GetTicks();
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
-        {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
+        {'-', '-', '-', '-', '-', 'O', '-', '-', '-', '-', '-', 'O', '-', '-', '-', '-', '-', 'O', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
         {'-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '^', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-'},
     };
@@ -79,7 +80,6 @@ GameContext_t gioco;
 Player_t player;
 Index_t interfaccia;
 
-
 void Load_Interface_Assets()
 {
     interfaccia.regular = EDL_LoadAsset("assets/fonts/Quadrillion-Sb-It.otf");
@@ -88,20 +88,25 @@ void Load_Interface_Assets()
     }
 
     SDL_Color purple = { 255, 0, 255 };
+    SDL_Color white = { 255, 255, 255 };
 
     interfaccia.titleStyle.font = interfaccia.regular;
     interfaccia.titleStyle.size = 25;
     interfaccia.titleStyle.foreground = purple;
+
+    interfaccia.menuStyle = interfaccia.titleStyle;
+    interfaccia.menuStyle.foreground = white;
 }
 
 int main(int argc, char* argv[]) {
+
     //inizializzazione
     EDL_Init();
+    srand(time(0));
     gioco.level = 1;
 
     char stampaPunteggio[1000];
     char stampaLivello[1000];
-    char stampaVite[1000];
 
 
     //creazione variabili per la gestione del tabellone
@@ -110,21 +115,21 @@ int main(int argc, char* argv[]) {
     int yscritta = 520, xscritta = 500;
 
     //font e immagine nave
-    Easy_Asset_t * font = EDL_LoadAsset("../assets/fonts/UbuntuMono-Regular.ttf");
     player.navicella  = EDL_LoadAsset("../assets/sprites/navicella.PNG");
     Easy_Asset_t *nemico = EDL_LoadAsset("../assets/sprites/alieno.PNG");
     Easy_Asset_t *sparoNemico = EDL_LoadAsset("../assets/sprites/proiettileAlieno.PNG");
     Easy_Asset_t *sparo = EDL_LoadAsset("../assets/sprites/proiettileNavicella.PNG");
     Easy_Asset_t *background = EDL_LoadAsset("../assets/schermate/sfondoInGame.png");
     Easy_Asset_t *cuore = EDL_LoadAsset("../assets/sprites/cuore.png");
+    Easy_Asset_t *barriera = EDL_LoadAsset("../assets/sprites/scudoProiettili.png");
     Load_Interface_Assets();
     uint64_t tempoAvanzoSparo;
+    uint64_t tempoAvanzoSparoAlieno;
     uint64_t tempoSparoAlieno;
 
     //variabili per i while e la selezione
     int highliner = 0;
     bool running = true;
-    bool playRunning = false;
 
     gioco.stato = GAME_STATUS_MENU;
 
@@ -134,38 +139,11 @@ int main(int argc, char* argv[]) {
     int fps=0; // valore per frame per second
     char valore_FPS[64]; // variabile di test per stampare fps
 
-    /*
-    if(font == NULL ) {
-        font = EDL_LoadAsset("../assets/fonts/UbuntuMono-Regular.ttf");
-    }
-    */
-    SDL_Color white = {255, 255, 255};
-    SDL_Color yellow = {255, 255, 0};
-
-    //creazione degli stili
-    TextStyle_t style;
-    style.font = font;
-    style.size = 50;
-    style.foreground = white;
-    EDL_SetTextStyle(&style);
-
-    TextStyle_t stileGiallo = style;
-    stileGiallo.foreground = yellow;
-    stileGiallo.size = 70;
-    EDL_SetTextStyle(&stileGiallo);
-
-    TextStyle_t style_print;
-    style_print.font = font;
-    style_print.size = 25;
-    style_print.foreground = white;
-    EDL_SetTextStyle(&style_print);
-
-    int tempoPassato=SDL_GetTicks();
-    int tempoProiettile=SDL_GetTicks();
     //assegno il valore iniziale degli fps a 0
     stampaInt(0, valore_FPS, 64);
 
     tempoAvanzoSparo = SDL_GetTicks();
+    tempoAvanzoSparoAlieno = SDL_GetTicks();
     tempoSparoAlieno = SDL_GetTicks();
 
     while (running) {
@@ -236,16 +214,14 @@ int main(int argc, char* argv[]) {
         }
         if (gioco.stato == GAME_STATUS_PLAY) {
             EDL_FrameClear();
-
             int xCuori = 725;
-
             EDL_DrawAsset(0, 0, background, 0, 0.71);
 
             spostaNemici();
 
+            EDL_SetTextStyle(&interfaccia.menuStyle);
             stampaInt(gioco.level, stampaLivello, 64);
             stampaInt(player.punteggio, stampaPunteggio, 64);
-            stampaInt(player.lives, stampaVite, 64);
             //TODO posizionati punteggi in attesa di font stile e posizione
             EDL_DrawText(425, 50, stampaPunteggio);
             EDL_DrawText(1000, 50, stampaLivello);
@@ -257,14 +233,12 @@ int main(int argc, char* argv[]) {
             xCuori = 725;
 
             EDL_SetTextStyle(&interfaccia.titleStyle);
-            EDL_DrawText(300,50, "POINTS:");
+            EDL_DrawText(290,50, "POINTS:");
             EDL_DrawText(875,50, "LEVEL:");
             EDL_DrawText(600,50, "LIVES:");
 
             yscritta = 130*scalaCoordinate;
             xscritta = 465*scalaCoordinate;
-
-            EDL_SetTextStyle(&style_print);
 
             for (int r = 0; r < 27; r++) {
                 for (int c = 0; c < 23; c++) {
@@ -282,6 +256,9 @@ int main(int argc, char* argv[]) {
                     }
                     else if (CTabellone[0] == MISSILE_NEMICO_SYMBOL) {
                         EDL_DrawAsset(xscritta,yscritta,sparoNemico, 180, 0.1);
+
+                    }else if (CTabellone[0] == BARRIER_SYMBOL) {
+                        EDL_DrawAsset(xscritta,yscritta,barriera, 0, 0.16);
                     }
 
                     xscritta = xscritta + 40*scalaCoordinate;
@@ -292,11 +269,15 @@ int main(int argc, char* argv[]) {
                 xscritta = 465*scalaCoordinate;
 
             }
-            if (SDL_GetTicks() - tempoAvanzoSparo >= missile_time) {
+            if (SDL_GetTicks() - tempoAvanzoSparo >= 100) {
                 avanzaSparo();
+                tempoAvanzoSparo = SDL_GetTicks();
+            }
+
+            if (SDL_GetTicks() - tempoAvanzoSparoAlieno >= missile_time) {
                 levelUP();
                 avanzoSparoAlieni();
-                tempoAvanzoSparo = SDL_GetTicks();
+                tempoAvanzoSparoAlieno = SDL_GetTicks();
             }
 
             if (SDL_GetTicks() - tempoSparoAlieno >= movement_time) {
