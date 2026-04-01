@@ -16,6 +16,7 @@ extern GameContext_t gioco;
 extern const char TABELLONE[27][23];
 extern char tabellone[27][23];
 extern BarrierContext_t barriere[23];
+extern char stampaPunteggio[1000];
 
 
 #endif //SPEIS_INVEIDERS_GLOBALS_H
