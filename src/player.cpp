@@ -95,6 +95,9 @@ void spostaBomba () {
                     if (tabellone[r - 1][c - 1] == NEMICO_SYMBOL) {
                         tabellone[r - 1][c - 1] = VUOTO_SYMBOL;
                         player.punteggio += 100;
+                    }if (tabellone[r - 1][c - 1] == NEMICO_SYMBOL) {
+                        tabellone[r - 1][c - 1] = VUOTO_SYMBOL;
+                        player.punteggio += 100;
                     }
 
                     tabellone[r][c] = VUOTO_SYMBOL;
@@ -103,6 +106,14 @@ void spostaBomba () {
                 }
                 else if (tabellone [r - 1][c] == VUOTO_SYMBOL) {
                     tabellone[r - 1][c] = BOMB_SYMBOL;
+                    tabellone[r][c] = VUOTO_SYMBOL;
+                }
+                else if (tabellone [r - 1][c] == BARRIER_SYMBOL) {
+
+                    esplodiBomba(r - 1, c);
+                }
+                else if (tabellone [r][c] == tabellone [0][c]) {
+
                     tabellone[r][c] = VUOTO_SYMBOL;
                 }
             }
