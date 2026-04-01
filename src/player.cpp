@@ -51,7 +51,7 @@ void passoDestro() {
 
 void generaBomba () {
 
-    if (player.bombs >= 0) {
+    if (player.bombs > 0) {
         for (int c = 0; c < COLONNE; c++)
         {
             if (tabellone[26][c] == NAVICELLA_SYMBOL)
@@ -166,7 +166,9 @@ void avanzaSparo() {
                     tabellone[r-1][c] = VUOTO_SYMBOL;
                     tabellone[r][c] = VUOTO_SYMBOL;
                     player.spari--;
+                    if (player.bombs <= 3) {
                     player.bombs++;
+                    }
                 }
                 else {
                     tabellone[r-1][c] = MISSILE_SYMBOL;

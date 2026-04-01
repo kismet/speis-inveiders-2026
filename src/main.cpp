@@ -125,6 +125,7 @@ int main(int argc, char* argv[]) {
     Easy_Asset_t *cuore = EDL_LoadAsset("../assets/sprites/cuore.png");
     Easy_Asset_t *barriera = EDL_LoadAsset("../assets/sprites/scudoProiettili.png");
     Easy_Asset_t *bomba = EDL_LoadAsset("../assets/sprites/bomba.png");
+    Easy_Asset_t *depositoBombe = EDL_LoadAsset("../assets/sprites/siloBombe.png");
     Load_Interface_Assets();
     uint64_t tempoAvanzoSparo;
     uint64_t tempoAvanzoSparoAlieno;
