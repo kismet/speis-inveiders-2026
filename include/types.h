@@ -45,6 +45,7 @@ typedef struct Player {
     int punteggio = 0;
     int lives = 3;
     Easy_Asset_t *navicella;
+    int bombs = 3;
 } Player_t;
 
 typedef struct Index {

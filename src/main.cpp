@@ -32,6 +32,8 @@ const char VUOTO_SYMBOL = '-';
 const char NEMICO_SYMBOL = 'X';
 const char BARRIER_SYMBOL = 'O';
 const char MISSILE_NEMICO_SYMBOL = '1';
+const char MISSILE_NEMICO_E_NEMICO_SYMBOL = 'Y';
+const char BOMB_SYMBOL = 'B';
 const unsigned int MISSILE_BASIC_SPEED = 75;
 
 unsigned const int START_MISSILE_TIME = 100;
@@ -109,7 +111,7 @@ int main(int argc, char* argv[]) {
 
 
     char stampaLivello[1000];
-
+    char stampaBombe[1000];
 
     //creazione variabili per la gestione del tabellone
     char CTabellone[2];
@@ -124,10 +126,13 @@ int main(int argc, char* argv[]) {
     Easy_Asset_t *background = EDL_LoadAsset("../assets/schermate/sfondoInGame.png");
     Easy_Asset_t *cuore = EDL_LoadAsset("../assets/sprites/cuore.png");
     Easy_Asset_t *barriera = EDL_LoadAsset("../assets/sprites/scudoProiettili.png");
+    Easy_Asset_t *bomba = EDL_LoadAsset("../assets/sprites/bomba.png");
+    Easy_Asset_t *depositoBombe = EDL_LoadAsset("../assets/sprites/siloBombe.png");
     Load_Interface_Assets();
     uint64_t tempoAvanzoSparo;
     uint64_t tempoAvanzoSparoAlieno;
     uint64_t tempoSparoAlieno;
+    uint64_t tempoBomba;
 
     //variabili per i while e la selezione
     int highliner = 0;
@@ -147,6 +152,7 @@ int main(int argc, char* argv[]) {
     tempoAvanzoSparo = SDL_GetTicks();
     tempoAvanzoSparoAlieno = SDL_GetTicks();
     tempoSparoAlieno = SDL_GetTicks();
+    tempoBomba = SDL_GetTicks();
 
 
     while (running) {
@@ -214,10 +220,15 @@ int main(int argc, char* argv[]) {
                 generaSparo();
             }
 
+            if (event.type == SDL_EVENT_KEY_DOWN && event.key.scancode == SDL_SCANCODE_F) {
+                generaBomba();
+            }
+
         }
         if (gioco.stato == GAME_STATUS_PLAY) {
             EDL_FrameClear();
             int xCuori = 725;
+            int xBomba = 30;
             EDL_DrawAsset(0, 0, background, 0, 0.71);
 
             spostaNemici();
@@ -226,11 +237,16 @@ int main(int argc, char* argv[]) {
             stampaInt(gioco.level, stampaLivello, 64);
             stampaInt(player.punteggio, stampaPunteggio, 64);
             //TODO posizionati punteggi in attesa di font stile e posizione
+            EDL_DrawAsset(15, 680, depositoBombe, 0, 0.3);
             EDL_DrawText(425, 50, stampaPunteggio);
             EDL_DrawText(1000, 50, stampaLivello);
             for (int i = player.lives; i > 0; i--) {
                 EDL_DrawAsset(xCuori, 42, cuore, 0, 0.3);
                 xCuori += 40;
+            }
+            for (int i = player.bombs; i > 0; i--) {
+                EDL_DrawAsset(xBomba, 700, bomba, 0, 0.3);
+                xBomba += 43;
             }
 
             xCuori = 725;
@@ -251,6 +267,10 @@ int main(int argc, char* argv[]) {
                     if (CTabellone[0] == NEMICO_SYMBOL) {
                         EDL_DrawAsset(xscritta,yscritta,nemico, 0, 0.16);
                     }
+                    else if (CTabellone[0] == MISSILE_NEMICO_E_NEMICO_SYMBOL) {
+                        EDL_DrawAsset(xscritta,yscritta,nemico, 0, 0.16);
+                        EDL_DrawAsset(xscritta,yscritta,sparoNemico, 180, 0.1);
+                    }
                     else if (CTabellone[0] == NAVICELLA_SYMBOL) {
                         EDL_DrawAsset(xscritta,yscritta,player.navicella, 0, 0.16);
                     }
@@ -262,6 +282,8 @@ int main(int argc, char* argv[]) {
 
                     }else if (CTabellone[0] == BARRIER_SYMBOL) {
                         EDL_DrawAsset(xscritta,yscritta,barriera, 0, 0.16);
+                    }else if (CTabellone[0] == BOMB_SYMBOL) {
+                        EDL_DrawAsset(xscritta,yscritta,bomba, 0, 0.16);
                     }
 
                     xscritta = xscritta + 40*scalaCoordinate;
@@ -272,6 +294,12 @@ int main(int argc, char* argv[]) {
                 xscritta = 465*scalaCoordinate;
 
             }
+
+            if (SDL_GetTicks() - tempoBomba >= 200) {
+                spostaBomba();
+                tempoBomba = SDL_GetTicks();
+            }
+
             if (SDL_GetTicks() - tempoAvanzoSparo >= 100) {
                 avanzaSparo();
                 tempoAvanzoSparo = SDL_GetTicks();

@@ -31,6 +31,7 @@ add_executable(speis-inveiders src/main.cpp libs/edl/src/easy_sdl.cpp
         src/credits.cpp
         include/globals.h
         src/barriere.cpp
+        src/barriere.cpp
 )
 
 target_link_libraries(speis-inveiders
